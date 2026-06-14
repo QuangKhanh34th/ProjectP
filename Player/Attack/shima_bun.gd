@@ -1,12 +1,15 @@
 extends Area2D
 
+# Stat initialization, player start with this when the weapon is obtained
 var level = 1
-var hp = 1
+var hp = 1 # act like penetration level, get this number up and more enemy it will penetrate
 var speed = 100
 var damage = 10
 var knock_amount = 100
 var attack_size = 1.0
 
+# variables describing which direction to shoot the projectile
+# we get these numbers from player-mobile.gd when it call this script
 var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
@@ -15,6 +18,7 @@ var angle = Vector2.ZERO
 func _ready() -> void:
 	angle = global_position.direction_to(target)
 	rotation = angle.angle() + deg_to_rad(135)
+	# describe the stats for every level, for now there is only one level
 	match level:
 		1:
 			hp = 1

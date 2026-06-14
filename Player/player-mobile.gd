@@ -24,35 +24,17 @@ var enemy_close = []
 
 var move_vector := Vector2.ZERO
 
+# When the player is loaded into the game, start attack() immediately
 func _ready() -> void:
 	attack()
 
-func _process(delta: float) -> void:
-	## Movement using the joystick output:
-#	if joystick_left and joystick_left.is_pressed:
-#		position += joystick_left.output * speed * delta
-	
-	## Movement using Input functions:
-	move_vector = Vector2.ZERO
-	move_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	position += move_vector * speed * delta
-	
-	# Rotation:
-	if joystick_right and joystick_right.is_pressed:
-		rotation = joystick_right.output.angle()
-
+# start the weapon timer if the weapon level is above 0 (meaning having/acquired 
+# the weapon). Change this in the future if the starting weapon is changed
 func attack():
 	if shimaBun_level > 0:
 		ShimaBunTimer.wait_time = shimaBun_attackspeed
 		if ShimaBunTimer.is_stopped():
 			ShimaBunTimer.start()
-
-# Get the "hurt" signal from the hurtbox, take the signal's value (damage)
-# and subtract it into player's hp
-func _on_hurtbox_hurt(damage: Variant) -> void:
-	hp -= damage
-	print(hp)
-
 
 func _on_shima_bun_timer_timeout() -> void:
 	shimaBun_ammo += shimaBun_baseammo
@@ -100,3 +82,26 @@ func _on_enemy_detection_area_body_entered(body: Node2D) -> void:
 func _on_enemy_detection_area_body_exited(body: Node2D) -> void:
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+
+# calls every frame to process character movement (read movement input from user 
+# and move the character)
+func _process(delta: float) -> void:
+	## Movement using the joystick output:
+#	if joystick_left and joystick_left.is_pressed:
+#		position += joystick_left.output * speed * delta
+	
+	## Movement using Input functions:
+	move_vector = Vector2.ZERO
+	move_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	position += move_vector * speed * delta
+	
+	# Rotation:
+	if joystick_right and joystick_right.is_pressed:
+		rotation = joystick_right.output.angle()
+
+# Get the "hurt" signal from the hurtbox, take the signal's value (damage)
+# and subtract it into player's hp
+func _on_hurtbox_hurt(damage: Variant) -> void:
+	hp -= damage
+	print(hp)

@@ -29,7 +29,7 @@ func _on_area_entered(area: Area2D) -> void:
 				# to turn off temporarily via area.tempDisable(). This is useful for lingering 
 				# area-of-effect (AoE) attacks; the AoE stays on screen, but it stops dealing damage for a few seconds.
 				2: 
-					if area.has_method("tempDisable"):
+					if area.has_method("tempDisable"): # See hitbox.gd for more explanation on this method
 						area.tempDisable()
 			
 			# Extract the "damage" value from the Area2D

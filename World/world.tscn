@@ -1,46 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjqhin3hban6j"]
+[gd_scene format=3 uid="uid://bjqhin3hban6j"]
 
-[ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://Textures/grass-tile.png" id="1_62w18"]
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://Player/player.tscn" id="2_8a836"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_j8job"]
+[ext_resource type="Texture2D" uid="uid://n147obl14gp2" path="res://Textures/Tile.jpeg" id="3_k8do8"]
 [ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://Enemy/enemy.tscn" id="4_3f78f"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://Utility/enemy_spawner.tscn" id="4_k8do8"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=1078849849]
 
-[node name="Player" parent="." instance=ExtResource("2_8a836")]
+[node name="Player" parent="." unique_id=698049411 instance=ExtResource("2_8a836")]
 
-[node name="EnemySpawner" parent="." instance=ExtResource("4_k8do8")]
+[node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("4_k8do8")]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=656655348]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1944159651]
 motion_mirroring = Vector2(1000, 1000)
 
-[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=52997668]
 texture_filter = 1
 texture_repeat = 2
-texture = ExtResource("1_62w18")
+texture = ExtResource("3_k8do8")
 region_enabled = true
 region_rect = Rect2(0, 0, 1000, 1000)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1481711914]
 
-[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("3_j8job")]
+[node name="Virtual Joystick" parent="CanvasLayer" unique_id=331599570 instance=ExtResource("3_j8job")]
 offset_top = -1915.0
 offset_right = 1152.0
 offset_bottom = 0.0
 joystick_mode = 1
 visibility_mode = 2
 
-[node name="Nade" parent="." instance=ExtResource("4_3f78f")]
+[node name="Nade" parent="." unique_id=1558304278 instance=ExtResource("4_3f78f")]
 position = Vector2(55, 36)
 motion_mode = 1
 
-[node name="Nade2" parent="." instance=ExtResource("4_3f78f")]
+[node name="Nade2" parent="." unique_id=1105754911 instance=ExtResource("4_3f78f")]
 position = Vector2(110, 72)
 motion_mode = 1
 
-[node name="Nade3" parent="." instance=ExtResource("4_3f78f")]
+[node name="Nade3" parent="." unique_id=1213088157 instance=ExtResource("4_3f78f")]
 position = Vector2(-25, 86)
 motion_mode = 1

@@ -22,14 +22,15 @@ func _on_timer_timeout() -> void:
 			# spawn delay number yet
 			if i.spawn_delay_counter < i.enemy_spawn_delay:
 				i.spawn_delay_counter += 1 # increase the internal delay counter by 1
-			else: 
-				# reset the timer
+			else: # when spawn delay time reached the configured spawn delay
+				# 1. reset the timer
 				i.spawn_delay_counter = 0
 				
-				# spawn in the chosen enemy based on the amount we chose at random pos 
-				# outside of the camera
+				# 2. spawn in the chosen enemy based on the amount we chose at random 
+				# pos outside of the camera
 				var new_enemy = i.enemy
 				var counter = 0
+				# spawn until the configured enemy number per spawn is reached 
 				while counter < i.enemy_num:
 					var enemy_spawn = new_enemy.instantiate()
 					# custom function, choose one of the 4 rectangle sides located just outside the player
