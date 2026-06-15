@@ -7,7 +7,12 @@
 
 extends Area2D
 
-@export var damage = 1
+# damage number is just for instantiation purpose, this number is depended on
+# which parent node the hitbox node is attached to. It can be 10 when attached to a specific
+# enemy or 20 when attached to some projectile. The hurtbox will get this number 
+# and emit the "hurt" signal
+@export var damage = 1 
+
 @onready var collision = $CollisionShape2D
 @onready var disableTimer = $DisableHitBoxTimer
 

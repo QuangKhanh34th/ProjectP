@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpqkxawegbj7e"]
+[gd_scene format=3 uid="uid://bpqkxawegbj7e"]
 
 [ext_resource type="Script" uid="uid://cc3yxsog0nvl1" path="res://Utility/hurtbox.gd" id="1_kuaxy"]
 
-[node name="Hurtbox" type="Area2D"]
+[node name="Hurtbox" type="Area2D" unique_id=403750858]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_kuaxy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1170793762]
 
-[node name="DisableTimer" type="Timer" parent="."]
+[node name="DisableTimer" type="Timer" parent="." unique_id=1391764189]
 wait_time = 0.5
 one_shot = true
 

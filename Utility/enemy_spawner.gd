@@ -14,6 +14,14 @@ func _on_timer_timeout() -> void:
 	# default to 1 second per spawn
 	time += 1
 	var enemy_spawns = spawns
+	
+	# --- OPTIMIZATION: Fetch Camera and Viewport data ONLY ONCE per second ---
+	var camera = get_viewport().get_camera_2d()
+	var zoom = camera.zoom if camera else Vector2.ONE
+	var base_viewport_size = get_viewport_rect().size / zoom
+	var player_pos = player.global_position
+	# -------------------------------------------------------------------------
+	
 	for i in enemy_spawns:
 		# only do these code in between the start and end time
 		if time >= i.time_start and time <= i.time_end:
@@ -35,25 +43,26 @@ func _on_timer_timeout() -> void:
 					var enemy_spawn = new_enemy.instantiate()
 					# custom function, choose one of the 4 rectangle sides located just outside the player
 					# view to spawn in
-					enemy_spawn.global_position = get_random_position() 
+					# Pass the pre-calculated data into the function!
+					enemy_spawn.global_position = get_random_position(base_viewport_size, player_pos) 
 					add_child(enemy_spawn) # add enemy into World
 					counter += 1 
 
-func get_random_position():
-	# Grab the currently active Camera2D in the scene and
-	# get the screen size
-	var camera = get_viewport().get_camera_2d()
-	var zoom = camera.zoom if camera else Vector2.ONE
-	
+# We now pass the pre-calculated data as arguments
+func get_random_position(base_viewport_size: Vector2, player_pos: Vector2) ->Vector2:
+
 	# Create a spawning zone that is outside the player screen, so
 	# enemy never just "pop" into existence right before their eye
-	var vpr = (get_viewport_rect().size / zoom) * randf_range(1.1,1.4)
+	var vpr = base_viewport_size * randf_range(1.1, 1.4)
 	
 	# Pin the spawning zone to move with the player, so they never step out of it
-	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
-	var top_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y - vpr.y/2)
-	var bottom_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y + vpr.y/2)
-	var bottom_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y + vpr.y/2)
+	# the math: minus/plus x = move to the left/right, minus/plus y = move up/down
+	# for the top_left example, take player's position and move left by half the width (- vpr.x/2) 
+	# and up by half the height (- vpr.y/2), we get top left corner
+	var top_left = Vector2(player_pos.x - vpr.x/2, player_pos.y - vpr.y/2)
+	var top_right = Vector2(player_pos.x + vpr.x/2, player_pos.y - vpr.y/2)
+	var bottom_left = Vector2(player_pos.x - vpr.x/2, player_pos.y + vpr.y/2)
+	var bottom_right = Vector2(player_pos.x + vpr.x/2, player_pos.y + vpr.y/2)
 	
 	# Choose an edge postion to spawn the enemy at
 	var pos_size = ["up", "down", "right", "left"].pick_random()

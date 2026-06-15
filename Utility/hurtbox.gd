@@ -32,7 +32,7 @@ func _on_area_entered(area: Area2D) -> void:
 					if area.has_method("tempDisable"): # See hitbox.gd for more explanation on this method
 						area.tempDisable()
 			
-			# Extract the "damage" value from the Area2D
+			# Extract the "damage" value from the hitbox Area2D
 			var damage = area.damage
 			# broadcast the damage value to the custom signal "hurt" 
 			# The node that have this HurtBox node attached to it, connected to the "hurt" signal

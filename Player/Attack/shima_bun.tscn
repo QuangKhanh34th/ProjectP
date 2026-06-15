@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmflhpvacv128"]
+[gd_scene format=3 uid="uid://bmflhpvacv128"]
 
 [ext_resource type="Script" uid="uid://bhrfptgjc7x1t" path="res://Player/Attack/shima_bun.gd" id="1_yuxqo"]
 [ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://Textures/Items/Weapons/ShimaBun.png" id="2_nwrno"]
@@ -6,24 +6,27 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1ua4"]
 radius = 70.0286
 
-[node name="ShimaBun" type="Area2D" groups=["attack"]]
+[node name="ShimaBun" type="Area2D" unique_id=531958356 groups=["attack"]]
 top_level = true
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_yuxqo")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=277071974]
 scale = Vector2(0.064, 0.064)
 texture = ExtResource("2_nwrno")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1922375303]
 position = Vector2(2.38419e-07, -4.76837e-07)
 scale = Vector2(0.064, 0.064)
 shape = SubResource("CircleShape2D_k1ua4")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=767194563]
 wait_time = 10.0
 one_shot = true
 autostart = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=424172504]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -10,10 +10,16 @@ var shimaBun = preload("res://Player/Attack/shima_bun.tscn")
 @onready var ShimaBunTimer = get_node("Attack/ShimaBunTimer")
 @onready var ShimaBunAttackTimer = get_node("Attack/ShimaBunTimer/ShimaBunAttackTimer")
 
-# ShimaBun
+## ShimaBun
+#var shimaBun_ammo = 0
+#var shimaBun_baseammo = 2
+#var shimaBun_attackspeed = 1.5
+#var shimaBun_level = 1
+
+# ShimaBun - STRESS TEST MODE
 var shimaBun_ammo = 0
-var shimaBun_baseammo = 2
-var shimaBun_attackspeed = 1.5
+var shimaBun_baseammo = 5000 # Fire 50 bullets per burst!
+var shimaBun_attackspeed = 0.2 # Reload five times a second!
 var shimaBun_level = 1
 
 # Enemy related
@@ -37,8 +43,18 @@ func attack():
 			ShimaBunTimer.start()
 
 func _on_shima_bun_timer_timeout() -> void:
-	shimaBun_ammo += shimaBun_baseammo
-	ShimaBunAttackTimer.start()
+	# Fire 100 bullets the exact millisecond this timer triggers
+	for i in range(100):
+		var shimaBun_attack = shimaBun.instantiate()
+		shimaBun_attack.position = position
+		
+		# Add a little randomness to the target so they spread out like a shotgun
+		var base_target = get_target()
+		var random_spread = Vector2(randf_range(-50, 50), randf_range(-50, 50))
+		shimaBun_attack.target = base_target + random_spread
+		
+		shimaBun_attack.level = shimaBun_level
+		get_tree().current_scene.add_child(shimaBun_attack)
 
 
 func _on_shima_bun_attack_timer_timeout() -> void:
@@ -47,7 +63,8 @@ func _on_shima_bun_attack_timer_timeout() -> void:
 		shimaBun_attack.position = position
 		shimaBun_attack.target = get_target()
 		shimaBun_attack.level = shimaBun_level
-		add_child(shimaBun_attack)
+		#add_child(shimaBun_attack)
+		get_tree().current_scene.add_child(shimaBun_attack)
 		shimaBun_ammo -= 1
 		if (shimaBun_ammo) > 0:
 			ShimaBunAttackTimer.start()
