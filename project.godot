@@ -32,7 +32,8 @@ window/handheld/orientation=1
 [file_customization]
 
 folder_colors={
-"res://Textures/": "green"
+"res://assets/Audio/": "blue",
+"res://assets/Textures/": "green"
 }
 
 [input]
