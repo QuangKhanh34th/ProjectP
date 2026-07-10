@@ -7,6 +7,8 @@ extends Area2D
 @onready var collision = $CollisionShape2D
 @onready var disableTimer = $DisableTimer
 
+var hit_once_array = []
+
 signal hurt(damage)
 
 func _on_area_entered(area: Area2D) -> void:
@@ -22,8 +24,25 @@ func _on_area_entered(area: Area2D) -> void:
 				0: 
 					collision.call_deferred("set","disabled",true)
 					disableTimer.start()
-				1: # HitOnce: too complicated, so skip the implementation for now 
-					pass
+				1: # HitOnce: 
+					if hit_once_array.has(area) == false:
+						hit_once_array.append(area)
+						# check if the attack has the signal called "remove_from_array"
+						# and remove the attack from the "hit_once_list" array.
+						# Depend on how the attack is coded (how it handle emitting the "remove_from_array" signal)
+						# that the attack can either be:
+						# 1. Hit an enemy repeatedly as long as its hitbox still collide with the hurtbox
+						# 2. Remove itself from "hit_once_list" array when disappeared so the array don't full of dead attack references
+						if area.has_signal("remove_from_array"):
+							# safety check, check if remove_from_array from hitbox 
+							# is wired up to remove_from_list 
+							if not area.is_connected("remove_from_array", Callable(self, "remove_from_list")):
+								area.connect("remove_from_array", Callable(self, "remove_from_list"))
+					else:
+						# ignore that specific instance of the projectile,
+						# return null, skipping broadcasting "hurt" signal
+						return
+								
 				# DisableHitBox:
 				# Instead of making itself invincible, it tells the attacker's HitBox 
 				# to turn off temporarily via area.tempDisable(). This is useful for lingering 
@@ -43,6 +62,11 @@ func _on_area_entered(area: Area2D) -> void:
 			# it successfully hit a target
 			if area.has_method("enemy_hit"):
 				area.enemy_hit(1)
+
+# remove the attack instance from hit_once_array
+func remove_from_list(object):
+	if hit_once_array.has(object):
+		hit_once_array.erase(object)
 
 
 # If the DisableHitBoxTimer ran out (0.5s), re-enable the CollisionShape2D, so the hurtbox can be hit again

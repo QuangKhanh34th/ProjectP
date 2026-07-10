@@ -14,6 +14,7 @@ var target = Vector2.ZERO
 var angle = Vector2.ZERO
 
 @onready var player = get_tree().get_first_node_in_group("player")
+signal remove_from_array(object)
 
 func _ready() -> void:
 	angle = global_position.direction_to(target)
@@ -32,9 +33,16 @@ func _physics_process(delta: float) -> void:
 	
 func enemy_hit(charge = 1):
 	hp -= charge
+	# putting emit_signal here mean making the projectile hit an enemy
+	# multiple times as long as it still in contact with the enemy hurtbox
+	# emit_signal("remove_from_array", self) 
 	if hp <= 0:
+		# clean up the already-removed projectile from hurtbox's hit_once_array
+		# list so the list stay clean
+		emit_signal("remove_from_array", self)
 		queue_free() # hit enemy then disappear
 
 # If the attack missed the target, disappear after 10s
 func _on_timer_timeout() -> void:
+	emit_signal("remove_from_array", self)
 	queue_free() 
