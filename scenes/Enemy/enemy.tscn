@@ -32,8 +32,9 @@ shape = SubResource("CircleShape2D_px1sc")
 [node name="Hurtbox" parent="." unique_id=1563964010 instance=ExtResource("3_am0pq")]
 collision_layer = 4
 collision_mask = 4
+HurtBoxType = 1
 
-[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1263948809]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_eqilm")
 
@@ -41,7 +42,7 @@ shape = SubResource("CircleShape2D_eqilm")
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" parent="Hitbox" index="0"]
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=495384533]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_ncf7h")
 

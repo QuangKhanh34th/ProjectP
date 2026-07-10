@@ -2,8 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 # --- Player stats ---
-@export var speed : float = 50
-@export var hp = 100
+@export var speed: float = 50.0
+@export var hp: int = 100
 
 
 
@@ -12,7 +12,14 @@ extends CharacterBody2D
 var enemy_close: Array[Node2D] = []
 var move_vector := Vector2.ZERO
 
+const SHIMA_BUN_WEAPON = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun.tscn")
 
+func _ready():
+	if speed == null:
+		speed = 50.0
+	if hp == null:
+		hp = 100
+	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
 
 # --- Movement ---
 # calls every frame to process character movement (read movement input from user 

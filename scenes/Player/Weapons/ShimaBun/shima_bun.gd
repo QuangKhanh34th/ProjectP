@@ -1,48 +1,111 @@
-extends Area2D
+extends Node2D
 
-# Stat initialization, player start with this when the weapon is obtained
+@onready var ShimaBunTimer = get_node("ShimaBunTimer")
+@onready var ShimaBunAttackTimer = get_node("ShimaBunTimer/ShimaBunAttackTimer")
+
+# ShimaBun
+var player: Player
+var projectile = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun_projectile.tscn")
+
+# --- Weapon stats ---
 var level = 1
-var hp = 1 # act like penetration level, get this number up and more enemy it will penetrate
-var speed = 100
-var damage = 10
-var knock_amount = 100
-var attack_size = 1.0
+var base_damage = 2.6
+var base_speed = 100
+var penetration_hp = 2
+var base_size = 1.0 # how large is the projectile
+# var base_knockback = 100
+var base_ammo = 1 # how many bullet fired in one burst
+var base_cooldown = 1.5 # how long to wait between each burst (in seconds)
+var base_delay = 0.05 # how long to wait between each bullet in one burst (in seconds)
+var ammo_left = 0
 
-# variables describing which direction to shoot the projectile
-# we get these numbers from player-mobile.gd when it call this script
-var target = Vector2.ZERO
-var angle = Vector2.ZERO
-
-@onready var player = get_tree().get_first_node_in_group("player")
-signal remove_from_array(object)
 
 func _ready() -> void:
-	angle = global_position.direction_to(target)
-	rotation = angle.angle() + deg_to_rad(135)
-	# describe the stats for every level, for now there is only one level
-	match level:
-		1:
-			hp = 1
-			speed = 100
-			damage = 20
-			var knock_amount = 100
-			var attack_size = 1.0
-			
-func _physics_process(delta: float) -> void:
-	position += angle*speed*delta
-	
-func enemy_hit(charge = 1):
-	hp -= charge
-	# putting emit_signal here mean making the projectile hit an enemy
-	# multiple times as long as it still in contact with the enemy hurtbox
-	# emit_signal("remove_from_array", self) 
-	if hp <= 0:
-		# clean up the already-removed projectile from hurtbox's hit_once_array
-		# list so the list stay clean
-		emit_signal("remove_from_array", self)
-		queue_free() # hit enemy then disappear
+	print("[shima_bun.gd] script loaded")
+	attack()
 
-# If the attack missed the target, disappear after 10s
-func _on_timer_timeout() -> void:
-	emit_signal("remove_from_array", self)
-	queue_free() 
+
+func level_up():
+	level += 1
+	
+	# might need to change this to accept csv/spreadsheet for easier stat tweaking 
+	match level:
+		2:
+			base_ammo = 2
+		3:
+			base_damage = 20
+
+# start the weapon timer if the weapon level is above 0 (meaning having/acquired
+# the weapon)
+func attack():
+	print("[shima_bun.gd] attack function called. Level: ", level)
+	if level > 0:
+		ShimaBunTimer.wait_time = base_cooldown
+		ShimaBunAttackTimer.wait_time = base_delay
+		if ShimaBunTimer.is_stopped():
+			ShimaBunTimer.start()
+			print("[shima_bun.gd] ShimaBunTimer started")
+
+func _on_shima_bun_timer_timeout() -> void:
+	print("[shima_bun.gd] Main cooldown finished. Reloading")
+	ammo_left = base_ammo
+	ShimaBunAttackTimer.start()
+
+
+func _on_shima_bun_attack_timer_timeout() -> void:
+	var enemies = player.get_nearby_enemies()
+	if enemies.is_empty():
+		print("[shima_bun.gd] No enemies detected in detection area")
+		return
+
+	var closest_enemy = _get_closest_enemy(enemies)
+	if closest_enemy == null:
+		print("[shima_bun.gd] Couldn't find a valid closest enemy.")
+		return
+
+	if ammo_left > 0:
+		# create an instance of the projectile (not shoot yet)
+		var shimaBun_attack = projectile.instantiate()
+
+		# pass down necessary weapon stats to the instance
+		shimaBun_attack.damage = base_damage
+		shimaBun_attack.speed = base_speed
+		shimaBun_attack.penetration_hp = penetration_hp
+		shimaBun_attack.size = base_size
+
+		# give the instance an idea where to fly at
+		shimaBun_attack.position = global_position
+		shimaBun_attack.target = closest_enemy.global_position
+
+		# spawn the projectile (BOOM BOOM)
+		get_tree().current_scene.add_child(shimaBun_attack)
+		
+
+		# do all the of above over again until burst end
+		ammo_left -= 1
+		print("[shima_bun.gd] Projectile spawned. Remaining amount: ", ammo_left)
+		if ammo_left > 0:
+			ShimaBunAttackTimer.start()
+		else:
+			ShimaBunAttackTimer.stop()
+			print("[shima_bun.gd] Attack ended. In Cooldown")
+
+
+func _get_closest_enemy(enemies: Array[Node2D]):
+	var closest_enemy = null
+	var shortest_distance = INF
+
+	for enemy in enemies:
+		# failsafe in case an enemy died but hasn't left the array yet
+		if not is_instance_valid(enemy):
+			continue
+
+		var dist = global_position.distance_squared_to(enemy.global_position)
+		if dist < shortest_distance:
+			shortest_distance = dist
+			closest_enemy = enemy
+
+	if closest_enemy == null:
+		return
+		
+	return closest_enemy
