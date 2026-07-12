@@ -19,6 +19,9 @@ var collected_experience: int = 0 # track number of exp orb that collected in on
 @export var cooldown: float = 0.0
 
 
+# --- GUI ---
+@onready var ExpBar = get_node("%ExpBar") # get access to TextureProgressBar named ExpBar in the scene this script is hooked on to
+@onready var LevelLabel = get_node("%LevelLabel") # same as ExpBar
 
 
 # --- Variable initialization ---
@@ -34,6 +37,7 @@ func _ready():
 	if hp == null:
 		hp = 100
 	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	set_exp_bar(experience, calculate_experience_cap())
 
 # --- Movement ---
 # calls every frame to process character movement (read movement input from user 
@@ -98,10 +102,14 @@ func calculate_experience(gem_exp: int):
 	
 	var exp_required = calculate_experience_cap()
 	
+	# level up until collected experience do not enough for the next level up
 	while experience >= exp_required:
-		experience - exp_required
+		experience -= exp_required
 		level_up()
 		exp_required = calculate_experience_cap()
+		
+	set_exp_bar(experience, exp_required)
+	
 	
 
 func calculate_experience_cap() -> int:
@@ -116,5 +124,12 @@ func calculate_experience_cap() -> int:
 	return exp_cap
 
 func level_up():
-	print("[player-mobile.gd] Level up! New Level: ", player_level)
 	player_level += 1
+	print("[player-mobile.gd] Level up! New Level: ", player_level)
+	LevelLabel.text = "Lv. " + str(player_level)
+
+func set_exp_bar(set_value = 1, set_max_value = 100):
+	ExpBar.value = set_value
+	ExpBar.max_value = set_max_value
+		
+	

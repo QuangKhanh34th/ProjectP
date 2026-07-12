@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://chbaje5ptvv2m" path="res://assets/Textures/Player/shima.png" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/Utility/hurtbox.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://ca8yfqs07wxev" path="res://scenes/Player/weapon_manager.gd" id="4_gwnis"]
+[ext_resource type="Texture2D" uid="uid://bmd4l7hf1ug67" path="res://assets/Textures/GUI/exp_background.png" id="5_hvfru"]
+[ext_resource type="Texture2D" uid="uid://jokkdihhfrdc" path="res://assets/Textures/GUI/exp_progress.png" id="6_a06cl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 radius = 7.0
@@ -69,6 +71,34 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea" unique_id=266475885]
 shape = SubResource("CircleShape2D_uiqp4")
+
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=1526741761]
+
+[node name="GUI" type="Control" parent="GUILayer" unique_id=1242238993]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 1920.0
+
+[node name="ExpBar" type="TextureProgressBar" parent="GUILayer/GUI" unique_id=1950886690]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 1081.0
+offset_bottom = 61.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_hvfru")
+texture_progress = ExtResource("6_a06cl")
+
+[node name="LevelLabel" type="Label" parent="GUILayer/GUI/ExpBar" unique_id=1208377409]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 930.0
+offset_top = 61.0
+offset_right = 1071.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 36
+text = "Lv. 1"
+horizontal_alignment = 2
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]

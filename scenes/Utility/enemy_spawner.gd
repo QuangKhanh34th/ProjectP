@@ -36,6 +36,10 @@ func _on_timer_timeout() -> void:
 					# custom function, choose one of the 4 rectangle sides located just outside the player
 					# view to spawn in
 					enemy_spawn.global_position = get_random_position() 
+					
+					# inject necessary info to prevent lookup in enemy script
+					enemy_spawn.player = player
+
 					add_child(enemy_spawn) # add enemy into World
 					counter += 1 
 
