@@ -49,4 +49,18 @@ motion_mode = 1
 [node name="Loot" type="Node2D" parent="." unique_id=108662728]
 
 [node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("6_inth5")]
-position = Vector2(-62, 59)
+position = Vector2(-71, 46)
+
+[node name="ExpGem2" parent="Loot" unique_id=549709117 instance=ExtResource("6_inth5")]
+position = Vector2(-57, 44)
+
+[node name="ExpGem3" parent="Loot" unique_id=2120920797 instance=ExtResource("6_inth5")]
+position = Vector2(-59, 30)
+experience = 99999
+
+[node name="ExpGem4" parent="Loot" unique_id=2111952914 instance=ExtResource("6_inth5")]
+position = Vector2(-69, 32)
+experience = 2
+
+[node name="ExpGem5" parent="Loot" unique_id=1287983307 instance=ExtResource("6_inth5")]
+position = Vector2(-148, 109)

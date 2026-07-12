@@ -2,9 +2,9 @@ class_name Player
 extends CharacterBody2D
 
 # --- Player stats ---
-@export var level: int = 1
+@export var player_level: int = 1
 var experience: float = 0
-var collected_experience: int = 1 # track number of exp orb that collected in one frame
+var collected_experience: int = 0 # track number of exp orb that collected in one frame
 @export var hp: int = 100
 @export var move_speed: float = 50.0
 @export var defense: int = 0
@@ -89,4 +89,32 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 func _on_collect_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
+		calculate_experience(gem_exp)
 		
+
+func calculate_experience(gem_exp: int):
+	experience += gem_exp
+	print("Collected ", gem_exp, " exp. Current exp: ", experience)
+	
+	var exp_required = calculate_experience_cap()
+	
+	while experience >= exp_required:
+		experience - exp_required
+		level_up()
+		exp_required = calculate_experience_cap()
+	
+
+func calculate_experience_cap() -> int:
+	var exp_cap = player_level
+	if player_level < 20:
+		exp_cap = player_level*5
+	elif player_level < 40:
+		exp_cap = 95 + (player_level-19) * 8
+	else:
+		exp_cap = 255 + (player_level-39) * 12
+	
+	return exp_cap
+
+func level_up():
+	print("[player-mobile.gd] Level up! New Level: ", player_level)
+	player_level += 1
