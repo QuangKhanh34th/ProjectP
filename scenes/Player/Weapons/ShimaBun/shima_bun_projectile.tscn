@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bmflhpvacv128"]
+
+[ext_resource type="Script" uid="uid://bhrfptgjc7x1t" path="res://scenes/Player/Weapons/ShimaBun/shima_bun_projectile.gd" id="1_xycbx"]
+[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="2_s7dl4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1ua4"]
+radius = 70.0286
+
+[node name="ShimaBun" type="Area2D" unique_id=1528712472 groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xycbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=45217707]
+scale = Vector2(0.064, 0.064)
+texture = ExtResource("2_s7dl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2112944591]
+position = Vector2(2.38419e-07, -4.76837e-07)
+scale = Vector2(0.064, 0.064)
+shape = SubResource("CircleShape2D_k1ua4")
+
+[node name="Timer" type="Timer" parent="." unique_id=517502187]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
