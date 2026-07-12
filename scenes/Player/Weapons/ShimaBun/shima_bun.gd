@@ -11,7 +11,7 @@ var projectile = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun_project
 var level = 1
 var base_damage = 2.6
 var base_speed = 100
-var penetration_hp = 2
+var penetration_hp = 1
 var base_size = 1.0 # how large is the projectile
 # var base_knockback = 100
 var base_ammo = 1 # how many bullet fired in one burst
@@ -32,6 +32,7 @@ func level_up():
 	match level:
 		2:
 			base_ammo = 2
+			base_cooldown = 0.75
 		3:
 			base_damage = 20
 
