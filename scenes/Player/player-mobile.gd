@@ -78,3 +78,15 @@ func get_nearby_enemies() -> Array[Node2D]:
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
 	print(hp)
+
+
+# --- Exp Collecting ---
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		
