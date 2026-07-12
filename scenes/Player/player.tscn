@@ -17,8 +17,6 @@ radius = 59.439
 [node name="Player" type="CharacterBody2D" unique_id=776708892 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_4ntmi")
-speed = 50
-hp = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=753885319]
 scale = Vector2(0.052, 0.052)

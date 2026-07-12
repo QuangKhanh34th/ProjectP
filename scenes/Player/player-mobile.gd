@@ -2,8 +2,22 @@ class_name Player
 extends CharacterBody2D
 
 # --- Player stats ---
-@export var speed: float = 50.0
+@export var level: int = 1
+var experience: float = 0
+var collected_experience: int = 1 # track number of exp orb that collected in one frame
 @export var hp: int = 100
+@export var move_speed: float = 50.0
+@export var defense: int = 0
+
+# global stats that will be add to weapon projectile calculation (in %, except for amount)
+@export var power: float = 0.0
+@export var speed: float = 0.0
+@export var pierce: float = 0.0
+@export var size: float = 0.0
+@export var amount: int = 0
+@export var duration: float = 0.0
+@export var cooldown: float = 0.0
+
 
 
 
@@ -36,7 +50,7 @@ func _process(delta: float) -> void:
 	## Movement using Input functions (used by Virtual Joystick code):
 	move_vector = Vector2.ZERO
 	move_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	position += move_vector * speed * delta
+	position += move_vector * move_speed * delta
 	
 
 
