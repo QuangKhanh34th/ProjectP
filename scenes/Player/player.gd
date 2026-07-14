@@ -3,8 +3,7 @@ extends CharacterBody2D
 
 # --- Player stats ---
 @export var player_level: int = 1
-var experience: float = 0
-var collected_experience: int = 0 # track number of exp orb that collected in one frame
+var experience: int = 0
 var is_leveling_up: bool = false
 @export var hp: int = 100
 @export var move_speed: float = 50.0
@@ -20,14 +19,13 @@ var is_leveling_up: bool = false
 @export var cooldown: float = 0.0
 
 
-# --- GUI ---
-@onready var ExpBar = get_node("%ExpBar") # get access to TextureProgressBar named ExpBar in the scene this script is hooked on to
-@onready var LevelLabel = get_node("%LevelLabel") # same as ExpBar
-@onready var LevelUpContainer = get_node("%LevelUpContainer")
-@onready var LevelPanel = get_node("%LevelUpPanel")
-@onready var UpgradeOptions = get_node("%UpgradeOptions")
-@onready var ItemOption = load("res://scenes/Player/item_option.tscn")
-@onready var sndLevelUp = get_node("%snd_levelup")
+# --- Signal ---
+signal xp_updated(current_exp: int, max_exp: int)
+signal leveled_up(new_level: int)
+signal level_up_choice_selected
+signal health_updated(current_hp: int, max_hp: int)
+
+
 
 
 
@@ -45,7 +43,7 @@ func _ready():
 	if hp == null:
 		hp = 100
 	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	set_exp_bar(experience, calculate_experience_cap())
+	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 # --- Movement ---
 # calls every frame to process character movement (read movement input from user 
@@ -105,6 +103,7 @@ func _on_collect_area_area_entered(area: Area2D) -> void:
 		calculate_experience(gem_exp)
 		
 
+# --- Experience and Leveling ---
 func calculate_experience(gem_exp: int = 0):
 	experience += gem_exp
 	print("Collected ", gem_exp, " exp. Current exp: ", experience)
@@ -116,7 +115,7 @@ func calculate_experience(gem_exp: int = 0):
 		experience -= exp_required
 		level_up()
 	else:
-		set_exp_bar(experience, exp_required)
+		xp_updated.emit(experience, exp_required)
 	
 	
 
@@ -133,61 +132,18 @@ func calculate_experience_cap() -> int:
 
 func level_up():
 	is_leveling_up = true
-	sndLevelUp.play()
-	player_level += 1  # <-- Only increment level HERE!
+	player_level += 1  
 	print("[player-mobile.gd] Level up! New Level: ", player_level)
-	LevelLabel.text = "Lv. " + str(player_level)
-	reset_joystick()
-	LevelUpContainer.visible = true
-	LevelPanel.visible = true
-	
-	var options = 0
-	var option_max = 3
-	while (options < option_max):
-		var option_choice = ItemOption.instantiate()
-		UpgradeOptions.add_child(option_choice)
-		option_choice.upgrade_selected.connect(upgrade_character)
-		print("signal connected")
-		options += 1
-	
-	get_tree().paused = true
-	
-	var tween = LevelUpContainer.create_tween()
-	tween.tween_property(LevelUpContainer, "position", Vector2(0,0), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	leveled_up.emit(player_level)
 	
 	
-func reset_joystick():
-	Input.action_release("ui_left")
-	Input.action_release("ui_right")
-	Input.action_release("ui_up")
-	Input.action_release("ui_down")
-	move_vector = Vector2.ZERO
-	
-	# 2. Reset the virtual joystick visually and internally so the thumbstick snaps back to center
-	var joystick = get_tree().current_scene.get_node_or_null("CanvasLayer/Virtual Joystick")
-	if joystick and joystick.has_method("_reset"):
-		joystick._reset()
-		joystick.hide()
-
-func set_exp_bar(set_value = 1, set_max_value = 100):
-	ExpBar.value = set_value
-	ExpBar.max_value = set_max_value
-		
 
 func upgrade_character(weapon_to_upgrade) -> void:
-	var option_childrens = UpgradeOptions.get_children()
-	for i in option_childrens:
-		i.queue_free()
-		
-	# Hide the level up screen
-	LevelUpContainer.visible = false
-	LevelUpContainer.position = Vector2(1600, 0)
-	LevelPanel.visible = false
+	level_up_choice_selected.emit()
 	
 	# Resume the game and allow new level-ups
 	is_leveling_up = false
-	get_tree().paused = false
 	
-	# Check if we still have enough banked XP for another level-up!
+	# Check if we still have enough banked XP for another level-up
 	calculate_experience(0)
 	

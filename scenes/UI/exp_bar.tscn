@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dd6qnjctvnha6"]
+
+[ext_resource type="Texture2D" uid="uid://bmd4l7hf1ug67" path="res://assets/Textures/GUI/exp_background.png" id="1_y2gvt"]
+[ext_resource type="Texture2D" uid="uid://jokkdihhfrdc" path="res://assets/Textures/GUI/exp_progress.png" id="2_v3hv6"]
+[ext_resource type="Script" uid="uid://drq36q6bmjtsl" path="res://scenes/UI/exp_bar.gd" id="3_v3hv6"]
+
+[node name="ExpBar" type="TextureProgressBar" unique_id=1540231387]
+offset_right = 1081.0
+offset_bottom = 61.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_y2gvt")
+texture_progress = ExtResource("2_v3hv6")
+script = ExtResource("3_v3hv6")
+
+[node name="LevelLabel" type="Label" parent="." unique_id=950148718]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 930.0
+offset_top = 61.0
+offset_right = 1071.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 36
+text = "Lv. 1"
+horizontal_alignment = 2
