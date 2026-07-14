@@ -12,6 +12,7 @@ func _ready():
 	move_speed = 30.0 
 	hp = 5
 	experience = 1
+	drop_value = 1
 
 # We can override _physics_process(), take_damage(),.. also if
 # we want this enemy to behave differently from normal enemies

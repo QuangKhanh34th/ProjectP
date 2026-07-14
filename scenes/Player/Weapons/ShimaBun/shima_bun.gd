@@ -9,13 +9,13 @@ var projectile = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun_project
 
 # --- Weapon stats ---
 var level = 1
-var base_damage = 2.6
+var base_damage = 5
 var base_speed = 100
 var penetration_hp = 1
 var base_size = 1.0 # how large is the projectile
 # var base_knockback = 100
-var base_ammo = 1 # how many bullet fired in one burst
-var base_cooldown = 1.5 # how long to wait between each burst (in seconds)
+var base_ammo = 20 # how many bullet fired in one burst
+var base_cooldown = 0.5 # how long to wait between each burst (in seconds)
 var base_delay = 0.05 # how long to wait between each bullet in one burst (in seconds)
 var ammo_left = 0
 
@@ -79,7 +79,7 @@ func _on_shima_bun_attack_timer_timeout() -> void:
 		shimaBun_attack.target = closest_enemy.global_position
 
 		# spawn the projectile (BOOM BOOM)
-		get_tree().current_scene.add_child(shimaBun_attack)
+		self.add_child(shimaBun_attack)
 		
 
 		# do all the of above over again until burst end

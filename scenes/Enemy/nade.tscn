@@ -14,7 +14,7 @@ radius = 6.08276
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncf7h"]
 radius = 6.0
 
-[node name="Nade" type="CharacterBody2D" unique_id=729246025]
+[node name="Nade" type="CharacterBody2D" unique_id=729246025 groups=["enemy"]]
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_px1sc")

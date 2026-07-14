@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c4vqich3h5a52" path="res://item_option.gd" id="1_pwxc8"]
 [ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="2_bi1q3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwxc8"]
+
 [node name="ItemOption" type="ColorRect" unique_id=64436966]
 custom_minimum_size = Vector2(580, 150)
 anchors_preset = -1
@@ -13,12 +15,19 @@ offset_bottom = 0.23999023
 color = Color(0.5489626, 0.5489626, 0.54896253, 1)
 script = ExtResource("1_pwxc8")
 
+[node name="Button" type="Button" parent="." unique_id=1912549821]
+layout_mode = 0
+offset_right = 580.0
+offset_bottom = 150.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_pwxc8")
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1512590925]
 layout_mode = 0
 offset_left = 11.0
 offset_top = 9.0
 offset_right = 141.0
 offset_bottom = 139.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="ItemIcon" type="TextureRect" parent="ColorRect" unique_id=2113185921]
@@ -26,6 +35,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_bi1q3")
 
@@ -36,6 +46,7 @@ offset_left = 159.0
 offset_top = 9.0
 offset_right = 275.0
 offset_bottom = 64.0
+mouse_filter = 2
 theme_override_font_sizes/font_size = 40
 text = "Name"
 
@@ -46,6 +57,7 @@ offset_left = 159.0
 offset_top = 64.0
 offset_right = 571.0
 offset_bottom = 98.0
+mouse_filter = 2
 theme_override_font_sizes/font_size = 24
 text = "Description"
 autowrap_mode = 3
@@ -57,5 +69,10 @@ offset_left = 510.0
 offset_top = 111.0
 offset_right = 643.0
 offset_bottom = 145.0
+mouse_filter = 2
 theme_override_font_sizes/font_size = 24
 text = "Level"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

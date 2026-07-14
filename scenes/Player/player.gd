@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var player_level: int = 1
 var experience: float = 0
 var collected_experience: int = 0 # track number of exp orb that collected in one frame
+var is_leveling_up: bool = false
 @export var hp: int = 100
 @export var move_speed: float = 50.0
 @export var defense: int = 0
@@ -25,6 +26,7 @@ var collected_experience: int = 0 # track number of exp orb that collected in on
 @onready var LevelUpContainer = get_node("%LevelUpContainer")
 @onready var LevelPanel = get_node("%LevelUpPanel")
 @onready var UpgradeOptions = get_node("%UpgradeOptions")
+@onready var ItemOption = load("res://scenes/Player/item_option.tscn")
 @onready var sndLevelUp = get_node("%snd_levelup")
 
 
@@ -36,7 +38,6 @@ var enemy_close: Array[Node2D] = []
 var move_vector := Vector2.ZERO
 
 const SHIMA_BUN_WEAPON = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun.tscn")
-const ITEM_OPTION_SCENE = preload("res://scenes/Player/item_option.tscn")
 
 func _ready():
 	if speed == null:
@@ -95,6 +96,7 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 func _on_grab_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		area.target = self
+		area.set_physics_process(true)
 
 
 func _on_collect_area_area_entered(area: Area2D) -> void:
@@ -103,19 +105,18 @@ func _on_collect_area_area_entered(area: Area2D) -> void:
 		calculate_experience(gem_exp)
 		
 
-func calculate_experience(gem_exp: int):
+func calculate_experience(gem_exp: int = 0):
 	experience += gem_exp
 	print("Collected ", gem_exp, " exp. Current exp: ", experience)
 	
 	var exp_required = calculate_experience_cap()
 	
-	# level up until collected experience do not enough for the next level up
-	while experience >= exp_required:
+	# Only level up if we have enough XP AND the menu isn't already open
+	if experience >= exp_required and not is_leveling_up:
 		experience -= exp_required
 		level_up()
-		exp_required = calculate_experience_cap()
-		
-	set_exp_bar(experience, exp_required)
+	else:
+		set_exp_bar(experience, exp_required)
 	
 	
 
@@ -131,57 +132,62 @@ func calculate_experience_cap() -> int:
 	return exp_cap
 
 func level_up():
+	is_leveling_up = true
 	sndLevelUp.play()
-	player_level += 1
+	player_level += 1  # <-- Only increment level HERE!
 	print("[player-mobile.gd] Level up! New Level: ", player_level)
 	LevelLabel.text = "Lv. " + str(player_level)
-	if player_level == 3: return
-	
-	# 1. Clear any leftover upgrade cards from the previous level up
-	for child in UpgradeOptions.get_children():
-		child.queue_free()
-		
-	# 2. Get all currently active weapons from the WeaponManager
-	var active_weapons = $WeaponManager.get_children()
-	
-	# 3. Create an upgrade UI card for each weapon
-	for weapon in active_weapons:
-		if weapon.has_method("level_up"):
-			var option_card = ITEM_OPTION_SCENE.instantiate()
-			UpgradeOptions.add_child(option_card)
-			
-			# For now, we manually define the display strings/icons for Shima Bun
-			var w_name = "Shima Bun"
-			var w_desc = "Reduce cooldown. Fires an extra projectile."
-			var w_icon = preload("res://assets/Textures/Items/Weapons/ShimaBun.png")
-			
-			# Populate the UI and connect the click signal to our selection function
-			option_card.set_item_data(weapon, w_name, w_icon, w_desc)
-			option_card.item_selected.connect(_on_upgrade_selected)
-	
+	reset_joystick()
 	LevelUpContainer.visible = true
 	LevelPanel.visible = true
-	var tween = LevelUpContainer.create_tween()
-	tween.tween_property(LevelUpContainer, "position", Vector2(0,0), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
-	tween.play()
+	
+	var options = 0
+	var option_max = 3
+	while (options < option_max):
+		var option_choice = ItemOption.instantiate()
+		UpgradeOptions.add_child(option_choice)
+		option_choice.upgrade_selected.connect(upgrade_character)
+		print("signal connected")
+		options += 1
+	
 	get_tree().paused = true
 	
+	var tween = LevelUpContainer.create_tween()
+	tween.tween_property(LevelUpContainer, "position", Vector2(0,0), 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN)
+	
+	
+func reset_joystick():
+	Input.action_release("ui_left")
+	Input.action_release("ui_right")
+	Input.action_release("ui_up")
+	Input.action_release("ui_down")
+	move_vector = Vector2.ZERO
+	
+	# 2. Reset the virtual joystick visually and internally so the thumbstick snaps back to center
+	var joystick = get_tree().current_scene.get_node_or_null("CanvasLayer/Virtual Joystick")
+	if joystick and joystick.has_method("_reset"):
+		joystick._reset()
+		joystick.hide()
 
 func set_exp_bar(set_value = 1, set_max_value = 100):
 	ExpBar.value = set_value
 	ExpBar.max_value = set_max_value
 		
 
-func _on_upgrade_selected(weapon_to_upgrade: Node2D) -> void:
-	print("Upgrading weapon: ", weapon_to_upgrade.name)
-	
-	# 1. Trigger the weapon's internal level_up() logic (e.g. inside shima_bun.gd)
-	weapon_to_upgrade.level_up()
-	
-	# 2. Hide the level up screen
+func upgrade_character(weapon_to_upgrade) -> void:
+	var option_childrens = UpgradeOptions.get_children()
+	for i in option_childrens:
+		i.queue_free()
+		
+	# Hide the level up screen
 	LevelUpContainer.visible = false
+	LevelUpContainer.position = Vector2(1600, 0)
 	LevelPanel.visible = false
 	
-	# 3. Resume the game
+	# Resume the game and allow new level-ups
+	is_leveling_up = false
 	get_tree().paused = false
+	
+	# Check if we still have enough banked XP for another level-up!
+	calculate_experience(0)
 	

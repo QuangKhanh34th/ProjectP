@@ -18,6 +18,8 @@ const BLUE_GEM_EXP_AMOUNT = 25
 @onready var sound = $snd_collected
 
 func _ready() -> void:
+	set_physics_process(false)
+	
 	if experience < GREEN_GEM_EXP_AMOUNT:
 		return
 	elif experience < BLUE_GEM_EXP_AMOUNT:

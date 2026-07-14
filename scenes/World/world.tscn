@@ -40,5 +40,5 @@ visibility_mode = 2
 [node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
 
 [node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("6_inth5")]
-position = Vector2(-116, 104)
-experience = 10
+position = Vector2(-69, 56)
+experience = 1000
