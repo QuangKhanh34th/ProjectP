@@ -36,13 +36,15 @@ var enemy_close: Array[Node2D] = []
 var move_vector := Vector2.ZERO
 
 const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
+const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
 
 func _ready():
 	if speed == null:
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	#$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	$WeaponManager.add_weapon(LASER_WEAPON)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 # --- Movement ---

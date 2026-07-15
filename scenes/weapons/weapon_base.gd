@@ -3,14 +3,21 @@ extends Node2D
 
 var player: Player
 
+# how weapon interact with enemy hurtbox (see hurtbox.gd)
+# 0 = Cooldown
+# 1 = HitOnce
+# 2 = DisableHitBox
+@export var damage_type = 0
+
 @export var level: int = 1
 @export var base_damage: float = 5.0
 @export var base_speed: float = 100.0
 @export var penetration_hp: int = 1
 @export var base_size: float = 1.0
 @export var base_ammo: int = 20
-@export var base_cooldown: float = 0.5
-@export var base_delay: float = 0.05
+@export var base_cooldown: float = 0.5 # seconds
+@export var base_delay: float = 0.05 # seconds
+@export var base_duration: float = 1.0 # seconds
 
 
 func set_player(value: Player) -> void:
@@ -19,6 +26,26 @@ func set_player(value: Player) -> void:
 
 func has_player() -> bool:
 	return is_instance_valid(player)
+
+func _get_closest_enemy(enemies: Array[Node2D]):
+	var closest_enemy = null
+	var shortest_distance = INF
+
+	for enemy in enemies:
+		# failsafe in case an enemy died but hasn't left the array yet
+		if not is_instance_valid(enemy):
+			continue
+
+		var dist = global_position.distance_squared_to(enemy.global_position)
+		if dist < shortest_distance:
+			shortest_distance = dist
+			closest_enemy = enemy
+
+	if closest_enemy == null:
+		return
+		
+	#print("closest enemy: ", closest_enemy)
+	return closest_enemy
 
 
 func get_weapon_damage() -> int:
@@ -69,6 +96,11 @@ func get_weapon_delay() -> float:
 		weapon_delay *= _cooldown_multiplier(player.cooldown)
 	return max(0.01, weapon_delay)
 
+func get_weapon_duration() -> float:
+	var weapon_duration := base_duration
+	if has_player():
+		weapon_duration *= _percent_multiplier(player.duration)
+	return max(0.0, weapon_duration)
 
 func _percent_multiplier(stat_bonus: float) -> float:
 	return 1.0 + (stat_bonus / 100.0)

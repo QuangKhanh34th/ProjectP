@@ -16,8 +16,12 @@ func _on_area_entered(area: Area2D) -> void:
 	# For later when we have other Area2D that is not an attack like exp orb, items
 	if area.is_in_group("attack"):
 		if not area.get("damage") == null:
+			var active_type = HurtBoxType
+			if not area.get("damage_type") == null:
+				active_type = area.damage_type
+				
 			# match = switch-case
-			match HurtBoxType:
+			match active_type:
 				# Cooldown: 
 				# Disables the HurtBox's collision temporarily and starts a timer. (set to 0.5s)
 				# This makes the entity briefly invincible (i-frames) after getting hit.
