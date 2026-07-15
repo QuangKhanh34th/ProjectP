@@ -1,6 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+# --- Animation & Movement Variables ---
+var move_vector := Vector2.ZERO
+var last_direction: String = "down" # Default starting direction
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 # --- Player stats ---
 @export var player_level: int = 1
 var experience: int = 0
@@ -33,7 +38,6 @@ signal health_updated(current_hp: int, max_hp: int)
 # --- Variable initialization ---
 # Enemy related
 var enemy_close: Array[Node2D] = []
-var move_vector := Vector2.ZERO
 
 const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
 const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
@@ -43,7 +47,7 @@ func _ready():
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	#$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
 	$WeaponManager.add_weapon(LASER_WEAPON)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
@@ -63,9 +67,27 @@ func _process(delta: float) -> void:
 	move_vector = Vector2.ZERO
 	move_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	position += move_vector * move_speed * delta
+	update_animation()
 	
 
-
+func update_animation() -> void:
+	if move_vector != Vector2.ZERO:
+		# 1. Define the 8 directions in clockwise order matching Godot's angle system
+		var directions := [
+			"right", "down_right", "down", "down_left", 
+			"left", "up_left", "up", "up_right"
+		]
+		
+		# 2. Convert the vector's angle into a clean integer index from 0 to 7
+		var index := posmod(roundi(move_vector.angle() / (PI / 4.0)), 8)
+		last_direction = directions[index]
+		
+		# NOTE: If you add walking animations later, change this to:
+		# animated_sprite.play("walk_" + last_direction)
+		animated_sprite.play("idle_" + last_direction)
+	else:
+		# 3. When standing still, play the idle animation of the last direction faced
+		animated_sprite.play("idle_" + last_direction)
 
 # --- Radar ---
 # When Enemy go into detection area 
