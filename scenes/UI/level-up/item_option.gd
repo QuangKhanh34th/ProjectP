@@ -2,7 +2,10 @@ extends ColorRect
 
 
 var mouse_over: bool = false
-var item = null
+var chosen_upgrade: UpgradeData = null
+
+# Store the custom resource data on this card
+var item_data: UpgradeData = null
 
 # Signal emitted when the player clicks this upgrade card
 signal upgrade_selected(weapon_to_upgrade)
@@ -16,17 +19,15 @@ signal upgrade_selected(weapon_to_upgrade)
 var target_weapon: Node2D = null
 
 
-
-func _on_mouse_entered() -> void:
-	print("mouse entered")
-	mouse_over = true
-
-
-func _on_mouse_exited() -> void:
-	print("mouse exited")
-	mouse_over = false
+# Call this from your level_up_screen.gd when spawning the card!
+func set_item(data: UpgradeData) -> void:
+	chosen_upgrade = data
+	%ItemIcon.texture = data.icon
+	%ItemNameLabel.text = data.display_name
+	%ItemDescLabel.text = data.description
+	%ItemLevelLabel.text = "Lv. " + str(data.level)
 
 
 func _on_button_pressed() -> void:
-	print("signal emitted")
-	emit_signal("upgrade_selected", item)
+	print("[item_option.gd] signal emitted")
+	emit_signal("upgrade_selected", chosen_upgrade)

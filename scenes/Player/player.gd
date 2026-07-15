@@ -6,6 +6,10 @@ var move_vector := Vector2.ZERO
 var last_direction: String = "down" # Default starting direction
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+# --- System Variables ---
+@onready var upgradeManager = $"../UpgradeManager"
+@onready var weaponManager = $WeaponManager
+
 # --- Player stats ---
 @export var player_level: int = 1
 var experience: int = 0
@@ -40,6 +44,7 @@ signal health_updated(current_hp: int, max_hp: int)
 var enemy_close: Array[Node2D] = []
 
 const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
+const SHIMA_BUN_UPGRADE_BASE = preload("res://scenes/data/upgrades/shimabun/shimabun_0.tres")
 const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
 
 func _ready():
@@ -47,8 +52,8 @@ func _ready():
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	$WeaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	$WeaponManager.add_weapon(LASER_WEAPON)
+	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 # --- Movement ---
@@ -82,7 +87,7 @@ func update_animation() -> void:
 		var index := posmod(roundi(move_vector.angle() / (PI / 4.0)), 8)
 		last_direction = directions[index]
 		
-		# NOTE: If you add walking animations later, change this to:
+		# NOTE: add walking animations later, change this to:
 		# animated_sprite.play("walk_" + last_direction)
 		animated_sprite.play("idle_" + last_direction)
 	else:
@@ -162,10 +167,24 @@ func level_up():
 	
 	
 
-func upgrade_character(weapon_to_upgrade) -> void:
-	level_up_choice_selected.emit()
+func upgrade_character(chosen_upgrade: UpgradeData) -> void:
+	if chosen_upgrade:
+		print("[player.gd] Selected upgrade: ", chosen_upgrade.display_name)
+		
+		# 1. Tell the UpgradeManager we collected this card so it won't appear again
+		upgradeManager.collected_upgrades.append(chosen_upgrade)
+		
+		# 2. Check what type of upgrade it is and apply it
+		if chosen_upgrade.type == "weapon":
+			weaponManager.apply_upgrade(chosen_upgrade)
+		elif chosen_upgrade.type == "passive_item" or chosen_upgrade.type == "upgrade":
+			# Later: apply passive stat boosts here
+			# e.g., if chosen_upgrade.id == "speed_1": speed += 10.0
+			pass
+		
 	
-	# Resume the game and allow new level-ups
+	# UI cleanup and game resume logic
+	level_up_choice_selected.emit()
 	is_leveling_up = false
 	
 	# Check if we still have enough banked XP for another level-up

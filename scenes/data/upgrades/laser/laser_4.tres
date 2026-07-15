@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cjox6gwkypmm8"]
+
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_fdr4c"]
+[ext_resource type="Resource" uid="uid://ci30aclr1hj5p" path="res://scenes/data/upgrades/laser/laser_3.tres" id="2_sjyvw"]
+[ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="4_bwgrl"]
+
+[resource]
+script = ExtResource("1_fdr4c")
+id = "laser_4"
+display_name = "Laser Ray"
+description = "Increases laser ray's size by 50%. Weapon deal 20 more damage"
+level = 4
+weapon_scene = ExtResource("4_bwgrl")
+prerequisite = ExtResource("2_sjyvw")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

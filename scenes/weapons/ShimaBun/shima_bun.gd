@@ -1,5 +1,9 @@
 extends WeaponBase
 
+# --- Weapon Description ---
+# single-target starter weapon, fire projectiles at the nearest enemy
+# not affected by duration
+
 @onready var ShimaBunTimer: Timer = get_node("ShimaBunTimer")
 @onready var ShimaBunAttackTimer: Timer = get_node("ShimaBunTimer/ShimaBunAttackTimer")
 
@@ -20,10 +24,14 @@ func level_up():
 	# might need to change this to accept csv/spreadsheet for easier stat tweaking 
 	match level:
 		2:
-			base_ammo = 2
-			base_cooldown = 0.75
+			base_ammo += 1
 		3:
-			base_damage = 20
+			base_damage += 5
+		4:
+			penetration_hp += 1
+		5:
+			base_ammo += 2
+			base_cooldown -= 0.2
 
 # start the weapon timer if the weapon level is above 0 (meaning having/acquired
 # the weapon)

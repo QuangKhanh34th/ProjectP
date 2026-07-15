@@ -14,7 +14,7 @@ func _ready() -> void:
 	# --- CUSTOM STAT OVERRIDES ---
 	base_damage = 5
 	base_size = 1.0
-	base_cooldown = 1.0
+	base_cooldown = 5.0
 	base_duration = 2.5
 	
 	attack()
@@ -27,9 +27,12 @@ func level_up():
 		2:
 			base_duration = 3.5
 		3:
-			base_damage = 35
+			base_size += 0.5
 		4:
-			base_cooldown = 2.0
+			base_cooldown -= 2.0
+		5:
+			base_size += 0.5
+			base_damage += 20
 
 func attack() -> void:
 	if level > 0:

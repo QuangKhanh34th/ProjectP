@@ -14,8 +14,8 @@ var player: Player
 @export var base_speed: float = 100.0
 @export var penetration_hp: int = 1
 @export var base_size: float = 1.0
-@export var base_ammo: int = 5
-@export var base_cooldown: float = 0.5 # seconds
+@export var base_ammo: int = 1
+@export var base_cooldown: float = 1.0 # seconds
 @export var base_delay: float = 0.05 # seconds
 @export var base_duration: float = 1.0 # seconds
 

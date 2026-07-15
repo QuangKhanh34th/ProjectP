@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://d3w2yundirvp3"]
+
+[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="1_ncavu"]
+[ext_resource type="Resource" uid="uid://cdoh4hm8hokpk" path="res://scenes/data/upgrades/shimabun/shimabun_0.tres" id="2_2kxuf"]
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="3_300ac"]
+[ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/ShimaBun/shima_bun.tscn" id="4_08eya"]
+
+[resource]
+script = ExtResource("3_300ac")
+id = "shimabun_1"
+display_name = "Shima Bun"
+description = "Fire 1 more projectile"
+icon = ExtResource("1_ncavu")
+level = 2
+weapon_scene = ExtResource("4_08eya")
+prerequisite = ExtResource("2_2kxuf")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

@@ -40,7 +40,7 @@ func _on_timer_timeout() -> void:
 						break
 
 					var enemy_spawn = new_enemy.instantiate()
-					var enemy_visible = enemy_spawn.get_node("VisibleOnScreenNotifier2D")
+					
 					# custom function, choose one of the 4 rectangle sides located just outside the player
 					# view to spawn in
 					enemy_spawn.global_position = get_random_position() 

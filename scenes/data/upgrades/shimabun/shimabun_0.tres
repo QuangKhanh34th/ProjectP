@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cdoh4hm8hokpk"]
+
+[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="1_rbvuy"]
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="2_v668a"]
+[ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/ShimaBun/shima_bun.tscn" id="3_vb7s5"]
+
+[resource]
+script = ExtResource("2_v668a")
+id = "shimabun_1"
+display_name = "Shima Bun"
+description = "Starter weapon, fire a projectile at the closest enemy"
+icon = ExtResource("1_rbvuy")
+weapon_scene = ExtResource("3_vb7s5")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"
