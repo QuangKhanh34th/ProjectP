@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://crp2cgek8c28t"]
+
+[ext_resource type="Script" uid="uid://bvu8jysgxa75m" path="res://scenes/weapons/Laser/laser.gd" id="1_of30m"]
+
+[node name="Laser" type="Node2D" unique_id=550170301]
+script = ExtResource("1_of30m")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=2062259247]
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

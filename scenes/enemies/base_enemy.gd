@@ -20,14 +20,6 @@ func _ready(): # can use @onready for the same effect
 	if not player:
 		player = get_tree().get_first_node_in_group("player")
 
-	#var screen_notifier := get_node_or_null("VisibleOnScreenNotifier2D") as VisibleOnScreenNotifier2D
-	#if not screen_notifier:
-		#screen_notifier = VisibleOnScreenNotifier2D.new()
-		#screen_notifier.name = "VisibleOnScreenNotifier2D"
-		#add_child(screen_notifier)
-#
-	#if not screen_notifier.screen_exited.is_connected(_on_visible_on_screen_notifier_2d_screen_exited):
-		#screen_notifier.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
 
 func _physics_process(_delta): # underscore in delta mean not use delta for this func
 	if player:
@@ -69,8 +61,3 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	if hp <= 0:
 		death()
 		
-
-
-#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	#print("enemy exitted screen")
-	#SignalBus.enemy_exited_screen.emit(self)

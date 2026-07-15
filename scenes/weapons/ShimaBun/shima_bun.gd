@@ -79,23 +79,3 @@ func _on_shima_bun_attack_timer_timeout() -> void:
 		else:
 			ShimaBunAttackTimer.stop()
 			print("[shima_bun.gd] Attack ended. In Cooldown")
-
-
-func _get_closest_enemy(enemies: Array[Node2D]):
-	var closest_enemy = null
-	var shortest_distance = INF
-
-	for enemy in enemies:
-		# failsafe in case an enemy died but hasn't left the array yet
-		if not is_instance_valid(enemy):
-			continue
-
-		var dist = global_position.distance_squared_to(enemy.global_position)
-		if dist < shortest_distance:
-			shortest_distance = dist
-			closest_enemy = enemy
-
-	if closest_enemy == null:
-		return
-		
-	return closest_enemy

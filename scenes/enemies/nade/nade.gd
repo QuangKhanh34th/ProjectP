@@ -11,7 +11,7 @@ func _ready():
 	# Override the base stats for this specific enemy
 	move_speed = 30.0 
 	hp = 5
-	experience = 1
+	experience = 0
 	drop_value = 1
 
 # We can override _physics_process(), take_damage(),.. also if

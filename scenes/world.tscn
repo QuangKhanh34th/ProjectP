@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
 [ext_resource type="Script" uid="uid://c173tw0d6evgb" path="res://scenes/system/loot_spawner.gd" id="3_e3hyu"]
-[ext_resource type="PackedScene" uid="uid://ccii1mm5nvvlg" path="res://scenes/enemies/base_enemy.tscn" id="3_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://assets/Textures/grass-tile.png" id="4_q5onr"]
 [ext_resource type="Script" uid="uid://dumx8ui8a4df3" path="res://scenes/ui/hud_manager.gd" id="5_jhx03"]
 [ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/ui/exp_bar.tscn" id="6_o8fc1"]
@@ -12,14 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/objects/exp_gem.tscn" id="9_7t5mc"]
 [ext_resource type="Script" uid="uid://b685qwaadwrna" path="res://scenes/debug_camera.gd" id="11_jhx03"]
 [ext_resource type="Script" uid="uid://cxjen81lyitmb" path="res://scenes/sub_viewport.gd" id="11_q5onr"]
+[ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/enemies/nade/nade.tscn" id="13_jhx03"]
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
-
-[node name="BaseEnemy" parent="EnemySpawner" unique_id=1499931416 instance=ExtResource("3_w7kh3")]
 
 [node name="LootSpawner" type="Node2D" parent="." unique_id=1562862552]
 script = ExtResource("3_e3hyu")
@@ -71,16 +69,20 @@ joystick_mode = 1
 visibility_mode = 2
 
 [node name="DebugViewport" type="SubViewportContainer" parent="CanvasLayer" unique_id=1408551206]
-visible = false
 offset_top = 1121.0
 offset_right = 1080.0
 offset_bottom = 1920.0
 stretch = true
 
+[node name="Label" type="Label" parent="CanvasLayer/DebugViewport" unique_id=222593925]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Debug"
+
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/DebugViewport" unique_id=912075057]
 handle_input_locally = false
 size = Vector2i(1080, 799)
-render_target_update_mode = 0
+render_target_update_mode = 4
 script = ExtResource("11_q5onr")
 
 [node name="DebugCamera" type="Camera2D" parent="CanvasLayer/DebugViewport/SubViewport" unique_id=1073042790]
@@ -91,6 +93,9 @@ script = ExtResource("11_jhx03")
 [node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("9_7t5mc")]
 position = Vector2(-69, 56)
 experience = 1000
+
+[node name="Nade" parent="." unique_id=729246025 instance=ExtResource("13_jhx03")]
+position = Vector2(92, 0)
 
 [connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
 [connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]
