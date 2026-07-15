@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d04dhni1blyng"]
 
 [ext_resource type="Texture2D" uid="uid://b8mqmgwp0ghvn" path="res://assets/Textures/Items/Gems/Gem_green.png" id="1_0ytm1"]
-[ext_resource type="Script" uid="uid://bxlyjwva41ys7" path="res://scenes/Objects/exp_gem.gd" id="1_wsy0m"]
+[ext_resource type="Script" uid="uid://bxlyjwva41ys7" path="res://scenes/objects/exp_gem.gd" id="1_wsy0m"]
 [ext_resource type="AudioStream" uid="uid://cggsvsqg4pqto" path="res://assets/Audio/SoundEffect/collectgem.mp3" id="3_mv45x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ytm1"]

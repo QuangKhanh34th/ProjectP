@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmflhpvacv128"]
 
-[ext_resource type="Script" uid="uid://bhrfptgjc7x1t" path="res://scenes/Player/Weapons/ShimaBun/shima_bun_projectile.gd" id="1_xycbx"]
+[ext_resource type="Script" uid="uid://bhrfptgjc7x1t" path="res://scenes/weapons/ShimaBun/shima_bun_projectile.gd" id="1_xycbx"]
 [ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="2_s7dl4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k1ua4"]

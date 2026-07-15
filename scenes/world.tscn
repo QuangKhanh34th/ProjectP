@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bjqhin3hban6j"]
+
+[ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
+[ext_resource type="Script" uid="uid://c173tw0d6evgb" path="res://scenes/system/loot_spawner.gd" id="3_e3hyu"]
+[ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://assets/Textures/grass-tile.png" id="4_q5onr"]
+[ext_resource type="Script" uid="uid://dumx8ui8a4df3" path="res://scenes/ui/hud_manager.gd" id="5_jhx03"]
+[ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/ui/exp_bar.tscn" id="6_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/ui/level-up/level_up_screen.tscn" id="7_xo05s"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_dss4m"]
+[ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/objects/exp_gem.tscn" id="9_7t5mc"]
+
+[node name="World" type="Node2D" unique_id=1078849849]
+
+[node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
+
+[node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
+
+[node name="LootSpawner" type="Node2D" parent="." unique_id=1562862552]
+script = ExtResource("3_e3hyu")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=656655348]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1944159651]
+motion_mirroring = Vector2(1000, 1000)
+
+[node name="Background" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=52997668]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("4_q5onr")
+region_enabled = true
+region_rect = Rect2(0, 0, 1000, 1000)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1481711914]
+
+[node name="HUDManager" type="Control" parent="CanvasLayer" unique_id=71141234]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1080.0
+offset_bottom = 1920.0
+script = ExtResource("5_jhx03")
+
+[node name="ExpBar" parent="CanvasLayer/HUDManager" unique_id=1540231387 instance=ExtResource("6_o8fc1")]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="LevelUpContainer" parent="CanvasLayer/HUDManager" unique_id=293401371 instance=ExtResource("7_xo05s")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1600.0
+offset_top = 0.0
+offset_right = 2681.0
+offset_bottom = 1920.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Virtual Joystick" parent="CanvasLayer/HUDManager" unique_id=358055519 instance=ExtResource("8_dss4m")]
+layout_mode = 1
+offset_top = -1915.0
+offset_right = 1152.0
+offset_bottom = 0.0
+joystick_mode = 1
+visibility_mode = 2
+
+[node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
+
+[node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("9_7t5mc")]
+position = Vector2(-69, 56)
+experience = 1000
+
+[connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
+[connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]
+[connection signal="leveled_up" from="Player" to="CanvasLayer/HUDManager" method="_on_player_leveled_up"]
+[connection signal="xp_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_xp_updated"]

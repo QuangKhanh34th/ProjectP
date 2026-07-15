@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://daqtebl8i5qw1"]
 
-[ext_resource type="Script" uid="uid://dy8b7tki3iycd" path="res://scenes/Player/player.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://dtabm2syev1cn" path="res://scenes/player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://chbaje5ptvv2m" path="res://assets/Textures/Player/shima.png" id="1_l8h54"]
-[ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/Utility/hurtbox.tscn" id="3_btcbx"]
-[ext_resource type="Script" uid="uid://ca8yfqs07wxev" path="res://scenes/Player/weapon_manager.gd" id="4_gwnis"]
+[ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/system/hurtbox.tscn" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://ca8yfqs07wxev" path="res://scenes/weapons/weapon_manager.gd" id="4_gwnis"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
 radius = 7.0

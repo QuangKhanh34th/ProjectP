@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7f6d2qtyq2ve"]
 
-[ext_resource type="Script" uid="uid://bpdvarafqw0dx" path="res://scenes/Player/Weapons/ShimaBun/shima_bun.gd" id="1_yuxqo"]
+[ext_resource type="Script" uid="uid://bpdvarafqw0dx" path="res://scenes/weapons/ShimaBun/shima_bun.gd" id="1_yuxqo"]
 
 [node name="ShimaBun" type="Node2D" unique_id=684279984]
 script = ExtResource("1_yuxqo")

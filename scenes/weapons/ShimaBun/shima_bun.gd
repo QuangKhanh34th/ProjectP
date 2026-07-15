@@ -5,7 +5,7 @@ extends Node2D
 
 # ShimaBun
 var player: Player
-var projectile = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun_projectile.tscn")
+var projectile = preload("res://scenes/weapons/ShimaBun/shima_bun_projectile.tscn")
 
 # --- Weapon stats ---
 var level = 1

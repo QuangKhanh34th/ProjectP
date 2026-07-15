@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dptyenyqwwh8m"]
 
-[ext_resource type="Script" uid="uid://c4vqich3h5a52" path="res://scenes/UI/level-up/item_option.gd" id="1_pwxc8"]
+[ext_resource type="Script" uid="uid://c4vqich3h5a52" path="res://scenes/ui/level-up/item_option.gd" id="1_pwxc8"]
 [ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="2_bi1q3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwxc8"]

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b8gbi7gj05ojq"]
 
-[ext_resource type="Script" uid="uid://wcc7nvgie7ru" path="res://scenes/Utility/enemy_spawner.gd" id="1_v14hi"]
-[ext_resource type="Script" uid="uid://cwty3n7y80v6p" path="res://scenes/Utility/spawn_info.gd" id="2_5yyhq"]
-[ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/Enemy/nade.tscn" id="3_nn1td"]
+[ext_resource type="Script" uid="uid://wcc7nvgie7ru" path="res://scenes/system/enemy_spawner.gd" id="1_v14hi"]
+[ext_resource type="Script" uid="uid://cwty3n7y80v6p" path="res://scenes/system/spawn_info.gd" id="2_5yyhq"]
+[ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/enemies/nade/nade.tscn" id="3_nn1td"]
 
 [sub_resource type="Resource" id="Resource_k354k"]
 script = ExtResource("2_5yyhq")

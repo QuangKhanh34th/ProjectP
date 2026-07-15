@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ngo5u6jp4xd5"]
 
 [ext_resource type="AudioStream" uid="uid://dcinmyi1c5ahd" path="res://assets/Audio/SoundEffect/levelup.ogg" id="1_1potc"]
-[ext_resource type="Script" uid="uid://ca7xf077mxv4e" path="res://scenes/UI/level-up/level_up_screen.gd" id="1_6q4lm"]
+[ext_resource type="Script" uid="uid://ca7xf077mxv4e" path="res://scenes/ui/level-up/level_up_screen.gd" id="1_6q4lm"]
 
 [node name="LevelUpContainer" type="MarginContainer" unique_id=293401371]
 process_mode = 2

@@ -35,7 +35,7 @@ signal health_updated(current_hp: int, max_hp: int)
 var enemy_close: Array[Node2D] = []
 var move_vector := Vector2.ZERO
 
-const SHIMA_BUN_WEAPON = preload("res://scenes/Player/Weapons/ShimaBun/shima_bun.tscn")
+const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
 
 func _ready():
 	if speed == null:
