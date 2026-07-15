@@ -2,15 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://assets/Textures/grass-tile.png" id="1_62w18"]
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/Player/player.tscn" id="2_8a836"]
+[ext_resource type="Script" uid="uid://c173tw0d6evgb" path="res://scenes/World/loot_spawner.gd" id="3_7602k"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_j8job"]
-[ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/Enemy/enemy.tscn" id="4_3f78f"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/Utility/enemy_spawner.tscn" id="4_k8do8"]
+[ext_resource type="PackedScene" uid="uid://dix8o1nahs2lp" path="res://scenes/UI/hud_manager.tscn" id="5_qficy"]
+[ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/UI/level-up/level_up_screen.tscn" id="6_aqshw"]
+[ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/Objects/exp_gem.tscn" id="6_inth5"]
+[ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/UI/exp_bar.tscn" id="6_ng6hi"]
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("2_8a836")]
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("4_k8do8")]
+
+[node name="LootSpawner" type="Node2D" parent="." unique_id=1562862552]
+script = ExtResource("3_7602k")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=656655348]
 
@@ -26,21 +33,40 @@ region_rect = Rect2(0, 0, 1000, 1000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1481711914]
 
-[node name="Virtual Joystick" parent="CanvasLayer" unique_id=331599570 instance=ExtResource("3_j8job")]
+[node name="HUDManager" parent="CanvasLayer" unique_id=379203221 instance=ExtResource("5_qficy")]
+
+[node name="ExpBar" parent="CanvasLayer/HUDManager" unique_id=1540231387 instance=ExtResource("6_ng6hi")]
+unique_name_in_owner = true
+layout_mode = 0
+
+[node name="LevelUpContainer" parent="CanvasLayer/HUDManager" unique_id=293401371 instance=ExtResource("6_aqshw")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1600.0
+offset_top = 0.0
+offset_right = 2681.0
+offset_bottom = 1920.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Virtual Joystick" parent="CanvasLayer/HUDManager" unique_id=331599570 instance=ExtResource("3_j8job")]
+layout_mode = 1
 offset_top = -1915.0
 offset_right = 1152.0
 offset_bottom = 0.0
 joystick_mode = 1
 visibility_mode = 2
 
-[node name="Nade" parent="." unique_id=1558304278 instance=ExtResource("4_3f78f")]
-position = Vector2(55, 36)
-motion_mode = 1
+[node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
 
-[node name="Nade2" parent="." unique_id=1105754911 instance=ExtResource("4_3f78f")]
-position = Vector2(110, 72)
-motion_mode = 1
+[node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("6_inth5")]
+position = Vector2(-69, 56)
+experience = 1000
 
-[node name="Nade3" parent="." unique_id=1213088157 instance=ExtResource("4_3f78f")]
-position = Vector2(-25, 86)
-motion_mode = 1
+[connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
+[connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]
+[connection signal="leveled_up" from="Player" to="CanvasLayer/HUDManager" method="_on_player_leveled_up"]
+[connection signal="xp_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_xp_updated"]

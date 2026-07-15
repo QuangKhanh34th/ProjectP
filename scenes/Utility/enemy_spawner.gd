@@ -7,7 +7,7 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 var time = 0
-
+const MAX_SPAWN = 500
 
 
 func _on_timer_timeout() -> void:
@@ -32,10 +32,16 @@ func _on_timer_timeout() -> void:
 				var counter = 0
 				# spawn until the configured enemy number per spawn is reached 
 				while counter < i.enemy_num:
+					if get_tree().get_node_count_in_group("enemy") >= MAX_SPAWN:
+						break
 					var enemy_spawn = new_enemy.instantiate()
 					# custom function, choose one of the 4 rectangle sides located just outside the player
 					# view to spawn in
 					enemy_spawn.global_position = get_random_position() 
+					
+					# inject necessary info to prevent lookup in enemy script
+					enemy_spawn.player = player
+
 					add_child(enemy_spawn) # add enemy into World
 					counter += 1 
 

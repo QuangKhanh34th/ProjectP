@@ -43,3 +43,8 @@ func enemy_hit(charge = 1):
 func _on_timer_timeout() -> void:
 	emit_signal("remove_from_array", self)
 	queue_free() 
+
+# If the projectile leave the screen
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	emit_signal("remove_from_array", self)
+	queue_free() 
