@@ -3,18 +3,23 @@
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
 [ext_resource type="Script" uid="uid://c173tw0d6evgb" path="res://scenes/system/loot_spawner.gd" id="3_e3hyu"]
+[ext_resource type="PackedScene" uid="uid://ccii1mm5nvvlg" path="res://scenes/enemies/base_enemy.tscn" id="3_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://assets/Textures/grass-tile.png" id="4_q5onr"]
 [ext_resource type="Script" uid="uid://dumx8ui8a4df3" path="res://scenes/ui/hud_manager.gd" id="5_jhx03"]
 [ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/ui/exp_bar.tscn" id="6_o8fc1"]
 [ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/ui/level-up/level_up_screen.tscn" id="7_xo05s"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_dss4m"]
 [ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/objects/exp_gem.tscn" id="9_7t5mc"]
+[ext_resource type="Script" uid="uid://b685qwaadwrna" path="res://scenes/debug_camera.gd" id="11_jhx03"]
+[ext_resource type="Script" uid="uid://cxjen81lyitmb" path="res://scenes/sub_viewport.gd" id="11_q5onr"]
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
+
+[node name="BaseEnemy" parent="EnemySpawner" unique_id=1499931416 instance=ExtResource("3_w7kh3")]
 
 [node name="LootSpawner" type="Node2D" parent="." unique_id=1562862552]
 script = ExtResource("3_e3hyu")
@@ -64,6 +69,22 @@ offset_right = 1152.0
 offset_bottom = 0.0
 joystick_mode = 1
 visibility_mode = 2
+
+[node name="DebugViewport" type="SubViewportContainer" parent="CanvasLayer" unique_id=1408551206]
+visible = false
+offset_top = 1121.0
+offset_right = 1080.0
+offset_bottom = 1920.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/DebugViewport" unique_id=912075057]
+handle_input_locally = false
+size = Vector2i(1080, 799)
+render_target_update_mode = 0
+script = ExtResource("11_q5onr")
+
+[node name="DebugCamera" type="Camera2D" parent="CanvasLayer/DebugViewport/SubViewport" unique_id=1073042790]
+script = ExtResource("11_jhx03")
 
 [node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
 

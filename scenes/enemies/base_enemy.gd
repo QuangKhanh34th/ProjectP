@@ -11,11 +11,23 @@ extends CharacterBody2D
 
 # Can be injected by the Spawner to prevent scene-tree lookup stutter
 var player: Node2D = null
+var player_camera: Camera2D = null
+
+
 
 func _ready(): # can use @onready for the same effect
 	# Fallback lookup only if the Spawner didn't inject them
 	if not player:
 		player = get_tree().get_first_node_in_group("player")
+
+	#var screen_notifier := get_node_or_null("VisibleOnScreenNotifier2D") as VisibleOnScreenNotifier2D
+	#if not screen_notifier:
+		#screen_notifier = VisibleOnScreenNotifier2D.new()
+		#screen_notifier.name = "VisibleOnScreenNotifier2D"
+		#add_child(screen_notifier)
+#
+	#if not screen_notifier.screen_exited.is_connected(_on_visible_on_screen_notifier_2d_screen_exited):
+		#screen_notifier.screen_exited.connect(_on_visible_on_screen_notifier_2d_screen_exited)
 
 func _physics_process(_delta): # underscore in delta mean not use delta for this func
 	if player:
@@ -23,7 +35,27 @@ func _physics_process(_delta): # underscore in delta mean not use delta for this
 		var direction = global_position.direction_to(player.global_position)
 		velocity = direction * move_speed
 		move_and_slide()
+		
+		# 2. Check if the enemy fell too far behind the player's camera
+		check_reposition()
 
+func check_reposition() -> void:
+	if not player_camera:
+		return
+		
+	# Get the visible screen size adjusted for the camera's zoom
+	var zoom = player_camera.zoom if player_camera else Vector2.ONE
+	var view_size = (get_viewport_rect().size / zoom)
+	
+	# Calculate the center-to-edge distance, multiplied by 1.5
+	# (Since your spawn zone maxes out at 1.4x, 1.5x is safely outside the spawn ring)
+	var despawn_bounds = (view_size / 2.0) * 1.5
+	
+	# Check horizontal and vertical distance from the camera center (player position)
+	var diff = global_position - player.global_position
+	if abs(diff.x) > despawn_bounds.x or abs(diff.y) > despawn_bounds.y:
+		SignalBus.enemy_exited_screen.emit(self)
+		
 func death():
 	# LootSpawner catch this signal
 	SignalBus.enemy_died.emit(self)
@@ -36,3 +68,9 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
 	if hp <= 0:
 		death()
+		
+
+
+#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	#print("enemy exitted screen")
+	#SignalBus.enemy_exited_screen.emit(self)

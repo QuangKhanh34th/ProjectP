@@ -1,22 +1,11 @@
-extends Node2D
+extends WeaponBase
 
-@onready var ShimaBunTimer = get_node("ShimaBunTimer")
-@onready var ShimaBunAttackTimer = get_node("ShimaBunTimer/ShimaBunAttackTimer")
+@onready var ShimaBunTimer: Timer = get_node("ShimaBunTimer")
+@onready var ShimaBunAttackTimer: Timer = get_node("ShimaBunTimer/ShimaBunAttackTimer")
 
 # ShimaBun
-var player: Player
 var projectile = preload("res://scenes/weapons/ShimaBun/shima_bun_projectile.tscn")
 
-# --- Weapon stats ---
-var level = 1
-var base_damage = 5
-var base_speed = 100
-var penetration_hp = 1
-var base_size = 1.0 # how large is the projectile
-# var base_knockback = 100
-var base_ammo = 20 # how many bullet fired in one burst
-var base_cooldown = 0.5 # how long to wait between each burst (in seconds)
-var base_delay = 0.05 # how long to wait between each bullet in one burst (in seconds)
 var ammo_left = 0
 
 
@@ -41,22 +30,22 @@ func level_up():
 func attack():
 	print("[shima_bun.gd] attack function called. Level: ", level)
 	if level > 0:
-		ShimaBunTimer.wait_time = base_cooldown
-		ShimaBunAttackTimer.wait_time = base_delay
+		ShimaBunTimer.wait_time = get_weapon_cooldown()
+		ShimaBunAttackTimer.wait_time = get_weapon_delay()
 		if ShimaBunTimer.is_stopped():
 			ShimaBunTimer.start()
 			print("[shima_bun.gd] ShimaBunTimer started")
 
 func _on_shima_bun_timer_timeout() -> void:
 	print("[shima_bun.gd] Main cooldown finished. Reloading")
-	ammo_left = base_ammo
+	ammo_left = get_weapon_ammo()
 	ShimaBunAttackTimer.start()
 
 
 func _on_shima_bun_attack_timer_timeout() -> void:
 	var enemies = player.get_nearby_enemies()
 	if enemies.is_empty():
-		print("[shima_bun.gd] No enemies detected in detection area")
+		#print("[shima_bun.gd] No enemies detected in detection area")
 		return
 
 	var closest_enemy = _get_closest_enemy(enemies)
@@ -69,22 +58,22 @@ func _on_shima_bun_attack_timer_timeout() -> void:
 		var shimaBun_attack = projectile.instantiate()
 
 		# pass down necessary weapon stats to the instance
-		shimaBun_attack.damage = base_damage
-		shimaBun_attack.speed = base_speed
-		shimaBun_attack.penetration_hp = penetration_hp
-		shimaBun_attack.size = base_size
+		shimaBun_attack.damage = get_weapon_damage()
+		shimaBun_attack.speed = get_weapon_speed()
+		shimaBun_attack.penetration_hp = get_weapon_penetration()
+		shimaBun_attack.size = get_weapon_size()
 
 		# give the instance an idea where to fly at
 		shimaBun_attack.position = global_position
 		shimaBun_attack.target = closest_enemy.global_position
 
 		# spawn the projectile (BOOM BOOM)
-		self.add_child(shimaBun_attack)
+		get_tree().current_scene.add_child(shimaBun_attack)
 		
 
 		# do all the of above over again until burst end
 		ammo_left -= 1
-		print("[shima_bun.gd] Projectile spawned. Remaining amount: ", ammo_left)
+		#print("[shima_bun.gd] Projectile spawned. Remaining amount: ", ammo_left)
 		if ammo_left > 0:
 			ShimaBunAttackTimer.start()
 		else:
