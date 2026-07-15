@@ -6,7 +6,6 @@ extends Node2D
 
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var player_camera = player.get_node("Camera2D")
-@onready var base_enemy = $BaseEnemy
 
 var time = 0
 const MAX_SPAWN = 300

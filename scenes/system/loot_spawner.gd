@@ -7,7 +7,7 @@ extends Node2D
 var drop_accumulator: float = 0.0
 var exp_accumulator: int = 0 # track pooled HP
 
-const EXP_GEM_SCENE = preload("res://scenes/Objects/exp_gem.tscn")
+const EXP_GEM_SCENE = preload("res://scenes/objects/exp_gem.tscn")
 
 func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)

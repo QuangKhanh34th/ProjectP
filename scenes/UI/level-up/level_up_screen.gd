@@ -3,7 +3,7 @@ extends MarginContainer
 @onready var lvlPanel = %LevelUpPanel
 @onready var UpgradeManager = $"../../../UpgradeManager"
 @onready var upgradeOptions = %UpgradeOptions
-@onready var itemOptions = preload("res://scenes/UI/level-up/item_option.tscn")
+@onready var itemOptions = preload("res://scenes/ui/level-up/item_option.tscn")
 @onready var sndLevelUp = %snd_levelup
 
 func show_level_up_menu(new_level: int) -> void:

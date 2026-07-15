@@ -12,7 +12,7 @@ var laser_beam_scene = preload("res://scenes/weapons/Laser/laser_projectile.tscn
 
 func _ready() -> void:
 	# --- CUSTOM STAT OVERRIDES ---
-	base_damage = 5
+	base_damage = 2.0
 	base_size = 1.0
 	base_cooldown = 5.0
 	base_duration = 2.5
@@ -32,7 +32,7 @@ func level_up():
 			base_cooldown -= 2.0
 		5:
 			base_size += 0.5
-			base_damage += 20
+			base_damage += 10
 
 func attack() -> void:
 	if level > 0:
