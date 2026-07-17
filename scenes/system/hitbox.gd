@@ -5,21 +5,12 @@
 # in simpler words, "hitbox" touch "hurtbox" = "bullet" touch "body",
 # "knife" slashed "body", "spikes" get stepped on by "body", etc...
 
+# Currently, the base Hitbox is used for enemy collision damage
+# and is inherited by base projectile types
+class_name Hitbox
 extends Area2D
 
-@export var damage = 1
-@onready var collision = $CollisionShape2D
-@onready var disableTimer = $DisableHitBoxTimer
+@export var damage: float = 1
 
-
-# disable the hitbox and start the timer, effectively making the weapon/bullet/hazard/thing 
-# cannot damage anyone hurtbox for the timer duration. Without this, AoE hazards on screen
-# will absolutely demolish player/enemy in miliseconds because it deals damage too fast and
-# too frequent (too OP)
-func tempDisable():
-	collision.call_deferred("set", "disabled", true)
-	disableTimer.start()
-
-
-func _on_disable_hit_box_timer_timeout() -> void:
-	collision.call_deferred("set", "disabled", false)
+func enemy_hit(_charge: int = 1) -> void:
+	pass # Override in subclasses if penetration or custom hit effects are needed

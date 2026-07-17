@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://daqtebl8i5qw1"]
 
-[ext_resource type="Script" uid="uid://dtabm2syev1cn" path="res://scenes/player/player.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://dtabm2syev1cn" path="res://scenes/Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://chbaje5ptvv2m" path="res://assets/Textures/Player/shima.png" id="1_l8h54"]
 [ext_resource type="Texture2D" uid="uid://ds0wbx2gh3qwa" path="res://assets/Textures/Player/placeholder_player.png" id="2_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/system/hurtbox.tscn" id="3_btcbx"]

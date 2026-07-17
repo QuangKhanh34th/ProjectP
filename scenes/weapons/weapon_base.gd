@@ -4,10 +4,15 @@ extends Node2D
 var player: Player
 
 # how weapon interact with enemy hurtbox (see hurtbox.gd)
-# 0 = Cooldown
+# 0 = Cooldown (do not use this, will make other weapons
+# useless on that enemy for 0.5s too)
 # 1 = HitOnce
 # 2 = DisableHitBox
-@export var damage_type = 0
+
+# By default, every weapon projectile should hit the enemy just once
+# if a weapon is designed to deal damage over time (ex: laser),
+# override this variable in the specific weapon script
+@export var damage_type = 1
 
 @export var level: int = 1
 @export var base_damage: float = 5.0

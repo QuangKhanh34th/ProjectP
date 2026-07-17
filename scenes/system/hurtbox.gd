@@ -25,6 +25,7 @@ func _on_area_entered(area: Area2D) -> void:
 				# Cooldown: 
 				# Disables the HurtBox's collision temporarily and starts a timer. (set to 0.5s)
 				# This makes the entity briefly invincible (i-frames) after getting hit.
+				# Usage: used for PLAYER's hurtbox
 				0: 
 					collision.call_deferred("set","disabled",true)
 					disableTimer.start()
@@ -51,8 +52,9 @@ func _on_area_entered(area: Area2D) -> void:
 				# Instead of making itself invincible, it tells the attacker's HitBox 
 				# to turn off temporarily via area.tempDisable(). This is useful for lingering 
 				# area-of-effect (AoE) attacks; the AoE stays on screen, but it stops dealing damage for a few seconds.
+				# Usage: used for ENEMY's hurtbox
 				2: 
-					if area.has_method("tempDisable"): # See hitbox.gd for more explanation on this method
+					if area.has_method("tempDisable"): # See aoe_projectile.gd for more explanation on this method
 						area.tempDisable()
 			
 			# Extract the "damage" value from the Area2D
@@ -73,6 +75,6 @@ func remove_from_list(object):
 		hit_once_array.erase(object)
 
 
-# If the DisableHitBoxTimer ran out (0.5s), re-enable the CollisionShape2D, so the hurtbox can be hit again
+# If the DisableHitBoxTimer ran out (0.5s), re-enable the Hurtbox's CollisionShape2D, so the hurtbox can be hit again
 func _on_disable_timer_timeout() -> void:
 	collision.call_deferred("set","disabled",false)

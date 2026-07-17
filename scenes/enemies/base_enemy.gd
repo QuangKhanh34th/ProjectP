@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @export var move_speed = 20.0
 @export var hp = 10
+@export var damage = 1
 @export var experience = 1
 @export var drop_value: float = 0.2 # Percentage
 
@@ -13,12 +14,16 @@ extends CharacterBody2D
 var player: Node2D = null
 var player_camera: Camera2D = null
 
-
+@onready var hitbox: Area2D = $Hitbox
 
 func _ready(): # can use @onready for the same effect
 	# Fallback lookup only if the Spawner didn't inject them
 	if not player:
 		player = get_tree().get_first_node_in_group("player")
+		
+	# assign enemy damage stat to the collision damage hitbox
+	if hitbox:
+		hitbox.damage = self.damage
 
 
 func _physics_process(_delta): # underscore in delta mean not use delta for this func

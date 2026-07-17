@@ -12,6 +12,7 @@ var laser_beam_scene = preload("res://scenes/weapons/Laser/laser_projectile.tscn
 
 func _ready() -> void:
 	# --- CUSTOM STAT OVERRIDES ---
+	damage_type = 2
 	base_damage = 2.0
 	base_size = 1.0
 	base_cooldown = 5.0

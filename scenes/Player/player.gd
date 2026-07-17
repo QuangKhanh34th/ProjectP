@@ -46,6 +46,7 @@ var enemy_close: Array[Node2D] = []
 const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
 const SHIMA_BUN_UPGRADE_BASE = preload("res://scenes/data/upgrades/shimabun/shimabun_0.tres")
 const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
+const LASER_UPGRADE_BASE = preload("res://scenes/data/upgrades/laser/laser_0.tres")
 
 func _ready():
 	if speed == null:
@@ -54,7 +55,10 @@ func _ready():
 		hp = 100
 	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
 	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	weaponManager.add_weapon(LASER_WEAPON)
+	upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
+
 
 # --- Movement ---
 # calls every frame to process character movement (read movement input from user 
