@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bjqhin3hban6j"]
 
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
+[ext_resource type="Script" uid="uid://b8il75uhotg0s" path="res://scenes/system/stage_manager.gd" id="2_0nbtd"]
 [ext_resource type="Script" uid="uid://bsm84febwys2e" path="res://scenes/core/upgrade_manager.gd" id="2_dss4m"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="3_7t5mc"]
@@ -26,10 +27,14 @@
 [ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/enemies/nade/nade.tscn" id="13_jhx03"]
 [ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="14_munwf"]
 [ext_resource type="Resource" uid="uid://cg7vvhyb0ou4d" path="res://scenes/data/upgrades/tungsten_machete/tungsten_1.tres" id="15_ts3gi"]
+[ext_resource type="PackedScene" uid="uid://bx337iw63l0r3" path="res://scenes/ui/hp_bar.tscn" id="21_ts3gi"]
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
+
+[node name="StageManager" type="Node2D" parent="." unique_id=48118594]
+script = ExtResource("2_0nbtd")
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1931764530]
 script = ExtResource("2_dss4m")
@@ -56,14 +61,103 @@ region_rect = Rect2(0, 0, 1000, 1000)
 
 [node name="HUDManager" type="Control" parent="CanvasLayer" unique_id=71141234]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 1080.0
-offset_bottom = 1920.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_jhx03")
 
-[node name="ExpBar" parent="CanvasLayer/HUDManager" unique_id=1540231387 instance=ExtResource("6_o8fc1")]
+[node name="SafeMargin" type="MarginContainer" parent="CanvasLayer/HUDManager" unique_id=392430258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="TopLeftGroup" type="HBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin" unique_id=1641780408]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ExpColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup" unique_id=662923585]
+layout_mode = 2
+
+[node name="ExpHeader" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/ExpColumn" unique_id=533872363]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "LV"
+horizontal_alignment = 1
+
+[node name="ExpBar" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/ExpColumn" unique_id=1540231387 instance=ExtResource("6_o8fc1")]
 unique_name_in_owner = true
-layout_mode = 0
+custom_minimum_size = Vector2(60, 500)
+layout_mode = 2
+nine_patch_stretch = true
+texture_progress_offset = Vector2(0, 0)
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/ExpColumn" unique_id=607849644]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Lv. 1"
+
+[node name="Spacer" type="Control" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup" unique_id=58831623]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="HpColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup" unique_id=1437004027]
+layout_mode = 2
+
+[node name="HpHeader" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/HpColumn" unique_id=2026900120]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "HP"
+
+[node name="HPBar" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/HpColumn" unique_id=8849919 instance=ExtResource("21_ts3gi")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 350)
+layout_mode = 2
+size_flags_vertical = 0
+nine_patch_stretch = true
+
+[node name="TopCenterWrapper" type="MarginContainer" parent="CanvasLayer/HUDManager/SafeMargin" unique_id=1879385567]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_top = 113
+
+[node name="TopCenterGroup" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopCenterWrapper" unique_id=414960994]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Timer" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopCenterWrapper/TopCenterGroup" unique_id=1989209634]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "20:11 "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopCenterWrapper/TopCenterGroup" unique_id=1405015050]
+layout_mode = 2
+
+[node name="Kill" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopCenterWrapper/TopCenterGroup/HBoxContainer" unique_id=889246230]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "💀23 "
+
+[node name="Money" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopCenterWrapper/TopCenterGroup/HBoxContainer" unique_id=981004378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "💰6767"
 
 [node name="LevelUpContainer" parent="CanvasLayer/HUDManager" unique_id=293401371 instance=ExtResource("7_xo05s")]
 unique_name_in_owner = true
@@ -80,13 +174,14 @@ grow_vertical = 1
 
 [node name="Virtual Joystick" parent="CanvasLayer/HUDManager" unique_id=358055519 instance=ExtResource("8_dss4m")]
 layout_mode = 1
-anchors_preset = 0
+anchors_preset = 15
 anchor_top = 0.0
-anchor_bottom = 0.0
-offset_top = 0.0
-offset_right = 1507.0
-offset_bottom = 2679.0
-grow_vertical = 1
+anchor_right = 1.0
+offset_top = 20.0
+offset_right = 0.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 joystick_mode = 1
 visibility_mode = 2
 

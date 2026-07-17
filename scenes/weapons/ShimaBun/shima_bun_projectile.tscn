@@ -1,10 +1,96 @@
 [gd_scene format=3 uid="uid://bmflhpvacv128"]
 
 [ext_resource type="Script" uid="uid://bhrfptgjc7x1t" path="res://scenes/weapons/ShimaBun/shima_bun_projectile.gd" id="1_xycbx"]
-[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="2_s7dl4"]
+[ext_resource type="Texture2D" uid="uid://bvi1wt6u3sgvt" path="res://assets/Textures/Items/Weapons/projectiles/projectile_static.png" id="2_3yebf"]
+[ext_resource type="Texture2D" uid="uid://crgoloe5x2yy2" path="res://assets/Textures/Items/Weapons/projectiles/pistol_projectile.png" id="3_scdip"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k1ua4"]
-radius = 70.0286
+[sub_resource type="AtlasTexture" id="AtlasTexture_atxcy"]
+atlas = ExtResource("3_scdip")
+region = Rect2(0, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwxnu"]
+atlas = ExtResource("3_scdip")
+region = Rect2(6, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws61g"]
+atlas = ExtResource("3_scdip")
+region = Rect2(12, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yld5x"]
+atlas = ExtResource("3_scdip")
+region = Rect2(18, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0rri"]
+atlas = ExtResource("3_scdip")
+region = Rect2(24, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ombws"]
+atlas = ExtResource("3_scdip")
+region = Rect2(30, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5uua8"]
+atlas = ExtResource("3_scdip")
+region = Rect2(36, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyea5"]
+atlas = ExtResource("3_scdip")
+region = Rect2(42, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2s7o"]
+atlas = ExtResource("3_scdip")
+region = Rect2(48, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhhh4"]
+atlas = ExtResource("3_scdip")
+region = Rect2(54, 0, 6, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scdip"]
+atlas = ExtResource("3_scdip")
+region = Rect2(60, 0, 6, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wclf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_atxcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwxnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws61g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yld5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0rri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ombws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5uua8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyea5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2s7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhhh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scdip")
+}],
+"loop": false,
+"name": &"impact",
+"speed": 120.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scdip"]
+size = Vector2(93.75, 31.249998)
 
 [node name="ShimaBun" type="Area2D" unique_id=1528712472 groups=["attack"]]
 top_level = true
@@ -12,14 +98,20 @@ collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_xycbx")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=45217707]
-scale = Vector2(0.064, 0.064)
-texture = ExtResource("2_s7dl4")
+[node name="StaticSprite" type="Sprite2D" parent="." unique_id=45217707]
+texture = ExtResource("2_3yebf")
+
+[node name="ImpactSprite" type="AnimatedSprite2D" parent="." unique_id=1582716866]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_1wclf")
+animation = &"impact"
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2112944591]
-position = Vector2(2.38419e-07, -4.76837e-07)
+position = Vector2(-1.1920929e-07, -2.9802322e-08)
 scale = Vector2(0.064, 0.064)
-shape = SubResource("CircleShape2D_k1ua4")
+shape = SubResource("RectangleShape2D_scdip")
 
 [node name="Timer" type="Timer" parent="." unique_id=517502187]
 wait_time = 10.0

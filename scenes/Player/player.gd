@@ -15,6 +15,7 @@ var last_direction: String = "down" # Default starting direction
 var experience: int = 0
 var is_leveling_up: bool = false
 @export var hp: int = 100
+@export var max_hp: int = 100
 @export var move_speed: float = 50.0
 @export var defense: int = 0
 
@@ -55,12 +56,12 @@ func _ready():
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	#weaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	#upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
 	#weaponManager.add_weapon(LASER_WEAPON)
 	#upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
-	weaponManager.add_weapon(MACHETE_WEAPON)
-	upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
+	#weaponManager.add_weapon(MACHETE_WEAPON)
+	#upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 
@@ -124,7 +125,11 @@ func get_nearby_enemies() -> Array[Node2D]:
 # and subtract it into player's hp
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	print(hp)
+	hp = max(0, hp) # Prevent HP from dropping below 0
+	print("HP: ", hp)
+	
+	# EMIT THE SIGNAL HERE:
+	health_updated.emit(hp, max_hp)
 
 
 # --- Exp Collecting ---
@@ -149,6 +154,7 @@ func calculate_experience(gem_exp: int = 0):
 	
 	# Only level up if we have enough XP AND the menu isn't already open
 	if experience >= exp_required and not is_leveling_up:
+		xp_updated.emit(experience, exp_required)
 		experience -= exp_required
 		level_up()
 	else:

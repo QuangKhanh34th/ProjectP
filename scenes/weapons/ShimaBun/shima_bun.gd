@@ -16,6 +16,9 @@ var ammo_left = 0
 func _ready() -> void:
 	#print("[shima_bun.gd] script loaded")
 	max_level = 5
+	base_damage = 1.5
+	base_speed = 300
+	base_ammo = 1
 	attack()
 
 

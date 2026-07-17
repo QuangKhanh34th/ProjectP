@@ -29,7 +29,7 @@ window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/size/window_width_override=540
 window/size/window_height_override=960
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=1
 
@@ -86,5 +86,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

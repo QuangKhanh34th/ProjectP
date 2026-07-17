@@ -2,6 +2,27 @@ extends Control
 
 @onready var exp_bar = %ExpBar
 @onready var lvl_up_screen = $LevelUpContainer
+@onready var hp_bar = %HPBar
+@onready var timer_label = %Timer
+@onready var kill_label = %Kill
+
+func _ready() -> void:
+	# Connect to the global Stage Manager broadcasts
+	SignalBus.stage_time_updated.connect(_on_stage_time_updated)
+	SignalBus.kill_count_updated.connect(_on_kill_count_updated)
+	
+	# Initialize labels on startup
+	_on_stage_time_updated(300)
+	_on_kill_count_updated(0)
+
+func _on_stage_time_updated(seconds: int) -> void:
+	var minutes := seconds / 60
+	var rem_seconds := seconds % 60
+	# Format as MM:SS with leading zeroes
+	timer_label.text = "%02d:%02d" % [minutes, rem_seconds]
+
+func _on_kill_count_updated(total_kills: int) -> void:
+	kill_label.text = str("💀", total_kills)
 
 func reset_joystick():
 	#Input.action_release("ui_left")
@@ -18,7 +39,7 @@ func reset_joystick():
 
 # TODO: Add player actual death
 func _on_player_health_updated(current_hp: int, max_hp: int) -> void:
-	pass # Replace with function body.
+	hp_bar.set_hp_bar(current_hp, max_hp)
 
 
 func _on_player_xp_updated(current_exp: int, max_exp: int) -> void:

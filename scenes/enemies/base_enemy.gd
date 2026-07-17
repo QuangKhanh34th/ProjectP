@@ -15,6 +15,7 @@ var player: Node2D = null
 var player_camera: Camera2D = null
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
 
 func _ready(): # can use @onready for the same effect
 	# Fallback lookup only if the Spawner didn't inject them
@@ -63,6 +64,18 @@ func death():
 # and subtract it into enemy's hp, free the enemy node (kill it) when hp reached below 0
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
+	flash_white()
 	if hp <= 0:
 		death()
 		
+func flash_white() -> void:
+	# Safety check: make sure the sprite exists and actually has our ShaderMaterial attached
+	if not sprite or not sprite.material is ShaderMaterial:
+		return
+		
+	# Instantly snap the shader's flash modifier to 1.0 (100% solid white)
+	sprite.material.set_shader_parameter("flash_modifier", 1.0)
+	
+	# Create a lightweight tween to smoothly fade it back to 0.0 over 0.15 seconds
+	var tween = create_tween()
+	tween.tween_property(sprite.material, "shader_parameter/flash_modifier", 0.0, 0.15)
