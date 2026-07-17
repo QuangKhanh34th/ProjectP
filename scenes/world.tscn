@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://bjqhin3hban6j"]
 
-[ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/Player/player.tscn" id="1_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
 [ext_resource type="Script" uid="uid://bsm84febwys2e" path="res://scenes/core/upgrade_manager.gd" id="2_dss4m"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="3_7t5mc"]
 [ext_resource type="Script" uid="uid://c173tw0d6evgb" path="res://scenes/system/loot_spawner.gd" id="3_e3hyu"]
 [ext_resource type="Resource" uid="uid://cdoh4hm8hokpk" path="res://scenes/data/upgrades/shimabun/shimabun_0.tres" id="4_lakw3"]
 [ext_resource type="Texture2D" uid="uid://b3gs752akjila" path="res://assets/Textures/grass-tile.png" id="4_q5onr"]
-[ext_resource type="Script" uid="uid://dumx8ui8a4df3" path="res://scenes/UI/hud_manager.gd" id="5_jhx03"]
+[ext_resource type="Script" uid="uid://dumx8ui8a4df3" path="res://scenes/ui/hud_manager.gd" id="5_jhx03"]
 [ext_resource type="Resource" uid="uid://d3w2yundirvp3" path="res://scenes/data/upgrades/shimabun/shimabun_1.tres" id="5_pm21f"]
-[ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/UI/exp_bar.tscn" id="6_o8fc1"]
+[ext_resource type="PackedScene" uid="uid://dd6qnjctvnha6" path="res://scenes/ui/exp_bar.tscn" id="6_o8fc1"]
 [ext_resource type="Resource" uid="uid://bj83qi0ekgrde" path="res://scenes/data/upgrades/shimabun/shimabun_2.tres" id="6_pm21f"]
 [ext_resource type="Resource" uid="uid://dm04le4gqhp6a" path="res://scenes/data/upgrades/shimabun/shimabun_3.tres" id="7_2lf6f"]
-[ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/UI/level-up/level_up_screen.tscn" id="7_xo05s"]
+[ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/ui/level-up/level_up_screen.tscn" id="7_xo05s"]
 [ext_resource type="Resource" uid="uid://bvh502auwvvi3" path="res://scenes/data/upgrades/shimabun/shimabun_4.tres" id="8_7iits"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_dss4m"]
-[ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/Objects/exp_gem.tscn" id="9_7t5mc"]
+[ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/objects/exp_gem.tscn" id="9_7t5mc"]
 [ext_resource type="Resource" uid="uid://dhilmqtb7bqmi" path="res://scenes/data/upgrades/laser/laser_0.tres" id="9_ctatt"]
 [ext_resource type="Resource" uid="uid://blqb5eiu03gbq" path="res://scenes/data/upgrades/laser/laser_1.tres" id="10_xgqkh"]
 [ext_resource type="Script" uid="uid://b685qwaadwrna" path="res://scenes/debug_camera.gd" id="11_jhx03"]
@@ -24,6 +24,8 @@
 [ext_resource type="Resource" uid="uid://ci30aclr1hj5p" path="res://scenes/data/upgrades/laser/laser_3.tres" id="12_ts3gi"]
 [ext_resource type="Resource" uid="uid://cjox6gwkypmm8" path="res://scenes/data/upgrades/laser/laser_4.tres" id="13_0nbtd"]
 [ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/enemies/nade/nade.tscn" id="13_jhx03"]
+[ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="14_munwf"]
+[ext_resource type="Resource" uid="uid://cg7vvhyb0ou4d" path="res://scenes/data/upgrades/tungsten_machete/tungsten_1.tres" id="15_ts3gi"]
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
@@ -31,7 +33,7 @@
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1931764530]
 script = ExtResource("2_dss4m")
-all_upgrades = Array[ExtResource("3_7t5mc")]([ExtResource("4_lakw3"), ExtResource("5_pm21f"), ExtResource("6_pm21f"), ExtResource("7_2lf6f"), ExtResource("8_7iits"), ExtResource("9_ctatt"), ExtResource("10_xgqkh"), ExtResource("11_munwf"), ExtResource("12_ts3gi"), ExtResource("13_0nbtd")])
+all_upgrades = Array[ExtResource("3_7t5mc")]([ExtResource("4_lakw3"), ExtResource("5_pm21f"), ExtResource("6_pm21f"), ExtResource("7_2lf6f"), ExtResource("8_7iits"), ExtResource("9_ctatt"), ExtResource("10_xgqkh"), ExtResource("11_munwf"), ExtResource("12_ts3gi"), ExtResource("13_0nbtd"), ExtResource("14_munwf"), ExtResource("15_ts3gi")])
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
 

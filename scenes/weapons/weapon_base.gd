@@ -15,6 +15,7 @@ var player: Player
 @export var damage_type = 1
 
 @export var level: int = 1
+@export var max_level: int = 8
 @export var base_damage: float = 5.0
 @export var base_speed: float = 100.0
 @export var penetration_hp: int = 1

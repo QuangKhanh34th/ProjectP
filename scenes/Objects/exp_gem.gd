@@ -19,13 +19,16 @@ const BLUE_GEM_EXP_AMOUNT = 25
 
 func _ready() -> void:
 	set_physics_process(false)
+	sprite.play()
 	
 	if experience < GREEN_GEM_EXP_AMOUNT:
 		return
 	elif experience < BLUE_GEM_EXP_AMOUNT:
-		sprite.texture = exp_blue
+		#sprite.texture = exp_blue
+		return
 	else: 
-		sprite.texture = exp_red
+		#sprite.texture = exp_red
+		return
 
 func _physics_process(delta: float) -> void:
 	# for every game tick...

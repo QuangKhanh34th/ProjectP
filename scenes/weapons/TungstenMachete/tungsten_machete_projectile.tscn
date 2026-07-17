@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://so0ws4w7ekve"]
+
+[ext_resource type="Script" uid="uid://ch50xbc8slyf4" path="res://scenes/weapons/TungstenMachete/tungsten_machete_projectile.gd" id="1_3y45f"]
+[ext_resource type="Texture2D" uid="uid://d0sj3kdtiokpy" path="res://assets/Textures/Items/Weapons/projectiles/tungsten_machete_projectile.png" id="1_rxrbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufixo"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvfdw"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r6jf"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgux3"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kot4s"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbttt"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hj70"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1rhf5"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfos3"]
+atlas = ExtResource("1_rxrbl")
+region = Rect2(0, 512, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p1gqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufixo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvfdw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r6jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgux3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kot4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbttt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hj70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1rhf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfos3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 45.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3y45f"]
+size = Vector2(6.963409, 16.315617)
+
+[node name="TungstenMacheteSweep" type="Area2D" unique_id=1590972736 groups=["attack"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_3y45f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1986342224]
+sprite_frames = SubResource("SpriteFrames_p1gqd")
+frame = 8
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1948615717]
+position = Vector2(14.452467, -20.490246)
+rotation = 2.1921334
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_3y45f")

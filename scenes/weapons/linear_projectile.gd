@@ -13,6 +13,7 @@ var angle: Vector2 = Vector2.ZERO
 signal remove_from_array
 
 func _ready() -> void:
+	scale = Vector2(size, size)
 	angle = global_position.direction_to(target)
 	rotation = angle.angle()
 

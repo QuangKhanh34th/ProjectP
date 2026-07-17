@@ -47,16 +47,20 @@ const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
 const SHIMA_BUN_UPGRADE_BASE = preload("res://scenes/data/upgrades/shimabun/shimabun_0.tres")
 const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
 const LASER_UPGRADE_BASE = preload("res://scenes/data/upgrades/laser/laser_0.tres")
+const MACHETE_WEAPON = preload("res://scenes/weapons/TungstenMachete/tungsten_machete.tscn")
+const MACHETE_UPGRADE_BASE = preload("res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres")
 
 func _ready():
 	if speed == null:
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
-	weaponManager.add_weapon(LASER_WEAPON)
-	upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
+	#weaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	#upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	#weaponManager.add_weapon(LASER_WEAPON)
+	#upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
+	weaponManager.add_weapon(MACHETE_WEAPON)
+	upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 

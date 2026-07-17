@@ -14,7 +14,8 @@ var ammo_left = 0
 
 
 func _ready() -> void:
-	print("[shima_bun.gd] script loaded")
+	#print("[shima_bun.gd] script loaded")
+	max_level = 5
 	attack()
 
 

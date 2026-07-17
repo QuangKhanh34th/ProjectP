@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bgfakqd1ykp4y"]
+
+[ext_resource type="Script" uid="uid://cabxpb7nuquj3" path="res://scenes/weapons/TungstenMachete/tungsten_machete.gd" id="1_n35ha"]
+
+[node name="TungstenMachete" type="Node2D" unique_id=220684565]
+script = ExtResource("1_n35ha")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=1373846675]
+one_shot = true
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
