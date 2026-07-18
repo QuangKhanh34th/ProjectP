@@ -26,7 +26,7 @@ func _ready() -> void:
 	print("machete", level)
 	max_level = 8
 	base_damage = 5.0
-	base_size = 0.5
+	base_size = 1.0
 	base_ammo = 1
 	base_cooldown = 1.0 # seconds
 	base_delay = 0.05 # seconds, used when ammo above 1
@@ -84,11 +84,18 @@ func _on_cooldown_timer_timeout() -> void:
 	# Rotate the slash toward the player's currently faced direction
 	var facing_dir = player.last_direction
 	print("last direction: ", player.last_direction)
+	var target_angle: float = DIRECTION_ANGLES.get(facing_dir, PI / 2.0)
 	if DIRECTION_ANGLES.has(facing_dir):
-		projectile.rotation = DIRECTION_ANGLES[facing_dir] + SPRITE_OFFSET
+		projectile.rotation = DIRECTION_ANGLES[facing_dir]
 	else:
-		projectile.rotation = PI / 2.0 + SPRITE_OFFSET # Default to facing down if undefined
-		
+		projectile.rotation = PI / 2.0  # Default to facing down if undefined
+	
+	# mirror slash movement
+	if facing_dir in ["left", "up_left", "down_left"]:
+		projectile.scale.y = -projectile.scale.y
+	
+	var forward_distance := 20.0 * get_weapon_size()
+	projectile.position = Vector2.from_angle(target_angle) * forward_distance
 	projectile.tree_exited.connect(_on_projectile_finished)
 
 # Restart cooldown for the next attack when queue_free() is used in projectile script

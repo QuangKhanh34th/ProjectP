@@ -58,8 +58,8 @@ func _ready():
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	#weaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	#upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
 	#weaponManager.apply_upgrade(SHIMA_BUN_MAX)
 	#upgradeManager.collected_upgrades.append(SHIMA_BUN_MAX)
 	#weaponManager.add_weapon(LASER_WEAPON)
