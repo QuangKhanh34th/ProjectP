@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cusr0xjoc0va0"]
+
+[ext_resource type="Shader" uid="uid://s1buscr0t810" path="res://assets/hit_flash.gdshader" id="1_8ncbn"]
+[ext_resource type="Texture2D" uid="uid://dv0h4jrxjgkho" path="res://assets/Textures/Enemy/walker.png" id="1_67ber"]
+[ext_resource type="Script" uid="uid://yigw5gdgr4b3" path="res://scenes/enemies/walker/walker.gd" id="1_wq731"]
+[ext_resource type="PackedScene" uid="uid://05yrh11ld1w1" path="res://scenes/system/hitbox.tscn" id="2_v1rg7"]
+[ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/system/hurtbox.tscn" id="3_apytk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ncbn"]
+resource_local_to_scene = true
+shader = ExtResource("1_8ncbn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1emd"]
+atlas = ExtResource("1_67ber")
+region = Rect2(0, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_artto"]
+atlas = ExtResource("1_67ber")
+region = Rect2(27, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cqkw"]
+atlas = ExtResource("1_67ber")
+region = Rect2(54, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnx5d"]
+atlas = ExtResource("1_67ber")
+region = Rect2(81, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4i43"]
+atlas = ExtResource("1_67ber")
+region = Rect2(108, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v46xp"]
+atlas = ExtResource("1_67ber")
+region = Rect2(135, 32, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8knmb"]
+atlas = ExtResource("1_67ber")
+region = Rect2(162, 32, 27, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5xgl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1emd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_artto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cqkw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnx5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4i43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v46xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8knmb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8jg4"]
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wq731"]
+radius = 14.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ncbn"]
+height = 32.0
+
+[node name="Walker" type="CharacterBody2D" unique_id=1089944067 groups=["enemy"]]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_wq731")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=544011236]
+material = SubResource("ShaderMaterial_8ncbn")
+sprite_frames = SubResource("SpriteFrames_d5xgl")
+autoplay = "default"
+frame_progress = 0.9996251
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1807701097]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_c8jg4")
+
+[node name="Hurtbox" parent="." unique_id=756682110 instance=ExtResource("3_apytk")]
+collision_layer = 4
+collision_mask = 4
+HurtBoxType = 1
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0" unique_id=1263948809]
+visible = false
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_wq731")
+
+[node name="Hitbox" parent="." unique_id=1428126102 instance=ExtResource("2_v1rg7")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=495384533]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_8ncbn")
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]

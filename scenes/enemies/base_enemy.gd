@@ -15,7 +15,7 @@ var player: Node2D = null
 var player_camera: Camera2D = null
 
 @onready var hitbox: Area2D = $Hitbox
-@onready var sprite: Sprite2D = get_node_or_null("Sprite2D")
+@onready var sprite: CanvasItem = get_node_or_null("Sprite2D") if has_node("Sprite2D") else get_node_or_null("AnimatedSprite2D")
 
 func _ready(): # can use @onready for the same effect
 	# Fallback lookup only if the Spawner didn't inject them
