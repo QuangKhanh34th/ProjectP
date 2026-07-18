@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_8omyj"]
 [ext_resource type="Resource" uid="uid://bvh502auwvvi3" path="res://scenes/data/upgrades/shimabun/shimabun_4.tres" id="1_t3v5k"]
+[ext_resource type="Texture2D" uid="uid://dwesvew1038u3" path="res://assets/Textures/Items/Weapons/Gun_Button.png" id="1_xxfrd"]
 [ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/M36-AR/m36_ar.tscn" id="3_xxfrd"]
 
 [resource]
 script = ExtResource("1_8omyj")
 id = "shimabun_5"
 display_name = "M36 Assault Rifle"
+icon = ExtResource("1_xxfrd")
 level = 6
 max_level = 7
 weapon_scene = ExtResource("3_xxfrd")

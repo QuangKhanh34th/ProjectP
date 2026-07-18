@@ -32,12 +32,14 @@
 [ext_resource type="Script" uid="uid://cwty3n7y80v6p" path="res://scenes/system/spawn_info.gd" id="20_fh13f"]
 [ext_resource type="PackedScene" uid="uid://cusr0xjoc0va0" path="res://scenes/enemies/walker/walker.tscn" id="21_rup4s"]
 [ext_resource type="PackedScene" uid="uid://bx337iw63l0r3" path="res://scenes/ui/hp_bar.tscn" id="21_ts3gi"]
+[ext_resource type="PackedScene" uid="uid://bbl1f4lfo1gin" path="res://scenes/ui/inventory/item_slot.tscn" id="27_rup4s"]
+[ext_resource type="Shader" uid="uid://cy8ca6reo0o10" path="res://assets/vignette.gdshader" id="30_4kbfs"]
 
 [sub_resource type="Resource" id="Resource_k354k"]
 script = ExtResource("20_fh13f")
 time_end = 60
 enemy = ExtResource("21_rup4s")
-enemy_num = 1
+enemy_num = 20
 enemy_spawn_delay = 1
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
@@ -54,6 +56,12 @@ metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 script = ExtResource("20_fh13f")
 enemy = ExtResource("21_rup4s")
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rup4s"]
+shader = ExtResource("30_4kbfs")
+shader_parameter/vignette_color = Color(0.85, 0.05, 0.05, 1)
+shader_parameter/intensity = 0.0
+shader_parameter/pulse_speed = 8.0
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
@@ -186,6 +194,41 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "💰6767"
 
+[node name="BottomLeftGroup" type="HBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin" unique_id=1239086243]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="WeaponsColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup" unique_id=398946015]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WeaponSlot" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/WeaponsColumn" unique_id=1227133373 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+
+[node name="WeaponSlot2" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/WeaponsColumn" unique_id=1935010371 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+
+[node name="WeaponSlot3" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/WeaponsColumn" unique_id=1926342518 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+
+[node name="PassivesColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup" unique_id=1693532935]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PassiveSlot" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/PassivesColumn" unique_id=1613064150 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+color = Color(0, 0.22745098, 0.96862745, 1)
+
+[node name="PassiveSlot2" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/PassivesColumn" unique_id=1864988994 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+color = Color(0, 0.22745098, 0.96862745, 1)
+
+[node name="PassiveSlot3" parent="CanvasLayer/HUDManager/SafeMargin/BottomLeftGroup/PassivesColumn" unique_id=737935627 instance=ExtResource("27_rup4s")]
+layout_mode = 2
+color = Color(0, 0.22745098, 0.96862745, 1)
+
 [node name="LevelUpContainer" parent="CanvasLayer/HUDManager" unique_id=293401371 instance=ExtResource("7_xo05s")]
 unique_name_in_owner = true
 layout_mode = 0
@@ -211,6 +254,17 @@ grow_horizontal = 2
 grow_vertical = 2
 joystick_mode = 1
 visibility_mode = 2
+
+[node name="Vignette" type="ColorRect" parent="CanvasLayer/HUDManager" unique_id=420388115]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_rup4s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="DebugViewport" type="SubViewportContainer" parent="CanvasLayer" unique_id=1408551206]
 visible = false

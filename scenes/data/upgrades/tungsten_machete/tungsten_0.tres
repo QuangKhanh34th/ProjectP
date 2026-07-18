@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bu3bmwl53s7xe"]
 
+[ext_resource type="Texture2D" uid="uid://c0lf7dmkwojig" path="res://assets/Textures/Items/Weapons/Sword_Button.png" id="1_4ksvq"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_aqu8y"]
 [ext_resource type="PackedScene" uid="uid://bgfakqd1ykp4y" path="res://scenes/weapons/TungstenMachete/tungsten_machete.tscn" id="2_4ksvq"]
 
@@ -8,6 +9,7 @@ script = ExtResource("1_aqu8y")
 id = "tungsten_0"
 display_name = "Tungsten Machete"
 description = "Sweep in the faced direction"
+icon = ExtResource("1_4ksvq")
 max_level = 8
 weapon_scene = ExtResource("2_4ksvq")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

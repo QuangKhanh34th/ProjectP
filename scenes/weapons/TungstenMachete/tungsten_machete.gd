@@ -94,6 +94,7 @@ func _on_cooldown_timer_timeout() -> void:
 	if facing_dir in ["left", "up_left", "down_left"]:
 		projectile.scale.y = -projectile.scale.y
 	
+	# position hitbox in front of the player
 	var forward_distance := 20.0 * get_weapon_size()
 	projectile.position = Vector2.from_angle(target_angle) * forward_distance
 	projectile.tree_exited.connect(_on_projectile_finished)

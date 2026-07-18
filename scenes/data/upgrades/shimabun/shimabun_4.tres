@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://dm04le4gqhp6a" path="res://scenes/data/upgrades/shimabun/shimabun_3.tres" id="1_0wltc"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_7somy"]
-[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="1_ql4tg"]
+[ext_resource type="Texture2D" uid="uid://dwesvew1038u3" path="res://assets/Textures/Items/Weapons/Gun_Button.png" id="1_ql4tg"]
 [ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/M36-AR/m36_ar.tscn" id="3_ql4tg"]
 
 [resource]

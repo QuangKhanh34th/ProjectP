@@ -58,14 +58,16 @@ func _ready():
 		speed = 50.0
 	if hp == null:
 		hp = 100
-	#weaponManager.add_weapon(SHIMA_BUN_WEAPON)
-	#upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
+	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
 	#weaponManager.apply_upgrade(SHIMA_BUN_MAX)
 	#upgradeManager.collected_upgrades.append(SHIMA_BUN_MAX)
 	#weaponManager.add_weapon(LASER_WEAPON)
 	#upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
-	weaponManager.add_weapon(MACHETE_WEAPON)
-	upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
+	#weaponManager.add_weapon(MACHETE_WEAPON)
+	#upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
+	
+	SignalBus.upgrade_collected.emit(SHIMA_BUN_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 
@@ -132,8 +134,22 @@ func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp = max(0, hp) # Prevent HP from dropping below 0
 	print("HP: ", hp)
 	
+	if camera and camera.has_method("apply_kick"):
+		camera.apply_kick(Vector2.DOWN.rotated(randf() * TAU), 8.0)
+	
+	# Trigger visual hit flash
+	flash_red()
+	
 	# EMIT THE SIGNAL HERE:
 	health_updated.emit(hp, max_hp)
+
+func flash_red() -> void:
+	if not animated_sprite or not animated_sprite.material is ShaderMaterial:
+		return
+	animated_sprite.material.set_shader_parameter("flash_modifier", 1.0)
+	var tween = create_tween()
+	tween.tween_interval(0.15)
+	tween.tween_callback(func(): animated_sprite.material.set_shader_parameter("flash_modifier", 0.0))
 
 
 # --- Exp Collecting ---
@@ -191,6 +207,8 @@ func upgrade_character(chosen_upgrade: UpgradeData) -> void:
 		
 		# 1. Tell the UpgradeManager we collected this card so it won't appear again
 		upgradeManager.collected_upgrades.append(chosen_upgrade)
+		# --- broadcast to UI
+		SignalBus.upgrade_collected.emit(chosen_upgrade)
 		
 		# 2. Check what type of upgrade it is and apply it
 		if chosen_upgrade.type == "weapon":

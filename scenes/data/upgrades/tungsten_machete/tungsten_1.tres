@@ -2,6 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="1_4kcbt"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_dj5a6"]
+[ext_resource type="Texture2D" uid="uid://c0lf7dmkwojig" path="res://assets/Textures/Items/Weapons/Sword_Button.png" id="1_vh450"]
 [ext_resource type="PackedScene" uid="uid://bgfakqd1ykp4y" path="res://scenes/weapons/TungstenMachete/tungsten_machete.tscn" id="3_vh450"]
 
 [resource]
@@ -9,6 +10,7 @@ script = ExtResource("1_dj5a6")
 id = "tungsten_1"
 display_name = "Tungsten Machete"
 description = "placeholder"
+icon = ExtResource("1_vh450")
 level = 2
 max_level = 8
 weapon_scene = ExtResource("3_vh450")

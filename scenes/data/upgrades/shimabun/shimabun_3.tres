@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dm04le4gqhp6a"]
 
-[ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="1_5l8nx"]
+[ext_resource type="Texture2D" uid="uid://dwesvew1038u3" path="res://assets/Textures/Items/Weapons/Gun_Button.png" id="1_5l8nx"]
 [ext_resource type="Resource" uid="uid://bj83qi0ekgrde" path="res://scenes/data/upgrades/shimabun/shimabun_2.tres" id="2_5hq68"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="3_xxmsl"]
 [ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/M36-AR/m36_ar.tscn" id="4_jdtcb"]

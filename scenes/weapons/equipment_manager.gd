@@ -1,4 +1,4 @@
-class_name WeaponManager
+class_name EquipmentManager
 extends Node2D
 
 @onready var player: Player = get_parent() as Player

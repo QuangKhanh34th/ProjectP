@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://daqtebl8i5qw1"]
 
-[ext_resource type="Script" uid="uid://dtabm2syev1cn" path="res://scenes/Player/player.gd" id="1_4ntmi"]
+[ext_resource type="Script" uid="uid://dtabm2syev1cn" path="res://scenes/player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://chbaje5ptvv2m" path="res://assets/Textures/Player/shima.png" id="1_l8h54"]
+[ext_resource type="Shader" uid="uid://s1buscr0t810" path="res://assets/hit_flash.gdshader" id="2_0owmy"]
 [ext_resource type="Texture2D" uid="uid://ds0wbx2gh3qwa" path="res://assets/Textures/Player/placeholder_player.png" id="2_p47bc"]
 [ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/system/hurtbox.tscn" id="3_btcbx"]
-[ext_resource type="Script" uid="uid://ca8yfqs07wxev" path="res://scenes/weapons/weapon_manager.gd" id="4_gwnis"]
+[ext_resource type="Script" uid="uid://dbki8rcja4tlx" path="res://scenes/player/camera_2d.gd" id="4_75vfm"]
+[ext_resource type="Script" uid="uid://ca8yfqs07wxev" path="res://scenes/weapons/equipment_manager.gd" id="4_gwnis"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qek5x"]
+shader = ExtResource("2_0owmy")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
 atlas = ExtResource("2_p47bc")
@@ -383,6 +390,46 @@ animations = [{
 "loop": true,
 "name": &"idle_up_right",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_down_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_down_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_up_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"run_up_right",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
@@ -402,11 +449,13 @@ radius = 50.0
 [node name="Player" type="CharacterBody2D" unique_id=776708892 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_4ntmi")
+hp = 50
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=874929781]
 texture_filter = 1
+material = SubResource("ShaderMaterial_qek5x")
 sprite_frames = SubResource("SpriteFrames_0ncpa")
-animation = &"idle_up_right"
+animation = &"run_down"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=753885319]
 visible = false
@@ -415,6 +464,7 @@ texture = ExtResource("1_l8h54")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=199763232]
 zoom = Vector2(6, 6)
+script = ExtResource("4_75vfm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1769989631]
 position = Vector2(-1, 3)

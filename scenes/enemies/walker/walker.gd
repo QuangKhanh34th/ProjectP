@@ -16,8 +16,20 @@ func _ready():
 	# if super() is not called, we are just simply overriding 
 	# the base class function's logic without running it
 	super() 
+	
 
 # We can override _physics_process(), take_damage(),.. also if
 # we want this enemy to behave differently from normal enemies
 # like it can move in a specific unique pattern, be invincible for
 # x sec(s) when hp reaches a specific number,..
+func _physics_process(delta: float) -> void:
+	# Run BaseEnemy's movement and reposition logic first
+	super(delta)
+	
+	# Check if the player exists, then compare X positions directly with player
+	# left and right stutter when enemy collide with each other
+	if player:
+		if player.global_position.x < global_position.x:
+			sprite.play("walk_left")
+		elif player.global_position.x > global_position.x:
+			sprite.play("walk_right")

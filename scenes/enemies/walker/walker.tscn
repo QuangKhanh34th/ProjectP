@@ -12,6 +12,34 @@ shader = ExtResource("1_8ncbn")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ncbn"]
+atlas = ExtResource("1_67ber")
+region = Rect2(0, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhaqj"]
+atlas = ExtResource("1_67ber")
+region = Rect2(27, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seg88"]
+atlas = ExtResource("1_67ber")
+region = Rect2(54, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbcga"]
+atlas = ExtResource("1_67ber")
+region = Rect2(81, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4ivd"]
+atlas = ExtResource("1_67ber")
+region = Rect2(108, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3254"]
+atlas = ExtResource("1_67ber")
+region = Rect2(135, 0, 27, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y64np"]
+atlas = ExtResource("1_67ber")
+region = Rect2(162, 0, 27, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1emd"]
 atlas = ExtResource("1_67ber")
 region = Rect2(0, 32, 27, 32)
@@ -44,6 +72,32 @@ region = Rect2(162, 32, 27, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8ncbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhaqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seg88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbcga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4ivd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3254")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y64np")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_t1emd")
 }, {
 "duration": 1.0,
@@ -65,12 +119,12 @@ animations = [{
 "texture": SubResource("AtlasTexture_8knmb")
 }],
 "loop": true,
-"name": &"default",
+"name": &"walk_right",
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8jg4"]
-height = 32.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ncbn"]
+radius = 7.882354
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wq731"]
 radius = 14.0
@@ -80,6 +134,7 @@ height = 36.0
 height = 32.0
 
 [node name="Walker" type="CharacterBody2D" unique_id=1089944067 groups=["enemy"]]
+scale = Vector2(0.85, 0.85)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_wq731")
@@ -87,12 +142,11 @@ script = ExtResource("1_wq731")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=544011236]
 material = SubResource("ShaderMaterial_8ncbn")
 sprite_frames = SubResource("SpriteFrames_d5xgl")
-autoplay = "default"
-frame_progress = 0.9996251
+animation = &"walk_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1807701097]
 position = Vector2(-2, 0)
-shape = SubResource("CapsuleShape2D_c8jg4")
+shape = SubResource("CircleShape2D_8ncbn")
 
 [node name="Hurtbox" parent="." unique_id=756682110 instance=ExtResource("3_apytk")]
 collision_layer = 4
@@ -109,6 +163,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=495384533]
+visible = false
 position = Vector2(-2, 0)
 shape = SubResource("CapsuleShape2D_8ncbn")
 

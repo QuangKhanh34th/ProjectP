@@ -7,7 +7,6 @@
 [node name="HPBar" type="TextureProgressBar" unique_id=8849919]
 offset_right = 22.0
 offset_bottom = 72.0
-scale = Vector2(5, 5)
 value = 100.0
 fill_mode = 3
 texture_under = ExtResource("1_wupjp")
