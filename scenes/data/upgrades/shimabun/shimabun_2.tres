@@ -3,15 +3,16 @@
 [ext_resource type="Texture2D" uid="uid://dsa0gpbf7ympw" path="res://assets/Textures/Items/Weapons/ShimaBun.png" id="1_hpmyb"]
 [ext_resource type="Resource" uid="uid://d3w2yundirvp3" path="res://scenes/data/upgrades/shimabun/shimabun_1.tres" id="2_ulb2p"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="3_8u7qm"]
-[ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/ShimaBun/shima_bun.tscn" id="4_p43ww"]
+[ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/M36-AR/m36_ar.tscn" id="4_p43ww"]
 
 [resource]
 script = ExtResource("3_8u7qm")
 id = "shimabun_2"
-display_name = "Shima Bun"
+display_name = "M36 Assault Rifle"
 description = "Deal 5 more damage"
 icon = ExtResource("1_hpmyb")
 level = 3
+max_level = 7
 weapon_scene = ExtResource("4_p43ww")
 prerequisite = ExtResource("2_ulb2p")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

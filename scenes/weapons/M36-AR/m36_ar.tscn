@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://7f6d2qtyq2ve"]
+
+[ext_resource type="Script" uid="uid://bpdvarafqw0dx" path="res://scenes/weapons/M36-AR/m36_ar.gd" id="1_ajnw6"]
+
+[node name="M36 Assault Rifle" type="Node2D" unique_id=684279984]
+script = ExtResource("1_ajnw6")
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=2019579768]
+
+[node name="AttackTimer" type="Timer" parent="CooldownTimer" unique_id=1115985649]
+wait_time = 0.05
+
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_shima_bun_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer/AttackTimer" to="." method="_on_shima_bun_attack_timer_timeout"]

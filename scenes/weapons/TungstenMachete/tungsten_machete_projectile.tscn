@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ch50xbc8slyf4" path="res://scenes/weapons/TungstenMachete/tungsten_machete_projectile.gd" id="1_3y45f"]
 [ext_resource type="Texture2D" uid="uid://d0sj3kdtiokpy" path="res://assets/Textures/Items/Weapons/projectiles/tungsten_machete_projectile.png" id="1_rxrbl"]
+[ext_resource type="AudioStream" uid="uid://177kk45sjqsp" path="res://assets/Audio/SoundEffect/machete_sweep.wav" id="3_6lbw3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufixo"]
 atlas = ExtResource("1_rxrbl")
@@ -93,3 +94,8 @@ position = Vector2(14.452467, -20.490246)
 rotation = 2.1921334
 scale = Vector2(5, 5)
 shape = SubResource("RectangleShape2D_3y45f")
+
+[node name="snd_sweep" type="AudioStreamPlayer" parent="." unique_id=187725686]
+stream = ExtResource("3_6lbw3")
+volume_db = -5.0
+pitch_scale = 1.3

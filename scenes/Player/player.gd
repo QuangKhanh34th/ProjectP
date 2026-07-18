@@ -9,6 +9,7 @@ var last_direction: String = "down" # Default starting direction
 # --- System Variables ---
 @onready var upgradeManager = $"../UpgradeManager"
 @onready var weaponManager = $WeaponManager
+@onready var camera: Camera2D = $Camera2D
 
 # --- Player stats ---
 @export var player_level: int = 1
@@ -44,8 +45,9 @@ signal health_updated(current_hp: int, max_hp: int)
 # Enemy related
 var enemy_close: Array[Node2D] = []
 
-const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/ShimaBun/shima_bun.tscn")
+const SHIMA_BUN_WEAPON = preload("res://scenes/weapons/M36-AR/m36_ar.tscn")
 const SHIMA_BUN_UPGRADE_BASE = preload("res://scenes/data/upgrades/shimabun/shimabun_0.tres")
+const SHIMA_BUN_MAX = preload("res://scenes/data/upgrades/shimabun/shimabun_4.tres")
 const LASER_WEAPON = preload("res://scenes/weapons/Laser/laser.tscn")
 const LASER_UPGRADE_BASE = preload("res://scenes/data/upgrades/laser/laser_0.tres")
 const MACHETE_WEAPON = preload("res://scenes/weapons/TungstenMachete/tungsten_machete.tscn")
@@ -58,10 +60,12 @@ func _ready():
 		hp = 100
 	weaponManager.add_weapon(SHIMA_BUN_WEAPON)
 	upgradeManager.collected_upgrades.append(SHIMA_BUN_UPGRADE_BASE)
+	#weaponManager.apply_upgrade(SHIMA_BUN_MAX)
+	#upgradeManager.collected_upgrades.append(SHIMA_BUN_MAX)
 	#weaponManager.add_weapon(LASER_WEAPON)
 	#upgradeManager.collected_upgrades.append(LASER_UPGRADE_BASE)
-	#weaponManager.add_weapon(MACHETE_WEAPON)
-	#upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
+	weaponManager.add_weapon(MACHETE_WEAPON)
+	upgradeManager.collected_upgrades.append(MACHETE_UPGRADE_BASE)
 	call_deferred("emit_signal", "xp_updated", experience, calculate_experience_cap())
 
 

@@ -2,13 +2,35 @@ extends LinearProjectile
 
 # stats are inheritted by LinearProjectile and 
 # modified by the weapon 
-@onready var static_sprite: Sprite2D = %Sprite2D
-@onready var impact_sprite: AnimatedSprite2D = %ImpactSprite
+@onready var static_sprite: Sprite2D = $StaticSprite
+@onready var impact_sprite: AnimatedSprite2D = $ImpactSprite
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var snd_shoot: AudioStreamPlayer = $snd_shoot
+var weapon: M36AssaultRifle = null
+
+# flag to identify if this specific bullet is part of a railroad tie
+var is_tie: bool = false
 
 func _ready() -> void:
+	snd_shoot.play()
 	# Run LinearProjectile's _ready() to calculate direction and base rotation
 	super()
+	
+	if weapon.level == 7:
+		# If this bullet is a railroad tie, rotate just the visual sprite by 90 degrees
+		if is_tie and static_sprite:
+			static_sprite.rotation = PI / 2.0
+			# Stretch the tie bullet to make it longer and look like a solid wooden plank
+			static_sprite.scale.y = 3.0
+			static_sprite.scale.x = 1.5
+		elif static_sprite:
+			static_sprite.scale.x = 5.0
+
+func _physics_process(delta: float) -> void:
+	# upgrade idea: make the weapon combine ammo to fire one big AoE blast
+	# with this effect
+	# await get_tree().create_timer(0.15).timeout
+	super(delta)
 
 # Override LinearProjectile's enemy_hit to handle visual impact animations
 func enemy_hit(charge: int = 1) -> void:

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://g14c64a6j541"]
+
+[ext_resource type="Resource" uid="uid://bj42rf36ur10p" path="res://scenes/data/upgrades/shimabun/shimabun_5.tres" id="1_n51vv"]
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_rprg6"]
+[ext_resource type="PackedScene" uid="uid://7f6d2qtyq2ve" path="res://scenes/weapons/M36-AR/m36_ar.tscn" id="3_n51vv"]
+
+[resource]
+script = ExtResource("1_rprg6")
+id = "shimabun_6"
+display_name = "M36 Assault Rifle"
+level = 7
+max_level = 7
+weapon_scene = ExtResource("3_n51vv")
+prerequisite = ExtResource("1_n51vv")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

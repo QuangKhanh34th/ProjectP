@@ -55,6 +55,8 @@ func check_reposition() -> void:
 		SignalBus.enemy_exited_screen.emit(self)
 		
 func death():
+	flash_white()
+	await get_tree().create_timer(0.05).timeout
 	# LootSpawner catch this signal
 	SignalBus.enemy_died.emit(self)
 	queue_free()
@@ -78,4 +80,5 @@ func flash_white() -> void:
 	
 	# Create a lightweight tween to smoothly fade it back to 0.0 over 0.15 seconds
 	var tween = create_tween()
-	tween.tween_property(sprite.material, "shader_parameter/flash_modifier", 0.0, 0.15)
+	tween.tween_interval(0.15) # Wait for 0.15 seconds
+	tween.tween_callback(func(): sprite.material.set_shader_parameter("flash_modifier", 0.0))

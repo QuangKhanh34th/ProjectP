@@ -23,7 +23,7 @@ func apply_upgrade(upgrade: UpgradeData) -> void:
 			# Compare the file path of the equipped weapon with the upgrade's scene file path
 			if weapon.scene_file_path == upgrade.weapon_scene.resource_path:
 				print("[WeaponManager] Upgrading existing weapon: ", weapon.name)
-				weapon.level_up()
+				weapon.level_up(upgrade.level)
 				return
 	
 	# 3. If the loop finishes without returning, we don't own this weapon yet

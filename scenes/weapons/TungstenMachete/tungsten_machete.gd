@@ -32,7 +32,7 @@ func _ready() -> void:
 	base_delay = 0.05 # seconds, used when ammo above 1
 	attack()
 
-func level_up():
+func level_up(new_level: int = 0):
 	level += 1
 	
 	# placeholder values, need changes later 

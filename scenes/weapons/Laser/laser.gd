@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	attack()
 
-func level_up():
+func level_up(new_level:int = 0):
 	level += 1
 	
 	# might need to change this to accept csv/spreadsheet for easier stat tweaking 

@@ -1,10 +1,12 @@
 extends MeleeProjectile
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var snd_sweep: AudioStreamPlayer = $snd_sweep
 func _ready() -> void:
-	# 1. Run AOEProjectile's _ready() to initialize size
+	# Run AOEProjectile's _ready() to initialize size
 	super()
+	
+	snd_sweep.play()
 	
 	# 3. Play the slash animation
 	animated_sprite.frame = 0
