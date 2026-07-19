@@ -9,9 +9,10 @@
 script = ExtResource("1_cvwhb")
 id = "laser_3"
 display_name = "Laser Ray"
-description = "Reduces weapon cooldown by 40%"
+description = "Beam duration increased by +1.0s and deals +5 damage."
 icon = ExtResource("1_gdm8x")
 level = 4
+max_level = 7
 weapon_scene = ExtResource("4_q6e3q")
 prerequisite = ExtResource("2_fhrdi")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

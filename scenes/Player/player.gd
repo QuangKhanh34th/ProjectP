@@ -58,6 +58,8 @@ func _ready():
 	if animated_sprite and animated_sprite.material is ShaderMaterial:
 		animated_sprite.material.set_shader_parameter("flash_modifier", 0.0)
 		
+	$GrabArea/CollisionShape2D.shape = $GrabArea/CollisionShape2D.shape.duplicate()
+		
 	if speed == null:
 		speed = 50.0
 	if hp == null:

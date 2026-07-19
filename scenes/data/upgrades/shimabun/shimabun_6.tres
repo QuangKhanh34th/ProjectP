@@ -9,6 +9,7 @@
 script = ExtResource("1_rprg6")
 id = "shimabun_6"
 display_name = "M36 Assault Rifle"
+description = "MAX: Fires +4 bullets, pierces +2 enemies, and deals +10 damage!"
 icon = ExtResource("1_x7t6i")
 level = 7
 max_level = 7

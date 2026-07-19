@@ -8,8 +8,7 @@
 script = ExtResource("1_aqu8y")
 id = "tungsten_0"
 display_name = "Tungsten Machete"
-description = "Sweep in the faced direction"
+description = "Slash in the faced direction"
 icon = ExtResource("1_4ksvq")
-max_level = 8
 weapon_scene = ExtResource("2_4ksvq")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

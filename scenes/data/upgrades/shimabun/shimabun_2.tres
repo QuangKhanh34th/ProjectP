@@ -9,7 +9,7 @@
 script = ExtResource("3_8u7qm")
 id = "shimabun_2"
 display_name = "M36 Assault Rifle"
-description = "Deal 5 more damage"
+description = "Bullets pierce +1 enemy. Cooldown reduced by 15%."
 icon = ExtResource("1_hpmyb")
 level = 3
 max_level = 7

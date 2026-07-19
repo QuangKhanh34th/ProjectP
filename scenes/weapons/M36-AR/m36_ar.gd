@@ -20,34 +20,37 @@ var track_side: int = 1 # Alternates between 1 (right rail) and -1 (left rail)
 var shot_counter: int = 0 # Tracks shots to know when to spawn a railroad tie
 
 func _ready() -> void:
-	#print("[shima_bun.gd] script loaded")
 	max_level = 7
-	base_damage = 1.5
-	base_speed = 300
+	base_damage = 2.5
+	base_speed = 300.0
 	base_size = 2.0
 	base_ammo = 1
+	penetration_hp = 1
+	base_cooldown = 1.0
 	attack()
 
-
-func level_up(new_level: int = 0):
-	if new_level:
-		level = new_level 
-	else: level += 1
-	
-	# might need to change this to accept csv/spreadsheet for easier stat tweaking 
+func level_up(new_level: int = 0) -> void:
+	if new_level > 0:
+		level = new_level
+	else:
+		level += 1
+		
 	match level:
 		2:
 			base_ammo += 1
+			base_damage += 3.5
 		3:
-			base_damage += 5
-		4:
 			penetration_hp += 1
+			base_cooldown -= 0.15
+		4:
 			base_ammo += 2
+			base_damage += 5.0
 		5:
-			base_damage += 5
-			base_size += 20/100
+			penetration_hp += 1
+			base_size += 0.5
 		6:
-			base_cooldown -= 20/100
+			base_ammo += 2
+			base_cooldown -= 0.15
 		7:
 			# upgrade 2 (NOT ENOUGH TIME)
 			#penetration_hp += 999
@@ -61,7 +64,9 @@ func level_up(new_level: int = 0):
 			#tween.tween_property(player.camera, "zoom", Vector2(4.0, 4.0), 1.5)\
 				#.set_trans(Tween.TRANS_SINE)\
 				#.set_ease(Tween.EASE_OUT)
-			base_damage += 10
+			base_ammo += 4
+			base_damage += 10.0
+			penetration_hp += 2
 
 # start the weapon timer if the weapon level is above 0 (meaning having/acquired
 # the weapon)

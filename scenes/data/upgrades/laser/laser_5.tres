@@ -1,18 +1,18 @@
-[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cjox6gwkypmm8"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cig1887lffp5d"]
 
 [ext_resource type="Texture2D" uid="uid://bsubvi8fyitko" path="res://assets/Textures/Items/Weapons/Lazer_Button.png" id="1_41x6c"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_fdr4c"]
-[ext_resource type="Resource" uid="uid://ci30aclr1hj5p" path="res://scenes/data/upgrades/laser/laser_3.tres" id="2_sjyvw"]
+[ext_resource type="Resource" uid="uid://cjox6gwkypmm8" path="res://scenes/data/upgrades/laser/laser_4.tres" id="2_gf60f"]
 [ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="4_bwgrl"]
 
 [resource]
 script = ExtResource("1_fdr4c")
-id = "laser_4"
+id = "laser_5"
 display_name = "Laser Ray"
-description = "Beam width increased by 40%. Cooldown reduced by 0.7s."
+description = "Beam duration increased by +1.5s and deals +10 damage."
 icon = ExtResource("1_41x6c")
-level = 5
+level = 6
 max_level = 7
 weapon_scene = ExtResource("4_bwgrl")
-prerequisite = ExtResource("2_sjyvw")
+prerequisite = ExtResource("2_gf60f")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

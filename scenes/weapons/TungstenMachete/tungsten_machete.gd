@@ -23,34 +23,34 @@ const DIRECTION_ANGLES := {
 const SPRITE_OFFSET := PI / 4.0
 
 func _ready() -> void:
-	print("machete", level)
-	max_level = 8
+	max_level = 5
 	base_damage = 5.0
 	base_size = 1.0
 	base_ammo = 1
-	base_cooldown = 1.0 # seconds
-	base_delay = 0.05 # seconds, used when ammo above 1
+	base_cooldown = 1.0
+	base_delay = 0.05
 	attack()
 
-func level_up(new_level: int = 0):
-	level += 1
-	
-	# placeholder values, need changes later 
+func level_up(new_level: int = 0) -> void:
+	if new_level > 0:
+		level = new_level
+	else:
+		level += 1
+		
 	match level:
 		2:
+			base_damage += 5.0
 			base_size += 0.3
 		3:
-			base_size += 50
+			base_cooldown -= 0.2
+			base_damage += 5.0
 		4:
-			base_damage = 5.0
+			base_size += 0.4
+			base_damage += 10.0
 		5:
-			base_damage = 5.0
-		6:
-			base_damage = 5.0
-		7:
-			base_damage = 5.0
-		8:
-			base_damage = 5.0
+			base_size += 0.5
+			base_cooldown -= 0.3
+			base_damage += 15.0
 
 func attack() -> void:
 	if level > 0:

@@ -1,17 +1,17 @@
-[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cg7vvhyb0ou4d"]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://bd2wxbfvix3kv"]
 
-[ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="1_4kcbt"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_dj5a6"]
 [ext_resource type="Texture2D" uid="uid://c0lf7dmkwojig" path="res://assets/Textures/Items/Weapons/Sword_Button.png" id="1_vh450"]
+[ext_resource type="Resource" uid="uid://csy2poh2g7j4s" path="res://scenes/data/upgrades/tungsten_machete/tungsten_3.tres" id="2_jhpmj"]
 [ext_resource type="PackedScene" uid="uid://bgfakqd1ykp4y" path="res://scenes/weapons/TungstenMachete/tungsten_machete.tscn" id="3_vh450"]
 
 [resource]
 script = ExtResource("1_dj5a6")
-id = "tungsten_1"
+id = "tungsten_4"
 display_name = "Tungsten Machete"
-description = "Slash deals +5 damage and area size increases by 30%."
+description = "MAX: Giant slash size (+50%), rapid cooldown (-0.3s), and +15 damage!"
 icon = ExtResource("1_vh450")
-level = 2
+level = 5
 weapon_scene = ExtResource("3_vh450")
-prerequisite = ExtResource("1_4kcbt")
+prerequisite = ExtResource("2_jhpmj")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

@@ -9,9 +9,10 @@
 script = ExtResource("1_tqf8i")
 id = "laser_2"
 display_name = "Laser Ray"
-description = "Increases laser ray's size by 50%"
+description = "Beam width increased by 30%. Cooldown reduced by 0.8s."
 icon = ExtResource("1_q0g4x")
 level = 3
+max_level = 7
 weapon_scene = ExtResource("4_nm4up")
 prerequisite = ExtResource("2_iutpe")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

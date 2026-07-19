@@ -11,29 +11,39 @@ var laser_beam_scene = preload("res://scenes/weapons/Laser/laser_projectile.tscn
 
 
 func _ready() -> void:
-	# --- CUSTOM STAT OVERRIDES ---
+	max_level = 7
 	damage_type = 2
 	base_damage = 2.0
 	base_size = 1.0
 	base_cooldown = 5.0
 	base_duration = 2.5
-	
 	attack()
 
-func level_up(new_level:int = 0):
-	level += 1
-	
-	# might need to change this to accept csv/spreadsheet for easier stat tweaking 
+func level_up(new_level: int = 0) -> void:
+	if new_level > 0:
+		level = new_level
+	else:
+		level += 1
+		
 	match level:
 		2:
-			base_duration = 3.5
+			base_duration += 1.0
+			base_damage += 3.0
 		3:
-			base_size += 0.5
+			base_size += 0.3
+			base_cooldown -= 0.8
 		4:
-			base_cooldown -= 2.0
+			base_duration += 1.0
+			base_damage += 5.0
 		5:
-			base_size += 0.5
-			base_damage += 10
+			base_size += 0.4
+			base_cooldown -= 0.7
+		6:
+			base_duration += 1.5
+			base_damage += 10.0
+		7:
+			base_size += 0.8
+			base_cooldown -= 1.5 # Grants continuous laser uptime!
 
 func attack() -> void:
 	if level > 0:

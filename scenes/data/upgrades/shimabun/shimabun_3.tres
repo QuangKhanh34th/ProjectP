@@ -9,7 +9,7 @@
 script = ExtResource("3_xxmsl")
 id = "shimabun_3"
 display_name = "M36 Assault Rifle"
-description = "Penetrate through 1 additional enemy"
+description = "Fires +2 additional bullets and deals +5 damage."
 icon = ExtResource("1_5l8nx")
 level = 4
 max_level = 7
