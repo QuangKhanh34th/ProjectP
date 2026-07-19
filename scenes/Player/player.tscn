@@ -793,7 +793,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_qek5x")
 sprite_frames = SubResource("SpriteFrames_0ncpa")
 animation = &"run_up_right"
-frame_progress = 0.9657829
+frame_progress = 0.2579466
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=753885319]
 visible = false
@@ -832,7 +832,6 @@ monitorable = false
 shape = SubResource("CircleShape2D_btcbx")
 
 [node name="GrabArea" type="Area2D" parent="." unique_id=2018207150]
-visible = false
 scale = Vector2(0.4, 0.4)
 collision_layer = 0
 collision_mask = 8

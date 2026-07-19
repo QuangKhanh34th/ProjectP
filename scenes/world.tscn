@@ -30,12 +30,25 @@
 [ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="14_munwf"]
 [ext_resource type="Resource" uid="uid://cg7vvhyb0ou4d" path="res://scenes/data/upgrades/tungsten_machete/tungsten_1.tres" id="15_ts3gi"]
 [ext_resource type="Script" uid="uid://cwty3n7y80v6p" path="res://scenes/system/spawn_info.gd" id="20_fh13f"]
+[ext_resource type="Resource" uid="uid://byfhjgh3t4fbn" path="res://scenes/data/upgrades/passive_magnet/magnet_0.tres" id="21_8u370"]
 [ext_resource type="PackedScene" uid="uid://cusr0xjoc0va0" path="res://scenes/enemies/walker/walker.tscn" id="21_rup4s"]
 [ext_resource type="PackedScene" uid="uid://bx337iw63l0r3" path="res://scenes/ui/hp_bar.tscn" id="21_ts3gi"]
+[ext_resource type="Resource" uid="uid://dvf4vjunpbnjw" path="res://scenes/data/upgrades/passive_magnet/magnet_1.tres" id="22_rga7q"]
+[ext_resource type="Resource" uid="uid://dsy1c2gtfi0r" path="res://scenes/data/upgrades/passive_magnet/magnet_2.tres" id="23_6oujy"]
+[ext_resource type="Resource" uid="uid://bw43y6r2tiaeu" path="res://scenes/data/upgrades/passive_magnet/magnet_3.tres" id="24_hi6a0"]
+[ext_resource type="Resource" uid="uid://xoj7jhxpj4p2" path="res://scenes/data/upgrades/passive_magnet/magnet_4.tres" id="25_eo1xk"]
 [ext_resource type="Script" uid="uid://c5ia8ucrwqa7k" path="res://scenes/tile_map_layer.gd" id="25_x2olw"]
+[ext_resource type="Resource" uid="uid://cpqecakm7s6lx" path="res://scenes/data/upgrades/passive_cooldown/passive_cooldown_0.tres" id="26_18clu"]
+[ext_resource type="Resource" uid="uid://naqtckqnpqgd" path="res://scenes/data/upgrades/passive_cooldown/passive_cooldown_1.tres" id="27_4wdv8"]
 [ext_resource type="PackedScene" uid="uid://bbl1f4lfo1gin" path="res://scenes/ui/inventory/item_slot.tscn" id="27_rup4s"]
+[ext_resource type="Resource" uid="uid://04r0lai1xgq4" path="res://scenes/data/upgrades/passive_cooldown/passive_cooldown_2.tres" id="28_d46x8"]
+[ext_resource type="Resource" uid="uid://cpmho4l8kogo" path="res://scenes/data/upgrades/passive_cooldown/passive_cooldown_3.tres" id="29_3l05q"]
 [ext_resource type="Shader" uid="uid://cy8ca6reo0o10" path="res://assets/vignette.gdshader" id="30_4kbfs"]
 [ext_resource type="Texture2D" uid="uid://clgm3g2shtxni" path="res://assets/Textures/GUI/pause_Button.png" id="30_x2olw"]
+[ext_resource type="Resource" uid="uid://d1phnmculu4p0" path="res://scenes/data/upgrades/passive_cooldown/passive_cooldown_4.tres" id="30_x28ej"]
+[ext_resource type="Resource" uid="uid://b3xsatubdn8jm" path="res://scenes/data/upgrades/passive_mvspd/passive_mvspd_0.tres" id="31_3l05q"]
+[ext_resource type="Resource" uid="uid://bskwij6bg0c0y" path="res://scenes/data/upgrades/passive_mvspd/passive_mvspd_1.tres" id="31_d46x8"]
+[ext_resource type="Resource" uid="uid://b5bljg7pr8pu6" path="res://scenes/data/upgrades/passive_mvspd/passive_mvspd_2.tres" id="32_3l05q"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_x2olw"]
 tile_data = PackedInt32Array(0, 65536, 7, 65536, 65536, 8, 131072, 65536, 9, 196608, 65536, 10, 262144, 65536, 11, 327680, 65536, 12, 393216, 65536, 13, 458752, 65536, 14, 524288, 65536, 15, 589824, 65536, 16, 1, 131072, 7, 65537, 131072, 8, 131073, 131072, 9, 196609, 131072, 10, 262145, 131072, 11, 327681, 131072, 12, 393217, 131072, 13, 458753, 131072, 14, 524289, 131072, 15, 589825, 131072, 16, 2, 196608, 7, 65538, 196608, 8, 131074, 196608, 9, 196610, 196608, 10, 262146, 196608, 11, 327682, 196608, 12, 393218, 196608, 13, 458754, 196608, 14, 524290, 196608, 15, 589826, 196608, 16, 3, 262144, 7, 65539, 262144, 8, 131075, 262144, 9, 196611, 262144, 10, 262147, 262144, 11, 327683, 262144, 12, 393219, 262144, 13, 458755, 262144, 14, 524291, 262144, 15, 589827, 262144, 16, 4, 327680, 7, 65540, 327680, 8, 131076, 327680, 9, 196612, 327680, 10, 262148, 327680, 11, 327684, 327680, 12, 393220, 327680, 13, 458756, 327680, 14, 524292, 327680, 15, 589828, 327680, 16, 5, 393216, 7, 65541, 393216, 8, 131077, 393216, 9, 196613, 393216, 10, 262149, 393216, 11, 327685, 393216, 12, 393221, 393216, 13, 458757, 393216, 14, 524293, 393216, 15, 589829, 393216, 16, 6, 458752, 7, 65542, 458752, 8, 131078, 458752, 9, 196614, 458752, 10, 262150, 458752, 11, 327686, 458752, 12, 393222, 458752, 13, 458758, 458752, 14, 524294, 458752, 15, 589830, 458752, 16, 7, 524288, 7, 65543, 524288, 8, 131079, 524288, 9, 196615, 524288, 10, 262151, 524288, 11, 327687, 524288, 12, 393223, 524288, 13, 458759, 524288, 14, 524295, 524288, 15, 589831, 524288, 16, 8, 589824, 7, 65544, 589824, 8, 131080, 589824, 9, 196616, 589824, 10, 262152, 589824, 11, 327688, 589824, 12, 393224, 589824, 13, 458760, 589824, 14, 524296, 589824, 15, 589832, 589824, 16, 9, 655360, 7, 65545, 655360, 8, 131081, 655360, 9, 196617, 655360, 10, 262153, 655360, 11, 327689, 655360, 12, 393225, 655360, 13, 458761, 655360, 14, 524297, 655360, 15, 589833, 655360, 16, 10, 720896, 7, 65546, 720896, 8, 131082, 720896, 9, 196618, 720896, 10, 262154, 720896, 11, 327690, 720896, 12, 393226, 720896, 13, 458762, 720896, 14, 524298, 720896, 15, 589834, 720896, 16, 11, 786432, 7, 65547, 786432, 8, 131083, 786432, 9, 196619, 786432, 10, 262155, 786432, 11, 327691, 786432, 12, 393227, 786432, 13, 458763, 786432, 14, 524299, 786432, 15, 589835, 786432, 16, 12, 851968, 7, 65548, 851968, 8, 131084, 851968, 9, 196620, 851968, 10, 262156, 851968, 11, 327692, 851968, 12, 393228, 851968, 13, 458764, 851968, 14, 524300, 851968, 15, 589836, 851968, 16)
@@ -580,7 +593,7 @@ script = ExtResource("2_0nbtd")
 
 [node name="UpgradeManager" type="Node2D" parent="." unique_id=1931764530]
 script = ExtResource("2_dss4m")
-all_upgrades = Array[ExtResource("3_7t5mc")]([ExtResource("4_lakw3"), ExtResource("5_pm21f"), ExtResource("6_pm21f"), ExtResource("7_2lf6f"), ExtResource("8_7iits"), ExtResource("10_navra"), ExtResource("11_luhhm"), ExtResource("9_ctatt"), ExtResource("10_xgqkh"), ExtResource("11_munwf"), ExtResource("12_ts3gi"), ExtResource("13_0nbtd"), ExtResource("14_munwf"), ExtResource("15_ts3gi")])
+all_upgrades = Array[ExtResource("3_7t5mc")]([ExtResource("4_lakw3"), ExtResource("5_pm21f"), ExtResource("6_pm21f"), ExtResource("7_2lf6f"), ExtResource("8_7iits"), ExtResource("10_navra"), ExtResource("11_luhhm"), ExtResource("9_ctatt"), ExtResource("10_xgqkh"), ExtResource("11_munwf"), ExtResource("12_ts3gi"), ExtResource("13_0nbtd"), ExtResource("14_munwf"), ExtResource("15_ts3gi"), ExtResource("21_8u370"), ExtResource("22_rga7q"), ExtResource("23_6oujy"), ExtResource("24_hi6a0"), ExtResource("25_eo1xk"), ExtResource("26_18clu"), ExtResource("27_4wdv8"), ExtResource("28_d46x8"), ExtResource("29_3l05q"), ExtResource("30_x28ej"), ExtResource("31_3l05q"), ExtResource("31_d46x8"), ExtResource("32_3l05q")])
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
 spawns = Array[ExtResource("20_fh13f")]([SubResource("Resource_k354k"), SubResource("Resource_lqtkw"), SubResource("Resource_4kbfs")])
@@ -915,7 +928,7 @@ script = ExtResource("11_jhx03")
 
 [node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("9_7t5mc")]
 position = Vector2(-69, 56)
-experience = 75
+experience = 1500
 
 [connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
 [connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]

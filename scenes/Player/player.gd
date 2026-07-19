@@ -226,8 +226,17 @@ func upgrade_character(chosen_upgrade: UpgradeData) -> void:
 		if chosen_upgrade.type == "weapon":
 			weaponManager.apply_upgrade(chosen_upgrade)
 		elif chosen_upgrade.type == "passive_item" or chosen_upgrade.type == "upgrade":
-			# Later: apply passive stat boosts here
-			# e.g., if chosen_upgrade.id == "speed_1": speed += 10.0
+			# Match the prefix of the ID to apply the stat boost
+			match chosen_upgrade.id:
+				"passive_cooldown":
+					cooldown += 8.0 # +8% Cooldown Reduction per level
+				"passive_magnet":
+					# Access the GrabArea node and expand its collision boundaries
+					var grab_shape = $GrabArea/CollisionShape2D.shape as CircleShape2D
+					if grab_shape:
+						grab_shape.radius += 25.0  # Broaden the pickup horizon by 25px per level
+				"passive_mvspd":
+					move_speed += 15.0 # Flat +15 Move Speed per level
 			pass
 		
 	

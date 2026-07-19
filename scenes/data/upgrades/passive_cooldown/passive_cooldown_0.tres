@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cpqecakm7s6lx"]
+
+[ext_resource type="Texture2D" uid="uid://csyeh4qpp7od2" path="res://assets/Textures/Items/Upgrades/reduceCooldown_Button.png" id="1_f1ep3"]
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="2_ypx4r"]
+
+[resource]
+script = ExtResource("2_ypx4r")
+id = "passive_cooldown"
+display_name = "I.W.S"
+description = "Reduces weapon cooldowns by 8%"
+icon = ExtResource("1_f1ep3")
+type = "passive_item"
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

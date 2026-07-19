@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b5bljg7pr8pu6"]
+
+[ext_resource type="Texture2D" uid="uid://ccxfxxanpwqhh" path="res://assets/Textures/Items/Upgrades/increase speed_Button.png" id="1_xck10"]
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="2_smcji"]
+[ext_resource type="Resource" uid="uid://bskwij6bg0c0y" path="res://scenes/data/upgrades/passive_mvspd/passive_mvspd_1.tres" id="2_xck10"]
+
+[resource]
+script = ExtResource("2_smcji")
+id = "passive_mvspd"
+display_name = "Reinforced Exoskeleton"
+description = "Increases your movement speed by 12%"
+icon = ExtResource("1_xck10")
+level = 3
+max_level = 3
+type = "passive_item"
+prerequisite = ExtResource("2_xck10")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

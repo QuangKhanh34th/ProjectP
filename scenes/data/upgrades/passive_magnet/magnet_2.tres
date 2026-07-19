@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dsy1c2gtfi0r"]
+
+[ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_brwcy"]
+[ext_resource type="Texture2D" uid="uid://dimw5wqbwdb5q" path="res://assets/Textures/Items/Upgrades/magnet_Button.png" id="1_wjsk7"]
+[ext_resource type="Resource" uid="uid://dvf4vjunpbnjw" path="res://scenes/data/upgrades/passive_magnet/magnet_1.tres" id="2_6hddj"]
+
+[resource]
+script = ExtResource("1_brwcy")
+id = "passive_magnet"
+display_name = "Gravity Manipulator"
+description = "Broadens item collection range by 25px."
+icon = ExtResource("1_wjsk7")
+level = 3
+type = "passive_item"
+prerequisite = ExtResource("2_6hddj")
+metadata/_custom_type_script = "uid://cd7h6i7gpsx50"
