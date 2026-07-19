@@ -4,6 +4,7 @@ extends Control
 @onready var vignette = %Vignette
 const DEATH_SCREEN_SCENE = preload("res://scenes/ui/death_screen/death_screen.tscn")
 var is_game_over: bool = false
+const WIN_SCREEN_SCENE = preload("res://scenes/ui/win_screen/win_screen.tscn")
 
 # --- top left group ---
 @onready var exp_bar = %ExpBar
@@ -48,6 +49,15 @@ func _ready() -> void:
 		pause_button.pressed.connect(_on_pause_button_pressed)
 
 func _on_stage_time_updated(seconds: int) -> void:
+	print(seconds)
+	if seconds == 297:
+		var win_screen = WIN_SCREEN_SCENE.instantiate()
+		
+		# 2. Freeze the game world (stops enemies, timers, and weapon cooldowns)
+		get_tree().paused = true
+	
+		get_parent().add_child(win_screen)
+		
 	var minutes := seconds / 60
 	var rem_seconds := seconds % 60
 	# Format as MM:SS with leading zeroes
