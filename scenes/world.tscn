@@ -551,7 +551,7 @@ pattern_6 = SubResource("TileMapPattern_rga7q")
 script = ExtResource("20_fh13f")
 time_end = 60
 enemy = ExtResource("21_rup4s")
-enemy_num = 2
+enemy_num = 4
 enemy_spawn_delay = 1
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
@@ -563,7 +563,7 @@ enemy = ExtResource("13_jhx03")
 enemy_num = 12
 enemy_spawn_delay = 1
 custom_hp = 10
-custom_experience = 2
+custom_experience = 4
 custom_drop_value = 0.8
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
@@ -585,7 +585,7 @@ time_end = 300
 enemy = ExtResource("21_rup4s")
 enemy_num = 8
 enemy_spawn_delay = 1
-custom_hp = 15
+custom_hp = 30
 custom_move_speed = 40.0
 custom_experience = 2
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
@@ -597,7 +597,7 @@ time_end = 300
 enemy = ExtResource("13_jhx03")
 enemy_num = 4
 enemy_spawn_delay = 1
-custom_hp = 10
+custom_hp = 20
 custom_move_speed = 70.0
 custom_experience = 2
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
@@ -624,6 +624,7 @@ tile_set = SubResource("TileSet_3l05q")
 script = ExtResource("2_f17e3")
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
+hp = 100
 
 [node name="StageManager" type="Node2D" parent="." unique_id=48118594]
 script = ExtResource("2_0nbtd")
