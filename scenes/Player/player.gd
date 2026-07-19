@@ -102,9 +102,8 @@ func update_animation() -> void:
 		var index := posmod(roundi(move_vector.angle() / (PI / 4.0)), 8)
 		last_direction = directions[index]
 		
-		# NOTE: add walking animations later, change this to:
-		# animated_sprite.play("walk_" + last_direction)
-		animated_sprite.play("idle_" + last_direction)
+
+		animated_sprite.play("run_" + last_direction)
 	else:
 		# 3. When standing still, play the idle animation of the last direction faced
 		animated_sprite.play("idle_" + last_direction)
