@@ -1,4 +1,4 @@
-extends ColorRect
+extends TextureRect
 
 
 var mouse_over: bool = false
