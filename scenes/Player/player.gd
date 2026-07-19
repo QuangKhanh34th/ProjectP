@@ -54,6 +54,10 @@ const MACHETE_WEAPON = preload("res://scenes/weapons/TungstenMachete/tungsten_ma
 const MACHETE_UPGRADE_BASE = preload("res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres")
 
 func _ready():
+	# force reset the hit flash shader in case it was stuck from a previous death
+	if animated_sprite and animated_sprite.material is ShaderMaterial:
+		animated_sprite.material.set_shader_parameter("flash_modifier", 0.0)
+		
 	if speed == null:
 		speed = 50.0
 	if hp == null:
@@ -133,6 +137,9 @@ func get_nearby_enemies() -> Array[Node2D]:
 # Get the "hurt" signal from the hurtbox, take the signal's value (damage)
 # and subtract it into player's hp
 func _on_hurtbox_hurt(damage: Variant) -> void:
+	if hp <= 0:
+		return
+	
 	hp -= damage
 	hp = max(0, hp) # Prevent HP from dropping below 0
 	print("HP: ", hp)

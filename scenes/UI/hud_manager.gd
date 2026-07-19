@@ -2,6 +2,8 @@ extends Control
 
 # --- fullscreen ---
 @onready var vignette = %Vignette
+const DEATH_SCREEN_SCENE = preload("res://scenes/ui/death_screen/death_screen.tscn")
+var is_game_over: bool = false
 
 # --- top left group ---
 @onready var exp_bar = %ExpBar
@@ -107,6 +109,22 @@ func _on_player_health_updated(current_hp: int, max_hp: int) -> void:
 		var target_intensity := 0.35 if is_low_hp else 0.0
 		var tween := create_tween()
 		tween.tween_property(vignette.material, "shader_parameter/intensity", target_intensity, 0.25)
+		
+	if current_hp <= 0 and not is_game_over:
+		trigger_game_over()
+		
+func trigger_game_over() -> void:
+	is_game_over = true
+	
+	# 1. Reset the virtual joystick so the thumbstick snaps back to center cleanly
+	reset_joystick()
+	
+	# 2. Freeze the game world (stops enemies, timers, and weapon cooldowns)
+	get_tree().paused = true
+	
+	# 3. Instantiate the Death Screen over the HUD
+	var death_screen = DEATH_SCREEN_SCENE.instantiate()
+	get_parent().add_child(death_screen)
 
 
 func _on_player_xp_updated(current_exp: int, max_exp: int) -> void:

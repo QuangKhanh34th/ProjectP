@@ -786,14 +786,14 @@ radius = 50.0
 [node name="Player" type="CharacterBody2D" unique_id=776708892 groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_4ntmi")
-hp = 50
+hp = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=874929781]
 texture_filter = 1
 material = SubResource("ShaderMaterial_qek5x")
 sprite_frames = SubResource("SpriteFrames_0ncpa")
 animation = &"run_up_right"
-frame_progress = 0.17577387
+frame_progress = 0.9657829
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=753885319]
 visible = false
