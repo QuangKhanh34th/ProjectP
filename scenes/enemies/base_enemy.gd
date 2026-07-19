@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var hp = 10
 @export var damage = 1
 @export var experience = 1
-@export var drop_value: float = 0.2 # Percentage
+@export var drop_value: float = 0.2 # exp drop rate, in percentage
 
 # Can be injected by the Spawner to prevent scene-tree lookup stutter
 var player: Node2D = null
@@ -82,3 +82,19 @@ func flash_white() -> void:
 	var tween = create_tween()
 	tween.tween_interval(0.15) # Wait for 0.15 seconds
 	tween.tween_callback(func(): sprite.material.set_shader_parameter("flash_modifier", 0.0))
+	
+# --- Apply custom wave stats from Spawn_Info ---
+func apply_custom_stats(info: Spawn_Info) -> void:
+	if info.custom_hp > 0:
+		hp = info.custom_hp
+	if info.custom_move_speed > 0.0:
+		move_speed = info.custom_move_speed
+	if info.custom_damage > 0:
+		damage = info.custom_damage
+	# Update the Hitbox collision damage so the new damage actually hurts the player
+	if hitbox:
+		hitbox.damage = self.damage
+	if info.custom_experience > 0:
+		experience = info.custom_experience
+	if info.custom_drop_value >= 0.0:
+		drop_value = info.custom_drop_value

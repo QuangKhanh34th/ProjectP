@@ -9,3 +9,4 @@ signal kill_count_updated(total_kills: int)
 
 # --- INVENTORY SIGNAL ---
 signal upgrade_collected(upgrade: UpgradeData)
+signal gem_collected(total_gem: int)

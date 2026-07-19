@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="YuruSurvivors"
+config/name="Swarmbusters"
 run/main_scene="uid://bjqhin3hban6j"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
@@ -37,6 +37,10 @@ window/handheld/orientation=1
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gaea/editor/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/gaea/runtime/plugin.cfg")
 
 [file_customization]
 

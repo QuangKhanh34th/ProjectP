@@ -9,3 +9,12 @@ class_name Spawn_Info
 @export var enemy_spawn_delay:int # seconds of delay between each spawn
 
 var spawn_delay_counter = 0 # internal var to check the delayed seconds
+
+
+# --- NEW: Optional Stat Overrides (0 = use default script stats) ---
+@export_group("Stat Overrides (0 = Default)")
+@export var customs_hp: int = 0
+@export var custom_move_speed: float = 0.0
+@export var custom_damage: int = 0
+@export var custom_experience: int = 0
+@export var custom_drop_value: float = -1.0 # -1.0 means default since drop_value can naturally be 0.0

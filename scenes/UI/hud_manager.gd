@@ -11,6 +11,7 @@ extends Control
 # --- top center group ---
 @onready var timer_label = %Timer
 @onready var kill_label = %Kill
+@onready var gem_collected_label = %Gem
 
 # --- bottom left group ---
 @onready var weapon_slots: Array = %WeaponsColumn.get_children()
@@ -24,6 +25,7 @@ func _ready() -> void:
 	SignalBus.stage_time_updated.connect(_on_stage_time_updated)
 	SignalBus.kill_count_updated.connect(_on_kill_count_updated)
 	SignalBus.upgrade_collected.connect(_on_upgrade_collected)
+	SignalBus.gem_collected.connect(_on_gem_collected)
 	
 	# Initialize labels on startup
 	_on_stage_time_updated(300)
@@ -102,6 +104,9 @@ func _on_player_health_updated(current_hp: int, max_hp: int) -> void:
 
 func _on_player_xp_updated(current_exp: int, max_exp: int) -> void:
 	exp_bar.set_exp_bar(current_exp, max_exp)
+
+func _on_gem_collected(total_gem: int) -> void:
+	gem_collected_label.text = str("💰", total_gem)
 
 
 func _on_player_leveled_up(new_level: int) -> void:

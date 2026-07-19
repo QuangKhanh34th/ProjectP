@@ -14,6 +14,7 @@ var last_direction: String = "down" # Default starting direction
 # --- Player stats ---
 @export var player_level: int = 1
 var experience: int = 0
+var total_gem_collected: int = 0
 var is_leveling_up: bool = false
 @export var hp: int = 100
 @export var max_hp: int = 100
@@ -35,7 +36,6 @@ signal xp_updated(current_exp: int, max_exp: int)
 signal leveled_up(new_level: int)
 signal level_up_choice_selected
 signal health_updated(current_hp: int, max_hp: int)
-
 
 
 
@@ -74,7 +74,7 @@ func _ready():
 # --- Movement ---
 # calls every frame to process character movement (read movement input from user 
 # and move the character)
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	## Movement using the joystick output: (not used since we use one-joystick method)
 #	if joystick_left and joystick_left.is_pressed:
 #		position += joystick_left.output * speed * delta
@@ -86,7 +86,11 @@ func _process(delta: float) -> void:
 	## Movement using Input functions (used by Virtual Joystick code):
 	move_vector = Vector2.ZERO
 	move_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	# 1. Move the player and slide against walls/enemies
 	position += move_vector * move_speed * delta
+	move_and_slide()
+	
+	
 	update_animation()
 	
 
@@ -161,6 +165,8 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 func _on_collect_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("loot"):
 		var gem_exp = area.collect()
+		total_gem_collected += 1
+		SignalBus.gem_collected.emit(total_gem_collected)
 		calculate_experience(gem_exp)
 		
 

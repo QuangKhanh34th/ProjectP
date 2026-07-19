@@ -51,6 +51,11 @@ func _on_timer_timeout() -> void:
 					
 					
 					add_child(enemy_spawn) # add enemy into World
+					
+					# --- NEW: Apply wave overrides AFTER add_child() ---
+					if enemy_spawn.has_method("apply_custom_stats"):
+						enemy_spawn.apply_custom_stats(i)
+	
 					counter += 1 
 
 func get_random_position():
