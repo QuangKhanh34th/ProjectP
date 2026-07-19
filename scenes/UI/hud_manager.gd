@@ -5,6 +5,7 @@ extends Control
 const DEATH_SCREEN_SCENE = preload("res://scenes/ui/death_screen/death_screen.tscn")
 var is_game_over: bool = false
 const WIN_SCREEN_SCENE = preload("res://scenes/ui/win_screen/win_screen.tscn")
+const WIN_TIME = 0 # count down from 300 to 0
 
 # --- top left group ---
 @onready var exp_bar = %ExpBar
@@ -50,7 +51,7 @@ func _ready() -> void:
 
 func _on_stage_time_updated(seconds: int) -> void:
 	print(seconds)
-	if seconds == 297:
+	if seconds <= WIN_TIME:
 		var win_screen = WIN_SCREEN_SCENE.instantiate()
 		
 		# 2. Freeze the game world (stops enemies, timers, and weapon cooldowns)

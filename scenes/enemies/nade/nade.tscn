@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://m4tlvl8np2in"]
 
-[ext_resource type="Texture2D" uid="uid://cysrwegt4qcam" path="res://assets/Textures/Enemy/nade.png" id="1_2pb1h"]
 [ext_resource type="Script" uid="uid://cqoo6pqwlocl6" path="res://scenes/enemies/nade/nade.gd" id="1_px1sc"]
 [ext_resource type="Shader" uid="uid://s1buscr0t810" path="res://assets/hit_flash.gdshader" id="2_i8f64"]
 [ext_resource type="PackedScene" uid="uid://bpqkxawegbj7e" path="res://scenes/system/hurtbox.tscn" id="3_am0pq"]
+[ext_resource type="Texture2D" uid="uid://m1rhrwrdntlw" path="res://assets/Textures/Enemy/runner.png" id="3_i8f64"]
 [ext_resource type="PackedScene" uid="uid://05yrh11ld1w1" path="res://scenes/system/hitbox.tscn" id="4_eqilm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mi25v"]
@@ -11,6 +11,35 @@ resource_local_to_scene = true
 shader = ExtResource("2_i8f64")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi25v"]
+atlas = ExtResource("3_i8f64")
+region = Rect2(0, 0, 42, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88qm6"]
+atlas = ExtResource("3_i8f64")
+region = Rect2(42, 0, 42, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqbuu"]
+atlas = ExtResource("3_i8f64")
+region = Rect2(84, 0, 42, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kgoel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi25v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqbuu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_px1sc"]
 radius = 357.143
@@ -22,15 +51,13 @@ radius = 6.08276
 radius = 6.0
 
 [node name="Nade" type="CharacterBody2D" unique_id=729246025 groups=["enemy"]]
-collision_layer = 5
+collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_px1sc")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=9477973]
-texture_filter = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=742670169]
 material = SubResource("ShaderMaterial_mi25v")
-scale = Vector2(0.014, 0.014)
-texture = ExtResource("1_2pb1h")
+sprite_frames = SubResource("SpriteFrames_kgoel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1287435924]
 position = Vector2(-5.96046e-08, 1)

@@ -17,7 +17,6 @@
 [ext_resource type="PackedScene" uid="uid://ngo5u6jp4xd5" path="res://scenes/ui/level-up/level_up_screen.tscn" id="7_xo05s"]
 [ext_resource type="Resource" uid="uid://bvh502auwvvi3" path="res://scenes/data/upgrades/shimabun/shimabun_4.tres" id="8_7iits"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="8_dss4m"]
-[ext_resource type="PackedScene" uid="uid://d04dhni1blyng" path="res://scenes/objects/exp_gem.tscn" id="9_7t5mc"]
 [ext_resource type="Resource" uid="uid://dhilmqtb7bqmi" path="res://scenes/data/upgrades/laser/laser_0.tres" id="9_ctatt"]
 [ext_resource type="Resource" uid="uid://bj42rf36ur10p" path="res://scenes/data/upgrades/shimabun/shimabun_5.tres" id="10_navra"]
 [ext_resource type="Resource" uid="uid://blqb5eiu03gbq" path="res://scenes/data/upgrades/laser/laser_1.tres" id="10_xgqkh"]
@@ -27,6 +26,7 @@
 [ext_resource type="Script" uid="uid://cxjen81lyitmb" path="res://scenes/sub_viewport.gd" id="11_q5onr"]
 [ext_resource type="Resource" uid="uid://ci30aclr1hj5p" path="res://scenes/data/upgrades/laser/laser_3.tres" id="12_ts3gi"]
 [ext_resource type="Resource" uid="uid://cjox6gwkypmm8" path="res://scenes/data/upgrades/laser/laser_4.tres" id="13_0nbtd"]
+[ext_resource type="PackedScene" uid="uid://m4tlvl8np2in" path="res://scenes/enemies/nade/nade.tscn" id="13_jhx03"]
 [ext_resource type="Resource" uid="uid://bu3bmwl53s7xe" path="res://scenes/data/upgrades/tungsten_machete/tungsten_0.tres" id="14_munwf"]
 [ext_resource type="Resource" uid="uid://cg7vvhyb0ou4d" path="res://scenes/data/upgrades/tungsten_machete/tungsten_1.tres" id="15_ts3gi"]
 [ext_resource type="Script" uid="uid://cwty3n7y80v6p" path="res://scenes/system/spawn_info.gd" id="20_fh13f"]
@@ -559,10 +559,12 @@ metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 script = ExtResource("20_fh13f")
 time_start = 61
 time_end = 120
-enemy = ExtResource("21_rup4s")
+enemy = ExtResource("13_jhx03")
 enemy_num = 12
 enemy_spawn_delay = 1
 custom_hp = 10
+custom_experience = 2
+custom_drop_value = 0.8
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
 [sub_resource type="Resource" id="Resource_4kbfs"]
@@ -573,6 +575,31 @@ enemy = ExtResource("21_rup4s")
 enemy_num = 12
 enemy_spawn_delay = 1
 custom_hp = 15
+custom_experience = 2
+metadata/_custom_type_script = "uid://cwty3n7y80v6p"
+
+[sub_resource type="Resource" id="Resource_1jxku"]
+script = ExtResource("20_fh13f")
+time_start = 181
+time_end = 300
+enemy = ExtResource("21_rup4s")
+enemy_num = 8
+enemy_spawn_delay = 1
+custom_hp = 15
+custom_move_speed = 40.0
+custom_experience = 2
+metadata/_custom_type_script = "uid://cwty3n7y80v6p"
+
+[sub_resource type="Resource" id="Resource_1dgkn"]
+script = ExtResource("20_fh13f")
+time_start = 181
+time_end = 300
+enemy = ExtResource("13_jhx03")
+enemy_num = 4
+enemy_spawn_delay = 1
+custom_hp = 10
+custom_move_speed = 70.0
+custom_experience = 2
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_f17e3"]
@@ -606,7 +633,7 @@ script = ExtResource("2_dss4m")
 all_upgrades = Array[ExtResource("3_7t5mc")]([ExtResource("4_lakw3"), ExtResource("5_pm21f"), ExtResource("6_pm21f"), ExtResource("7_2lf6f"), ExtResource("8_7iits"), ExtResource("10_navra"), ExtResource("11_luhhm"), ExtResource("9_ctatt"), ExtResource("10_xgqkh"), ExtResource("11_munwf"), ExtResource("12_ts3gi"), ExtResource("13_0nbtd"), ExtResource("14_munwf"), ExtResource("15_ts3gi"), ExtResource("21_8u370"), ExtResource("22_rga7q"), ExtResource("23_6oujy"), ExtResource("24_hi6a0"), ExtResource("25_eo1xk"), ExtResource("26_18clu"), ExtResource("27_4wdv8"), ExtResource("28_d46x8"), ExtResource("29_3l05q"), ExtResource("30_x28ej"), ExtResource("31_3l05q"), ExtResource("31_d46x8"), ExtResource("32_3l05q")])
 
 [node name="EnemySpawner" parent="." unique_id=1959314277 instance=ExtResource("2_w7kh3")]
-spawns = Array[ExtResource("20_fh13f")]([SubResource("Resource_k354k"), SubResource("Resource_lqtkw"), SubResource("Resource_4kbfs")])
+spawns = Array[ExtResource("20_fh13f")]([SubResource("Resource_k354k"), SubResource("Resource_lqtkw"), SubResource("Resource_4kbfs"), SubResource("Resource_1jxku"), SubResource("Resource_1dgkn")])
 
 [node name="LootSpawner" type="Node2D" parent="." unique_id=1562862552]
 script = ExtResource("3_e3hyu")
@@ -673,13 +700,6 @@ size_flags_vertical = 0
 [node name="ExpColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup" unique_id=662923585]
 layout_mode = 2
 
-[node name="ExpHeader" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/ExpColumn" unique_id=533872363]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
-text = "LV"
-horizontal_alignment = 1
-
 [node name="ExpBar" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/ExpColumn" unique_id=1540231387 instance=ExtResource("6_o8fc1")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 500)
@@ -701,12 +721,6 @@ layout_mode = 2
 [node name="HpColumn" type="VBoxContainer" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup" unique_id=1437004027]
 layout_mode = 2
 
-[node name="HpHeader" type="Label" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/HpColumn" unique_id=2026900120]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
-text = "HP"
-
 [node name="HPBar" parent="CanvasLayer/HUDManager/SafeMargin/TopLeftGroup/HpColumn" unique_id=8849919 instance=ExtResource("21_ts3gi")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(90, 350)
@@ -718,7 +732,6 @@ nine_patch_stretch = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_constants/margin_top = 40
 
 [node name="PauseButton" type="TextureButton" parent="CanvasLayer/HUDManager/SafeMargin/TopRightWrapper" unique_id=1592663267]
 unique_name_in_owner = true
@@ -909,10 +922,6 @@ script = ExtResource("11_q5onr")
 script = ExtResource("11_jhx03")
 
 [node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
-
-[node name="ExpGem" parent="Loot" unique_id=1193828957 instance=ExtResource("9_7t5mc")]
-position = Vector2(-69, 56)
-experience = 1500
 
 [connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
 [connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]

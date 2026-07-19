@@ -21,3 +21,15 @@ func _ready():
 # we want this enemy to behave differently from normal enemies
 # like it can move in a specific unique pattern, be invincible for
 # x sec(s) when hp reaches a specific number,..
+func _physics_process(delta: float) -> void:
+	# Run BaseEnemy's movement and reposition logic first
+	super(delta)
+	
+	# Check if the player exists, then compare X positions directly with player
+	# left and right stutter when enemy collide with each other
+	if player:
+		if player.global_position.x < global_position.x:
+			sprite.flip_h = true
+			sprite.play()
+		elif player.global_position.x > global_position.x:
+			sprite.play()
