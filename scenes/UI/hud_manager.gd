@@ -8,6 +8,10 @@ extends Control
 @onready var lvl_up_screen = $LevelUpContainer
 @onready var hp_bar = %HPBar
 
+# --- top right group ---
+@onready var pause_button = %PauseButton
+const PAUSE_MENU_SCENE = preload("res://scenes/ui/pause_menu/pause_menu.tscn")
+
 # --- top center group ---
 @onready var timer_label = %Timer
 @onready var kill_label = %Kill
@@ -37,6 +41,9 @@ func _ready() -> void:
 		for upgrade in upgrade_manager.collected_upgrades:
 			#print("inventory: ", upgrade)
 			_on_upgrade_collected(upgrade)
+	
+	if pause_button:
+		pause_button.pressed.connect(_on_pause_button_pressed)
 
 func _on_stage_time_updated(seconds: int) -> void:
 	var minutes := seconds / 60
@@ -117,3 +124,19 @@ func _on_player_leveled_up(new_level: int) -> void:
 
 func _on_player_level_up_choice_selected() -> void:
 	lvl_up_screen.hide_level_up_menu()
+
+func _on_pause_button_pressed() -> void:
+	# 1. Prevent pausing if the game is already paused (like during the Level Up screen!)
+	if get_tree().paused:
+		return
+	
+	# 2. Release movement inputs and hide the joystick so it doesn't get stuck
+	reset_joystick()
+	
+	# 3. Freeze the game world
+	get_tree().paused = true
+	
+	# 4. Instantiate the pause menu into the parent CanvasLayer 
+	# (Adding it to get_parent() ensures it draws on top of the HUD elements)
+	var pause_menu = PAUSE_MENU_SCENE.instantiate()
+	get_parent().add_child(pause_menu)

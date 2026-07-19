@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://b30c6eayjnxk5"]
 
+[ext_resource type="Texture2D" uid="uid://bsubvi8fyitko" path="res://assets/Textures/Items/Weapons/Lazer_Button.png" id="1_q0g4x"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_tqf8i"]
 [ext_resource type="Resource" uid="uid://blqb5eiu03gbq" path="res://scenes/data/upgrades/laser/laser_1.tres" id="2_iutpe"]
 [ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="4_nm4up"]
@@ -9,6 +10,7 @@ script = ExtResource("1_tqf8i")
 id = "laser_2"
 display_name = "Laser Ray"
 description = "Increases laser ray's size by 50%"
+icon = ExtResource("1_q0g4x")
 level = 3
 weapon_scene = ExtResource("4_nm4up")
 prerequisite = ExtResource("2_iutpe")

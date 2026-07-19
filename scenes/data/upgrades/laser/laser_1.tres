@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://blqb5eiu03gbq"]
 
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_6fb2m"]
+[ext_resource type="Texture2D" uid="uid://bsubvi8fyitko" path="res://assets/Textures/Items/Weapons/Lazer_Button.png" id="1_83h2k"]
 [ext_resource type="Resource" uid="uid://dhilmqtb7bqmi" path="res://scenes/data/upgrades/laser/laser_0.tres" id="2_680ke"]
 [ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="4_b5hbu"]
 
@@ -9,6 +10,7 @@ script = ExtResource("1_6fb2m")
 id = "laser_1"
 display_name = "Laser Ray"
 description = "Laser stays active for 1 additional second"
+icon = ExtResource("1_83h2k")
 level = 2
 weapon_scene = ExtResource("4_b5hbu")
 prerequisite = ExtResource("2_680ke")

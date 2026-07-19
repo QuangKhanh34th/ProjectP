@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0b3oi6ukl326"
-path="res://.godot/imported/health.png-64a3e370b99074710cde6547105da1c6.ctex"
+uid="uid://46ah8fm8njko"
+path="res://.godot/imported/pause screen-Sheet.png-84c821032d527fe7e9b9033532dfe085.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/GUI/health.png"
-dest_files=["res://.godot/imported/health.png-64a3e370b99074710cde6547105da1c6.ctex"]
+source_file="res://assets/Textures/GUI/pause screen-Sheet.png"
+dest_files=["res://.godot/imported/pause screen-Sheet.png-84c821032d527fe7e9b9033532dfe085.ctex"]
 
 [params]
 

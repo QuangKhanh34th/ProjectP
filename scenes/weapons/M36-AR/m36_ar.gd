@@ -49,18 +49,19 @@ func level_up(new_level: int = 0):
 		6:
 			base_cooldown -= 20/100
 		7:
-			# upgrade 2
-			penetration_hp += 999
-			base_speed += 300
-			base_ammo += 31
-			base_delay = 0.00015
-			base_cooldown -= 0.2	
-			
-			var tween = create_tween()
-			# Tween the "zoom" property to Vector2(0.5, 0.5) over 1.5 seconds
-			tween.tween_property(player.camera, "zoom", Vector2(4.0, 4.0), 1.5)\
-				.set_trans(Tween.TRANS_SINE)\
-				.set_ease(Tween.EASE_OUT)
+			# upgrade 2 (NOT ENOUGH TIME)
+			#penetration_hp += 999
+			#base_speed += 300
+			#base_ammo += 31
+			#base_delay = 0.00015
+			#base_cooldown -= 0.2	
+			#
+			#var tween = create_tween()
+			## Tween the "zoom" property to Vector2(0.5, 0.5) over 1.5 seconds
+			#tween.tween_property(player.camera, "zoom", Vector2(4.0, 4.0), 1.5)\
+				#.set_trans(Tween.TRANS_SINE)\
+				#.set_ease(Tween.EASE_OUT)
+			base_damage += 10
 
 # start the weapon timer if the weapon level is above 0 (meaning having/acquired
 # the weapon)
@@ -111,7 +112,7 @@ func _on_shima_bun_attack_timer_timeout() -> void:
 
 	if ammo_left > 0:
 		# --- TRAIN TRACK PATTERN LOGIC ---
-		if level == 7: # Replace with upgrade check later
+		if level == 999: # Replace with upgrade check later
 			# 1. Get direction to enemy and calculate the 90-degree perpendicular vector
 			var dir = global_position.direction_to(closest_enemy.global_position)
 			var perp = dir.orthogonal() 

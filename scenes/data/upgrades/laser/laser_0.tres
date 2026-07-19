@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://dhilmqtb7bqmi"]
 
+[ext_resource type="Texture2D" uid="uid://bsubvi8fyitko" path="res://assets/Textures/Items/Weapons/Lazer_Button.png" id="1_nyvmy"]
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="2_1v43r"]
 [ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="3_xkl2g"]
 
@@ -8,5 +9,6 @@ script = ExtResource("2_1v43r")
 id = "laser_0"
 display_name = "Laser Ray"
 description = "Fires a continuous energy beam toward the nearest enemy that pierces all targets. Damage affected by size"
+icon = ExtResource("1_nyvmy")
 weapon_scene = ExtResource("3_xkl2g")
 metadata/_custom_type_script = "uid://cd7h6i7gpsx50"

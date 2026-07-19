@@ -16,7 +16,7 @@ func _ready() -> void:
 	# Run LinearProjectile's _ready() to calculate direction and base rotation
 	super()
 	
-	if weapon.level == 7:
+	if weapon.level == 999:
 		# If this bullet is a railroad tie, rotate just the visual sprite by 90 degrees
 		if is_tie and static_sprite:
 			static_sprite.rotation = PI / 2.0

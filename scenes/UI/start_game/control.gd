@@ -87,3 +87,17 @@ func _on_quit_pressed() -> void:
 	next_action = "quit"
 	
 	get_tree().quit()
+
+func _input(event: InputEvent) -> void:
+	# Only allow skipping if running from the Godot Editor (debug mode)
+	if OS.is_debug_build():
+		# Press SPACE to instantly skip all animations and load the world
+		if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
+			# Prevent multiple triggers
+			set_process_input(false) 
+			
+			if not game_scene_path.is_empty():
+				get_tree().change_scene_to_file(game_scene_path)
+			else:
+				push_error("Game scene path is not assigned in StartScreen")
+				

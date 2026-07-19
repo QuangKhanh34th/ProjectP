@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jokkdihhfrdc"
-path="res://.godot/imported/exp_progress.png-4f54b70ad7d7104fdc9f4506762b1d31.ctex"
+uid="uid://bsubvi8fyitko"
+path="res://.godot/imported/Lazer_Button.png-c9f71704e098e2a32978b9a86e40b6cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Textures/GUI/exp_progress.png"
-dest_files=["res://.godot/imported/exp_progress.png-4f54b70ad7d7104fdc9f4506762b1d31.ctex"]
+source_file="res://assets/Textures/Items/Weapons/Lazer_Button.png"
+dest_files=["res://.godot/imported/Lazer_Button.png-c9f71704e098e2a32978b9a86e40b6cb.ctex"]
 
 [params]
 

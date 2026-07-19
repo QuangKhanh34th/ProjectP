@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://ci30aclr1hj5p"]
 
 [ext_resource type="Script" uid="uid://cd7h6i7gpsx50" path="res://scenes/data/upgrades/upgrade_data.gd" id="1_cvwhb"]
+[ext_resource type="Texture2D" uid="uid://bsubvi8fyitko" path="res://assets/Textures/Items/Weapons/Lazer_Button.png" id="1_gdm8x"]
 [ext_resource type="Resource" uid="uid://b30c6eayjnxk5" path="res://scenes/data/upgrades/laser/laser_2.tres" id="2_fhrdi"]
 [ext_resource type="PackedScene" uid="uid://crp2cgek8c28t" path="res://scenes/weapons/Laser/laser.tscn" id="4_q6e3q"]
 
@@ -9,6 +10,7 @@ script = ExtResource("1_cvwhb")
 id = "laser_3"
 display_name = "Laser Ray"
 description = "Reduces weapon cooldown by 40%"
+icon = ExtResource("1_gdm8x")
 level = 4
 weapon_scene = ExtResource("4_q6e3q")
 prerequisite = ExtResource("2_fhrdi")
