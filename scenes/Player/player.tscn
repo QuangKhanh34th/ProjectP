@@ -605,7 +605,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -628,7 +628,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_down_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -651,7 +651,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_down_right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -674,7 +674,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -697,7 +697,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_right",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -720,7 +720,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -743,7 +743,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up_left",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -766,7 +766,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run_up_right",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
@@ -793,7 +793,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_qek5x")
 sprite_frames = SubResource("SpriteFrames_0ncpa")
 animation = &"run_up_right"
-frame_progress = 0.9145775
+frame_progress = 0.53356373
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=753885319]
 visible = false
