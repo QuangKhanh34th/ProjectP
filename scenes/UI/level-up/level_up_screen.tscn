@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://dcinmyi1c5ahd" path="res://assets/Audio/SoundEffect/levelup.ogg" id="1_1potc"]
 [ext_resource type="Script" uid="uid://ca7xf077mxv4e" path="res://scenes/ui/level-up/level_up_screen.gd" id="1_6q4lm"]
 [ext_resource type="Texture2D" uid="uid://c2p4o8htti27c" path="res://assets/Textures/GUI/level Up menu.png" id="2_knlgf"]
+[ext_resource type="FontFile" uid="uid://d010pwgukdk1l" path="res://assets/Font/m6x11.ttf" id="3_hvq1k"]
 [ext_resource type="PackedScene" uid="uid://dptyenyqwwh8m" path="res://scenes/ui/level-up/item_option.tscn" id="3_wl5eb"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wl5eb"]
@@ -17,9 +18,9 @@ offset_top = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 200
+theme_override_constants/margin_left = 190
 theme_override_constants/margin_top = 300
-theme_override_constants/margin_right = 200
+theme_override_constants/margin_right = 193
 theme_override_constants/margin_bottom = 300
 script = ExtResource("1_6q4lm")
 
@@ -28,47 +29,64 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_wl5eb")
 
-[node name="LevelUpLabel" type="Label" parent="LevelUpPanel" unique_id=1583462518]
+[node name="MarginContainer" type="MarginContainer" parent="LevelUpPanel" unique_id=758278519]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 33
+theme_override_constants/margin_top = 115
+theme_override_constants/margin_right = 33
+theme_override_constants/margin_bottom = 198
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelUpPanel/MarginContainer" unique_id=445578822]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="LevelUpPanel/MarginContainer/VBoxContainer" unique_id=1511196549]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+
+[node name="LevelUpLabel" type="RichTextLabel" parent="LevelUpPanel/MarginContainer/VBoxContainer" unique_id=429530788]
 unique_name_in_owner = true
-layout_mode = 0
-offset_top = 93.0
-offset_right = 680.0
-offset_bottom = 216.0
-theme_override_font_sizes/font_size = 64
-text = "Level Up!"
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+theme_override_fonts/bold_font = ExtResource("3_hvq1k")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+text = "[b]Level Up![/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UpgradeOptions" type="VBoxContainer" parent="LevelUpPanel" unique_id=521159833]
+[node name="UpgradeOptions" type="VBoxContainer" parent="LevelUpPanel/MarginContainer/VBoxContainer" unique_id=521159833]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 50.0
-offset_top = 255.0
-offset_right = 630.0
-offset_bottom = 405.0
+layout_mode = 2
+size_flags_vertical = 6
 theme_override_constants/separation = 20
 
-[node name="ItemOption" parent="LevelUpPanel/UpgradeOptions" unique_id=841562461 instance=ExtResource("3_wl5eb")]
+[node name="ItemOption" parent="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions" unique_id=841562461 instance=ExtResource("3_wl5eb")]
 visible = false
 layout_mode = 2
 
-[node name="ItemOption2" parent="LevelUpPanel/UpgradeOptions" unique_id=762404765 instance=ExtResource("3_wl5eb")]
+[node name="ItemOption2" parent="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions" unique_id=762404765 instance=ExtResource("3_wl5eb")]
 visible = false
 layout_mode = 2
 
-[node name="ItemOption3" parent="LevelUpPanel/UpgradeOptions" unique_id=516789509 instance=ExtResource("3_wl5eb")]
+[node name="ItemOption3" parent="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions" unique_id=516789509 instance=ExtResource("3_wl5eb")]
 visible = false
 layout_mode = 2
 
-[node name="ItemNameLabel" parent="LevelUpPanel/UpgradeOptions/ItemOption3/MarginContainer/HBoxContainer/NameDesc" parent_id_path=PackedInt32Array(516789509, 780313009) index="1" unique_id=1761259012]
+[node name="ItemNameLabel" parent="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions/ItemOption3/MarginContainer/HBoxContainer/NameDesc" parent_id_path=PackedInt32Array(516789509, 780313009) index="0" unique_id=1761259012]
 text = "Laser ray"
 
-[node name="ItemDescLabel" parent="LevelUpPanel/UpgradeOptions/ItemOption3/MarginContainer/HBoxContainer/NameDesc" parent_id_path=PackedInt32Array(516789509, 780313009) index="2" unique_id=2091118578]
-text = "Fires a continuous energy beam toward the nearest enemy that pierces all targets. Damage affected by size"
+[node name="ItemDescLabel" parent="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions/ItemOption3/MarginContainer/HBoxContainer/NameDesc" parent_id_path=PackedInt32Array(516789509, 780313009) index="1" unique_id=2091118578]
+text = "Fires an energy beam toward the nearest enemy that pierces all targets. Damage affected by size"
 
 [node name="snd_levelup" type="AudioStreamPlayer" parent="LevelUpPanel" unique_id=1272071175]
 unique_name_in_owner = true
 stream = ExtResource("1_1potc")
 volume_db = -10.0
 
-[editable path="LevelUpPanel/UpgradeOptions/ItemOption3"]
+[editable path="LevelUpPanel/MarginContainer/VBoxContainer/UpgradeOptions/ItemOption3"]

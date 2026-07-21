@@ -52,7 +52,7 @@ radius = 6.0
 
 [node name="Nade" type="CharacterBody2D" unique_id=729246025 groups=["enemy"]]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_px1sc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=742670169]

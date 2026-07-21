@@ -40,7 +40,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gaea/editor/plugin.cfg", "res://addons/gaea/plugin.cfg", "res://addons/gaea/runtime/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -48,6 +48,11 @@ folder_colors={
 "res://assets/Audio/": "blue",
 "res://assets/Textures/": "green"
 }
+
+[gui]
+
+theme/default_theme_scale=2.0
+theme/custom_font="uid://ci8osmqi6yohw"
 
 [input]
 

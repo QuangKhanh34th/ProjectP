@@ -8,7 +8,7 @@
 script = ExtResource("2_1v43r")
 id = "laser_0"
 display_name = "Laser Ray"
-description = "Fires a continuous energy beam toward the nearest enemy that pierces all targets. Damage affected by size"
+description = "Fires an energy beam toward the nearest enemy that pierces all targets. Damage affected by size"
 icon = ExtResource("1_nyvmy")
 max_level = 7
 weapon_scene = ExtResource("3_xkl2g")

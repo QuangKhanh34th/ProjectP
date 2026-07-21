@@ -11,6 +11,5 @@ value = 100.0
 fill_mode = 3
 texture_under = ExtResource("1_h4n5r")
 texture_progress = ExtResource("2_jndji")
-texture_progress_offset = Vector2(4, 13)
 tint_over = Color(0, 0, 0, 1)
 script = ExtResource("3_v3hv6")

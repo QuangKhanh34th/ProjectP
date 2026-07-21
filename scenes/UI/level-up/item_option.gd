@@ -14,7 +14,7 @@ signal upgrade_selected(weapon_to_upgrade)
 @onready var item_icon: TextureRect = %ItemIcon
 @onready var name_label: Label = %ItemNameLabel
 @onready var desc_label: Label = %ItemDescLabel
-@onready var level_label: Label = %ItemLevelLabel
+@onready var level_label: RichTextLabel = %ItemLevelLabel
 
 var target_weapon: Node2D = null
 
@@ -25,7 +25,7 @@ func set_item(data: UpgradeData) -> void:
 	%ItemIcon.texture = data.icon
 	%ItemNameLabel.text = data.display_name
 	%ItemDescLabel.text = data.description
-	%ItemLevelLabel.text = "Lv. " + str(data.level)
+	%ItemLevelLabel.text = "[b]Lv. " + str(data.level) + "[/b]"
 
 
 func _on_button_pressed() -> void:

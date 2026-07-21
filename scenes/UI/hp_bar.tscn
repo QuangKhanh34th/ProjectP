@@ -9,6 +9,7 @@ offset_right = 22.0
 offset_bottom = 72.0
 value = 100.0
 fill_mode = 3
+nine_patch_stretch = true
 texture_under = ExtResource("1_wupjp")
 texture_progress = ExtResource("2_sxha3")
 script = ExtResource("3_sxha3")
