@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://daqtebl8i5qw1" path="res://scenes/player/player.tscn" id="1_7r4gi"]
 [ext_resource type="Texture2D" uid="uid://bbd0we0ljeml" path="res://assets/Textures/Tilemap.png" id="1_f17e3"]
-[ext_resource type="Script" uid="uid://b8il75uhotg0s" path="res://scenes/system/stage_manager.gd" id="2_0nbtd"]
+[ext_resource type="Script" path="res://scenes/system/stage_manager.gd" id="2_0nbtd"]
 [ext_resource type="Script" uid="uid://bsm84febwys2e" path="res://scenes/core/upgrade_manager.gd" id="2_dss4m"]
 [ext_resource type="Script" uid="uid://bxhordtn0vt0n" path="res://scenes/core/map_generator.gd" id="2_f17e3"]
 [ext_resource type="PackedScene" uid="uid://b8gbi7gj05ojq" path="res://scenes/system/enemy_spawner.tscn" id="2_w7kh3"]
@@ -553,6 +553,7 @@ time_end = 60
 enemy = ExtResource("21_rup4s")
 enemy_num = 4
 enemy_spawn_delay = 1
+custom_drop_value = 1.0
 metadata/_custom_type_script = "uid://cwty3n7y80v6p"
 
 [sub_resource type="Resource" id="Resource_lqtkw"]
@@ -583,7 +584,7 @@ script = ExtResource("20_fh13f")
 time_start = 181
 time_end = 300
 enemy = ExtResource("21_rup4s")
-enemy_num = 8
+enemy_num = 12
 enemy_spawn_delay = 1
 custom_hp = 30
 custom_move_speed = 40.0
@@ -595,7 +596,7 @@ script = ExtResource("20_fh13f")
 time_start = 181
 time_end = 300
 enemy = ExtResource("13_jhx03")
-enemy_num = 4
+enemy_num = 8
 enemy_spawn_delay = 1
 custom_hp = 20
 custom_move_speed = 70.0
@@ -624,7 +625,8 @@ tile_set = SubResource("TileSet_3l05q")
 script = ExtResource("2_f17e3")
 
 [node name="Player" parent="." unique_id=698049411 instance=ExtResource("1_7r4gi")]
-hp = 100
+hp = 80
+max_hp = 80
 
 [node name="StageManager" type="Node2D" parent="." unique_id=48118594]
 script = ExtResource("2_0nbtd")
@@ -879,6 +881,7 @@ color = Color(0, 0.22745098, 0.96862745, 1)
 
 [node name="LevelUpContainer" parent="CanvasLayer/HUDManager" unique_id=293401371 instance=ExtResource("7_xo05s")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

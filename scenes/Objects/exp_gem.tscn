@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d04dhni1blyng"]
 
-[ext_resource type="Script" uid="uid://bxlyjwva41ys7" path="res://scenes/Objects/exp_gem.gd" id="1_wsy0m"]
+[ext_resource type="Script" uid="uid://bxlyjwva41ys7" path="res://scenes/objects/exp_gem.gd" id="1_wsy0m"]
 [ext_resource type="Texture2D" uid="uid://bjny6ssppji5l" path="res://assets/Textures/Items/Gems/xp_drop.png" id="2_mbehg"]
 [ext_resource type="AudioStream" uid="uid://cggsvsqg4pqto" path="res://assets/Audio/SoundEffect/collectgem.mp3" id="3_mv45x"]
 
