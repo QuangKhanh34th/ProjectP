@@ -39,6 +39,8 @@ func _ready() -> void:
 	_on_stage_time_updated(300)
 	_on_kill_count_updated(0)
 	
+	vignette.material.set_shader_parameter("intensity", 0.0)
+	
 	# Fetch existing weapons to fix the startup race condition
 	var upgrade_manager = get_tree().current_scene.get_node_or_null("UpgradeManager")
 	if upgrade_manager:
