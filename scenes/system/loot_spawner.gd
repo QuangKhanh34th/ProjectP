@@ -8,6 +8,7 @@ var drop_accumulator: float = 0.0
 var exp_accumulator: int = 0 # track pooled HP
 
 const EXP_GEM_SCENE = preload("res://scenes/objects/exp_gem.tscn")
+const MAGNET_SCENE = preload("res://scenes/objects/magnet.tscn")
 
 func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
@@ -16,6 +17,8 @@ func _on_enemy_died(enemy: Node2D) -> void:
 	if randf() <= enemy.drop_value:
 		spawn_exp_gem(enemy)
 	
+	if randf() <= enemy.magnet_drop_value:
+		spawn_magnet(enemy)
 	# TODO: Implement optimization logic when enemy spawn and exp gem spawn too much  
 	# accumulator_exp_calculate(enemy)
 
@@ -31,7 +34,7 @@ func accumulator_exp_calculate(enemy: Node2D) -> void:
 	exp_accumulator = 0
 
 # assign default value to argument to make it optional
-func spawn_exp_gem(enemy: Node2D, exp_amount: int = 0):
+func spawn_exp_gem(enemy: Node2D, exp_amount: int = 0) -> void:
 	var exp_drop = EXP_GEM_SCENE.instantiate()
 	
 	# drop exp gem where the enemy died
@@ -47,3 +50,7 @@ func spawn_exp_gem(enemy: Node2D, exp_amount: int = 0):
 	# spawn the gem
 	loot_base.call_deferred("add_child", exp_drop)
 	
+func spawn_magnet(enemy: Node2D) -> void:
+	var magnet_drop = MAGNET_SCENE.instantiate()
+	magnet_drop.global_position = enemy.global_position
+	loot_base.call_deferred("add_child", magnet_drop)

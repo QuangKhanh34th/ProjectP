@@ -10,6 +10,7 @@ var last_direction: String = "down" # Default starting direction
 @onready var upgradeManager = $"../UpgradeManager"
 @onready var weaponManager = $WeaponManager
 @onready var camera: Camera2D = $Camera2D
+@onready var grabAreaCollision: CollisionShape2D = $GrabArea/CollisionShape2D
 
 # --- Player stats ---
 @export var player_level: int = 1
@@ -58,7 +59,7 @@ func _ready():
 	if animated_sprite and animated_sprite.material is ShaderMaterial:
 		animated_sprite.material.set_shader_parameter("flash_modifier", 0.0)
 		
-	$GrabArea/CollisionShape2D.shape = $GrabArea/CollisionShape2D.shape.duplicate()
+	grabAreaCollision.shape = grabAreaCollision.shape.duplicate()
 	
 	if speed == null:
 		speed = 50.0
@@ -234,7 +235,7 @@ func upgrade_character(chosen_upgrade: UpgradeData) -> void:
 					cooldown += 8.0 # +8% Cooldown Reduction per level
 				"passive_magnet":
 					# Access the GrabArea node and expand its collision boundaries
-					var grab_shape = $GrabArea/CollisionShape2D.shape as CircleShape2D
+					var grab_shape = grabAreaCollision.shape as CircleShape2D
 					if grab_shape:
 						grab_shape.radius += 25.0  # Broaden the pickup horizon by 25px per level
 				"passive_mvspd":

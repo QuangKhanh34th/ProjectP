@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var damage = 1
 @export var experience = 1
 @export var drop_value: float = 0.2 # exp drop rate, in percentage
+@export var magnet_drop_value: float = 0.0015
 
 # Can be injected by the Spawner to prevent scene-tree lookup stutter
 var player: Node2D = null
