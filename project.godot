@@ -22,6 +22,7 @@ config/icon="uid://bpyihenx4hvto"
 [autoload]
 
 SignalBus="*uid://cr66atct2qeng"
+Signal_Debugger="*uid://cfwqxwg8njiyu"
 
 [display]
 
@@ -40,7 +41,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
 
 [file_customization]
 

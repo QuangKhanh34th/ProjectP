@@ -633,7 +633,7 @@ shader_parameter/pulse_speed = 8.0
 
 [node name="World" type="Node2D" unique_id=1078849849]
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=50659270]
+[node name="MapObjectLayer" type="TileMapLayer" parent="." unique_id=50659270]
 tile_set = SubResource("TileSet_3l05q")
 script = ExtResource("2_f17e3")
 
@@ -659,7 +659,7 @@ script = ExtResource("3_e3hyu")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1944159651]
 motion_mirroring = Vector2(1000, 1000)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer" unique_id=1335809717]
+[node name="BackgroundTile" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer" unique_id=1335809717]
 position = Vector2(4, 3)
 tile_set = SubResource("TileSet_3l05q")
 script = ExtResource("25_x2olw")
@@ -933,10 +933,10 @@ script = ExtResource("11_q5onr")
 [node name="DebugCamera" type="Camera2D" parent="CanvasLayer/DebugViewport/SubViewport" unique_id=1073042790]
 script = ExtResource("11_jhx03")
 
-[node name="Loot" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
+[node name="LootPool" type="Node2D" parent="." unique_id=108662728 groups=["loot"]]
 
-[node name="Magnet" parent="Loot" unique_id=602690150 instance=ExtResource("56_pf35h")]
-position = Vector2(-51, -69)
+[node name="Magnet" parent="LootPool" unique_id=602690150 instance=ExtResource("56_pf35h")]
+position = Vector2(-51, -68)
 
 [connection signal="health_updated" from="Player" to="CanvasLayer/HUDManager" method="_on_player_health_updated"]
 [connection signal="level_up_choice_selected" from="Player" to="CanvasLayer/HUDManager" method="_on_player_level_up_choice_selected"]
